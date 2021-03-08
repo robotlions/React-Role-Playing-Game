@@ -1,0 +1,92 @@
+/* .App {
+background-color: lightgray;
+} */
+
+.container{
+  font-size: large;
+  font-family: fantasy;
+}
+
+.charSpace{
+  height: 20px;
+}
+
+.charbanner{
+  font-weight: bold;
+}
+
+.img{
+
+ }
+
+.box{
+  border: 15px solid #f5deb3;
+  /* border: 15px solid #778899; */
+  border-style: ridge;
+}
+
+.graphicsWindow{
+  background-color: #fffafa;
+  background-color: lightgray;
+  box-shadow: inset 7px 7px 7px darkgray;
+  border-top-left-radius: 10px;
+}
+
+.effectsWindow{
+  background-color: #fffafa;
+  box-shadow: inset 7px 7px 7px darkgray;
+}
+
+
+
+.textWindow{
+  padding-top: 10px;
+  background-color: #fffafa;
+  box-shadow: inset 7px 7px 7px darkgray;
+  border-top-right-radius: 10px;
+}
+
+.charWindow{
+  background-color: #fffafa;
+  box-shadow: inset 7px 7px 7px darkgray;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.toprow{
+  height: 54vh;
+}
+.bottomrow{
+  height: 44vh;
+}
+
+.combatButtons {
+  position: absolute;
+  bottom: 5px;
+}
+
+.switchViewsButton{
+  left: 20px;
+  bottom: 50px;
+  position: absolute;
+}
+
+#nsew{
+  letter-spacing: 5px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  cursor: pointer;
+}
+
+#moveMsg{
+  /* animation: fadeOut 1s;
+  animation-delay: 3s; */
+transition: opacity 0 1s;
+
+}
+@keyframes fadeOut {
+   0% {opacity: 1;}
+   100% {opacity: 0;}
+}
