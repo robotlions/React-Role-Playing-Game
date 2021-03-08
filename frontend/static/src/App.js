@@ -23,6 +23,7 @@ class App extends Component{
       charSpell: {},
       charAttackMessage: "",
       mobAttackMessage: "",
+      data: [],
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -79,17 +80,27 @@ this.charWins = this.charWins.bind(this);
             spCost: 4,
             damMessage: "slams"
     }
-          if (localStorage.getItem('char')){
-            let loadChar = JSON.parse(localStorage.getItem('char'));
-            this.setState({char: loadChar});
-          }
-          else{
-            this.setState({char})
-          }
+          // if (localStorage.getItem('char')){
+          //   let loadChar = JSON.parse(localStorage.getItem('char'));
+          //   this.setState({char: loadChar});
+          // }
+          // else{
+          //   this.setState({char})
+          // }
 
           this.setState({charWeapon})
           this.setState({mob})
           this.setState({charSpell})
+
+
+        fetch("/characters/")
+      .then(response => response.json())
+      .then(response => response[0])
+      .then(response => this.setState({char: response}));
+
+
+      // this.state.data.map((data) => (this.setState({char: data})))
+
   }
 
 changeToCombatWindow(){
@@ -206,6 +217,7 @@ healChar(){
 
 
   render(){
+    console.log(this.state.char)
     const char = this.state.char
     const mob = this.state.mob
     const charWeapon = this.state.charWeapon

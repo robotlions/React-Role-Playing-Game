@@ -50,8 +50,8 @@ saveChar(char){
     <div className="row charSpace"></div>
     <div className="row char1row">
     <p className="col-3 char1">{char.name}</p>
-    <p className="col-2 cl1">{char.class}</p>
-    <p className="col-1 lvl1">{char.lvl}</p>
+    <p className="col-2 cl1">{char.job}</p>
+    <p className="col-1 lvl1">{char.level}</p>
     <p className="col-1 ac1">{char.ac}</p>
     <p className="col-1 hp1">{char.hp}/{char.hpmax}</p>
     <p className="col-1 sp1">{char.sp != null ? `${char.sp}/${char.spmax}` : 'N/A'}</p>
