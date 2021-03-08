@@ -217,7 +217,6 @@ healChar(){
 
 
   render(){
-    console.log(this.state.char)
     const char = this.state.char
     const mob = this.state.mob
     const charWeapon = this.state.charWeapon

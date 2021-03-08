@@ -30,15 +30,3 @@ class Character(models.Model):
 
     def __str__(self):
         return self.name
-
-
-
-# lvl: "1",
-# ac: 10,
-# hpmax: 8,
-# hp: 8,
-# spmax: 8,
-# sp: 8,
-# class: 'ranger',
-# weapon: "",
-# xp: 0,
