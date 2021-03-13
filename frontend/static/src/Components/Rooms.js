@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import './App.css';
-import rooms from './roomlist';
+import '../App.css';
+import rooms from '../roomlist';
 
 
 class Rooms extends Component{

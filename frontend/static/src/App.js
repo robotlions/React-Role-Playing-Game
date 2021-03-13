@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
-import TextWindow from './TextWindow';
-import CharWindow from './CharWindow';
-import GraphicsWindow from './GraphicsWindow';
-import Rooms from './Rooms';
-import CombatWindow from './CombatWindow'
+import {Route, Switch} from 'react-router-dom';
+import TextWindow from './Components/TextWindow';
+import CharWindow from './Components/CharWindow';
+import GraphicsWindow from './Components/GraphicsWindow';
+import Rooms from './Components/Rooms';
+import CombatWindow from './Components/CombatWindow'
+import Nav from './Components/Nav'
+import Inventory from './Components/Inventory'
+import Character from './Components/Character'
 import moblist from './moblist'
 import rooms from './roomlist'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -254,7 +258,15 @@ healChar(){
         <div className="col-12 box charWindow">
           <CharWindow healChar={this.healChar} all={this.state}/></div>
         </div>
+        <Nav />
         </div>
+        <React.Fragment>
+    <Switch>
+      <Route path="/inventory/" component={Inventory}/>
+      <Route path="/character/" component={Character}/>
+
+    </Switch>
+    </React.Fragment>
         </div>
   );
 }
