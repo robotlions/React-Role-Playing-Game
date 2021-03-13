@@ -32,7 +32,7 @@ saveChar(char){
         'Content-Type': 'application/json',
         'X-CSRFToken': Cookies.get('csrftoken'),
       },
-      body: JSON.stringify({hp: char.xp}),
+      body: JSON.stringify({...char}),
     })
 }
 
@@ -44,7 +44,6 @@ saveChar(char){
 
   render(){
     const char = this.props.all.char
-    console.log(this.props.all.char)
     const charWeapon = this.props.all.charWeapon
     const saveChar = <button onClick={()=>this.saveChar(char)}>Save Character</button>
     const healChar = <button onClick={this.props.healChar}>Heal Character</button>
