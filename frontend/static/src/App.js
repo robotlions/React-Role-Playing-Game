@@ -8,6 +8,8 @@ import CombatWindow from './Components/CombatWindow'
 import Nav from './Components/Nav'
 import Inventory from './Components/Inventory'
 import Character from './Components/Character'
+import Login from './Components/Login'
+import Cookies from 'js-cookie';
 import moblist from './moblist'
 import rooms from './roomlist'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -28,6 +30,7 @@ class App extends Component{
       charAttackMessage: "",
       mobAttackMessage: "",
       data: [],
+      isLoggedIn: !!Cookies.get('Authorization'),
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -238,7 +241,9 @@ healChar(){
   return (
     <div className="App">
       <div className="container">
+      <Nav />
         <div className="row toprow">
+
           <div className="col-5 box graphicsWindow" style={{padding: "0px"}}>
           <GraphicsWindow />
           </div>
@@ -258,15 +263,16 @@ healChar(){
         <div className="col-12 box charWindow">
           <CharWindow healChar={this.healChar} all={this.state}/></div>
         </div>
-        <Nav />
+
         </div>
         <React.Fragment>
-    <Switch>
+        <Switch>
+      <Route path="/login/" component={Login}/>
       <Route path="/inventory/" component={Inventory}/>
-      <Route path="/character/" component={Character}/>
-
+      <Route path="/character/" children=<Character all={this.state}/>/>
     </Switch>
     </React.Fragment>
+
         </div>
   );
 }
