@@ -33,4 +33,5 @@ class UserDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'date_joined', 'profile')
+        fields = ('username', 'date_joined', 'profile', 'character')
+        depth=1

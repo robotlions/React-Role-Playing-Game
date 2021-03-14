@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.conf import settings
 
 class Weapon(models.Model):
     pass
@@ -15,6 +15,7 @@ class Character(models.Model):
         (MAGICIAN, 'Magician'),
     ]
 
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=255, null=True)
     level = models.IntegerField(null=True)
     hp = models.IntegerField(null=True)

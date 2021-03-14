@@ -3,7 +3,8 @@ from rest_framework import serializers
 from .models import Character
 
 class CharacterSerializer(serializers.ModelSerializer):
-    pass
+
+    user = serializers.ReadOnlyField(source='user.username')
 
     class Meta:
         model = Character

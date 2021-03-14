@@ -8,6 +8,7 @@ class CustomUser(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    character = models.ForeignKey('characters.Character', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.user.username

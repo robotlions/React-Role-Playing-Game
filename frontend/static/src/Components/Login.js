@@ -14,12 +14,30 @@ class Login extends Component {
           password2: "",
           data: [],
           hasProfile: false,
+          charData: [],
+          accountData: [],
         }
     this.handleInput = this.handleInput.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.reset = this.reset.bind(this);
-    this.getAccount = this.getAccount.bind(this);
       }
+
+
+componentDidMount(){
+    const options = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': Cookies.get('csrftoken'),
+        },
+    };
+    fetch('/accounts/detail/', options)
+    .then(response => response.json())
+    .then(response => this.setState({accountData: {...response}}));
+}
+
+
+
 
 reset(){
   this.setState({username: ""})
@@ -45,29 +63,9 @@ reset(){
     Cookies.set('Authorization', `Token ${data.key}`);
     localStorage.setItem('rpguser', this.state.username)
     }
-    this.getAccount();
     this.reset();
   }
 
-
-  async getAccount(e){
-    const options = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRFToken': Cookies.get('csrftoken'),
-        },
-    };
-    const handleError = (err) => console.warn(err);
-    const response = await fetch('/accounts/detail/', options);
-    const data = await response.json().catch(handleError);
-    localStorage.setItem('account', data.username)
-    console.log(data)
-    if (data.profile != null) {
-      this.setState({hasProfile: true})
-      this.reset();
-    }
-    }
 
 
 
@@ -138,10 +136,24 @@ async createProfile(){
     }
 
 
+    // async getAccount(){
+    //   const options = {
+    //       method: 'GET',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         'X-CSRFToken': Cookies.get('csrftoken'),
+    //       },
+    //   };
+    //   const handleError = (err) => console.warn(err);
+    //   const response = await fetch('/accounts/detail/', options);
+    //   const data = await response.json().catch(handleError);
+    //   await this.setState({accountData: {...data}})
+    // }
+
+
 
   render(){
-
-
+const charData = [this.props.all.charData]
 const registerForm = (<form onSubmit={(e) => this.handleRegistration(e, this.state)}>
       <input className="input-group form-control" type="text" placeholder="username" name="username" value={this.state.username} onChange={this.handleInput}/>
       <input className="input-group form-control" type="email" placeholder="email" name="email" value={this.state.email} onChange={this.handleInput}/>
@@ -165,16 +177,17 @@ const loginForm = (<form onSubmit={(e) => this.handleLogin(e, this.state)}>
       </form>)
 
 
-
 const logOutForm = (<form onSubmit={(e) => this.handleLogout(e, this.state)}>
 <button className="btn btn-secondary" type="submit">Log Out</button></form>)
+
+const acc = this.state.accountData.character
+console.log(acc)
 
 
       return(
         <div className="loginForm">
         {this.state.isLoggedIn === false ? loginForm : logOutForm}
         {this.state.isLoggedIn === false ? registerForm : null}
-        {this.state.hasProfile === false ? profileCreate : null}
         </div>
       );
     }

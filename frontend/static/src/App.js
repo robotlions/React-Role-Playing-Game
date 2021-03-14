@@ -111,7 +111,8 @@ this.changeRoomImage = this.changeRoomImage.bind(this);
         fetch("/characters/")
       .then(response => response.json())
       .then(response => response[0])
-      .then(response => this.setState({char: response}));
+      .then(response => this.setState({char: response}))
+      // .then(response => this.setState({charData: response}));
 
 
       // this.state.data.map((data) => (this.setState({char: data})))
@@ -273,7 +274,7 @@ healChar(){
         <div className="col-12 box charWindow">
         <React.Fragment>
     <Switch>
-      <Route path="/login/" component={Login}/>
+      <Route path="/login/" children=<Login all={this.state}/>/>
       <Route path="/character/" children=<Character all={this.state}/>/>
       <Route path="/inventory/" component={Inventory}/>
       <Route path="/magic/" component={Magic}/>
