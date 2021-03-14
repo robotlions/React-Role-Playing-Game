@@ -1,5 +1,8 @@
 import {NavLink} from 'react-router-dom';
 import React, {Component} from 'react';
+import Login from './Login'
+import Character from './Character'
+import Inventory from './Inventory'
 import '../App.css';
 
 class Nav extends Component {
@@ -9,16 +12,15 @@ class Nav extends Component {
 
         }
       }
-        render(){
+
+      render(){
+
 
   return(
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div className="container-fluid" id="navContainer">
-    <NavLink to="/login">Log In</NavLink>
-    <NavLink to="/inventory">Inventory</NavLink>
-    <NavLink to="/character">Character</NavLink>
-    </div>
-    </nav>
+    <p>Account</p> <p>Character</p> <p>Inventory</p>
+    </div></nav>
   );
 }
 }

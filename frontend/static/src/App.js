@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {useState} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import TextWindow from './Components/TextWindow';
 import CharWindow from './Components/CharWindow';
@@ -10,6 +11,7 @@ import Inventory from './Components/Inventory'
 import Character from './Components/Character'
 import Login from './Components/Login'
 import Cookies from 'js-cookie';
+import {Modal, Button} from "react-bootstrap";
 import moblist from './moblist'
 import rooms from './roomlist'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -239,9 +241,8 @@ healChar(){
 
 
   return (
-    <div className="App">
       <div className="container">
-      <Nav />
+      <div><Nav /></div>
         <div className="row toprow">
 
           <div className="col-5 box graphicsWindow" style={{padding: "0px"}}>
@@ -264,14 +265,9 @@ healChar(){
           <CharWindow healChar={this.healChar} all={this.state}/></div>
         </div>
 
-        </div>
-        <React.Fragment>
-        <Switch>
-      <Route path="/login/" component={Login}/>
-      <Route path="/inventory/" component={Inventory}/>
-      <Route path="/character/" children=<Character all={this.state}/>/>
-    </Switch>
-    </React.Fragment>
+
+
+
 
         </div>
   );
