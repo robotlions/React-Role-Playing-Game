@@ -14,6 +14,9 @@ import Cookies from 'js-cookie';
 import {Modal, Button} from "react-bootstrap";
 import moblist from './moblist'
 import rooms from './roomlist'
+import dungeonWalk from './images/dungeonWalk.gif'
+import dungeonWalk1 from './images/dungeonWalk1.jpg'
+import dungeonWalk2 from './images/dungeonWalk2.gif'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -33,6 +36,7 @@ class App extends Component{
       mobAttackMessage: "",
       data: [],
       isLoggedIn: !!Cookies.get('Authorization'),
+      image: dungeonWalk1,
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -44,6 +48,7 @@ this.resetWindow = this.resetWindow.bind(this);
 this.randomMob = this.randomMob.bind(this);
 this.healChar = this.healChar.bind(this);
 this.charWins = this.charWins.bind(this);
+this.changeRoomImage = this.changeRoomImage.bind(this);
   }
 
   componentDidMount(){
@@ -121,7 +126,10 @@ else {
 }
 }
 
-
+changeRoomImage(img, img2){
+  this.setState({image: img})
+  setTimeout(() => {this.setState({image: img2})}, 2000);
+}
 
 rando(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
@@ -246,7 +254,7 @@ healChar(){
         <div className="row toprow">
 
           <div className="col-5 box graphicsWindow" style={{padding: "0px"}}>
-          <GraphicsWindow />
+          <GraphicsWindow all={this.state}/>
           </div>
           <div className="col-1 box effectsWindow">
           </div>
@@ -254,7 +262,7 @@ healChar(){
         <p>{charAttackMessage}</p>
         <p>{mobAttackMessage}</p>
         <p>{playerMessage}</p>
-        {this.state.combatwindow == false ? <Rooms />
+        {this.state.combatwindow == false ? <Rooms changeRoomImage={this.changeRoomImage}/>
         : <p className="combatButtons">{meleeAttackButton}{magicAttackButton}{runAwayButton}</p>}
         <p className="switchViewsButton">{switchViewsButton}</p>
         {this.state.combat == false & this.state.combatwindow == true ? <p>{getRandomMob}</p> : null}
