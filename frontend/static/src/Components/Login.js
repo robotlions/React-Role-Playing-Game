@@ -103,7 +103,7 @@ async createProfile(){
 
 
 const registerForm = (<form onSubmit={(e) => this.handleRegistration(e, this.state)}>
-      <p>Welcome! Please register to create a profile and submit recipes</p>
+      <p>Welcome! Please register to create your own adventurer!</p>
       <input className="input-group form-control" type="text" placeholder="username" name="username" value={this.state.username} onChange={this.handleInput}/>
       <input className="input-group form-control" type="email" placeholder="email" name="email" value={this.state.email} onChange={this.handleInput}/>
       <input className="input-group form-control" type="password" placeholder="password" name="password1" value={this.state.password1} onChange={this.handleInput}/>
