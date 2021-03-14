@@ -13,7 +13,6 @@ django-rest-auth = "*"
 djangorestframework = "*"
 django-allauth = "*"
 tweepy = "*"
-numpy = "*"
 pillow = "*"
 
 [dev-packages]
