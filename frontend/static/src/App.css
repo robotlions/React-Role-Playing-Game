@@ -19,6 +19,10 @@ background-color: lightgray;
 
  }
 
+.charSheet{
+  font-size: small;
+}
+
 .box{
   border: 15px solid #f5deb3;
   /* border: 15px solid #778899; */
@@ -86,7 +90,18 @@ background-color: lightgray;
 transition: opacity 0 1s;
 
 }
+
+
+.routeIn{
+  animation: fadeIn 2s;
+}
+
 @keyframes fadeOut {
    0% {opacity: 1;}
    100% {opacity: 0;}
+}
+
+@keyframes fadeIn {
+   0% {opacity: 0;}
+   100% {opacity: 1;}
 }

@@ -1,6 +1,4 @@
-from django.shortcuts import render
-
-# Create yoimport os
+import os
 import logging
 
 from django.views.generic import View
@@ -25,4 +23,4 @@ class IndexView(View):
                 run `npm run build` to test the production version.
                 """,
                 status=501,
-            )ur views here.
+            )

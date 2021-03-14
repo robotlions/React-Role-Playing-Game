@@ -46,7 +46,7 @@ const rooms = [{
       },
       {
         id: 6,
-        name: 'The Easter Chamber',
+        name: 'The Eastern Chamber',
         desc: `A large cavern strewn with building materials and monster parts`,
         north: null,
         south: 7,

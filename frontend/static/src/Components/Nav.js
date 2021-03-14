@@ -16,11 +16,18 @@ class Nav extends Component {
       render(){
 
 
+
+
   return(
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
     <div className="container-fluid" id="navContainer">
-    <p>Account</p> <p>Character</p> <p>Inventory</p>
-    </div></nav>
+    <NavLink to="/">Game</NavLink>
+    <NavLink to="/login/">Accounts</NavLink>
+    <NavLink to="/character/">Character</NavLink>
+    <NavLink to="/magic/">Magic</NavLink>
+    <NavLink to="/inventory/">Inventory</NavLink>
+    </div>
+    </nav>
   );
 }
 }

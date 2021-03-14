@@ -12,6 +12,7 @@ import Character from './Components/Character'
 import Login from './Components/Login'
 import Cookies from 'js-cookie';
 import {Modal, Button} from "react-bootstrap";
+import Magic from './Components/Magic'
 import moblist from './moblist'
 import rooms from './roomlist'
 import dungeonWalk from './images/dungeonWalk.gif'
@@ -268,16 +269,22 @@ healChar(){
         {this.state.combat == false & this.state.combatwindow == true ? <p>{getRandomMob}</p> : null}
         </div>
     </div>
+    <Nav />
       <div className="row bottomrow">
         <div className="col-12 box charWindow">
-          <CharWindow healChar={this.healChar} all={this.state}/></div>
+        <React.Fragment>
+    <Switch>
+      <Route path="/login/" component={Login}/>
+      <Route path="/character/" children=<Character all={this.state}/>/>
+      <Route path="/inventory/" component={Inventory}/>
+      <Route path="/magic/" component={Magic}/>
+      <Route path="/" children=<CharWindow healChar={this.healChar} all={this.state}/>/>
+      </Switch>
+    </React.Fragment>
+        </div>
+        </div>
         </div>
 
-
-
-
-
-        </div>
   );
 }
 }
