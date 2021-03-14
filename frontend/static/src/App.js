@@ -251,7 +251,6 @@ healChar(){
 
   return (
       <div className="container">
-      <div><Nav /></div>
         <div className="row toprow">
 
           <div className="col-5 box graphicsWindow" style={{padding: "0px"}}>
@@ -269,7 +268,7 @@ healChar(){
         {this.state.combat == false & this.state.combatwindow == true ? <p>{getRandomMob}</p> : null}
         </div>
     </div>
-    <Nav />
+    <div className="centerNav"><Nav /></div>
       <div className="row bottomrow">
         <div className="col-12 box charWindow">
         <React.Fragment>

@@ -2,6 +2,19 @@
 background-color: lightgray;
 } */
 
+.centerNav a{
+  color: black;
+}
+
+.centerNav a:link{
+  text-decoration: none;
+  text-shadow: 2px 2px 2px darkgray;
+}
+
+.centerNav a:hover{
+  text-decoration: none;
+}
+
 .container{
   font-size: large;
   font-family: fantasy;
@@ -58,10 +71,10 @@ background-color: lightgray;
 }
 
 .toprow{
-  height: 54vh;
+  height: 65vh;
 }
 .bottomrow{
-  height: 44vh;
+  height: 25vh;
 }
 
 .combatButtons {
@@ -90,7 +103,9 @@ background-color: lightgray;
 transition: opacity 0 1s;
 
 }
-
+.centerNav{
+  border: 5px inset gray;
+}
 
 .routeIn{
   animation: fadeIn 2s;

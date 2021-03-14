@@ -22,7 +22,7 @@ class Nav extends Component {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
     <div className="container-fluid" id="navContainer">
     <NavLink to="/">Game</NavLink>
-    <NavLink to="/login/">Accounts</NavLink>
+    <NavLink to="/login/">Account</NavLink>
     <NavLink to="/character/">Character</NavLink>
     <NavLink to="/magic/">Magic</NavLink>
     <NavLink to="/inventory/">Inventory</NavLink>
