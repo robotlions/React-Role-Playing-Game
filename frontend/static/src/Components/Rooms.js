@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import '../App.css';
 import rooms from '../roomlist';
 import dungeonWalk from '../images/dungeonWalk.gif'
-import dungeonWalk1 from '../images/dungeonWalk1.jpg'
-import dungeonWalk2 from '../images/dungeonWalk2.gif'
+import dungeonStatic from '../images/dungeonStatic.jpg'
 
 class Rooms extends Component{
   constructor (props){
@@ -31,7 +30,7 @@ if (dir == "west"){
   dest = rooms.filter(room => room.id == this.state.currentroom.west)}
 dest = dest[0]
 if (dest) {
-  this.props.changeRoomImage(dungeonWalk2, dungeonWalk1)
+  this.props.changeRoomImage(dungeonWalk, dungeonStatic)
   this.setState({moveMsg: `You walk to the ${dir}.`})
   this.setState({name: "", desc: ""});
   setTimeout(() => {this.setState({moveMsg: ""})}, 1000);

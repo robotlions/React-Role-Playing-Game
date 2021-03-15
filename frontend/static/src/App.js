@@ -15,9 +15,7 @@ import {Modal, Button} from "react-bootstrap";
 import Magic from './Components/Magic'
 import moblist from './moblist'
 import rooms from './roomlist'
-import dungeonWalk from './images/dungeonWalk.gif'
-import dungeonWalk1 from './images/dungeonWalk1.jpg'
-import dungeonWalk2 from './images/dungeonWalk2.gif'
+import dungeonStatic from './images/dungeonStatic.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -37,7 +35,8 @@ class App extends Component{
       mobAttackMessage: "",
       data: [],
       isLoggedIn: !!Cookies.get('Authorization'),
-      image: dungeonWalk1,
+      image: dungeonStatic,
+      defaultChar: {},
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -53,16 +52,16 @@ this.changeRoomImage = this.changeRoomImage.bind(this);
   }
 
   componentDidMount(){
-    const char = {
+    const defaultChar = {
             charId: 1,
-            name: "Wingrave",
+            name: "Default the Defaulter",
             lvl: "1",
             ac: 10,
-            hpmax: 8,
-            hp: 8,
-            spmax: 8,
-            sp: 8,
-            class: 'ranger',
+            hpmax: 12,
+            hp: 12,
+            spmax: 12,
+            sp: 12,
+            class: 'warrior',
             weapon: "",
             xp: 0,
           }
@@ -102,7 +101,8 @@ this.changeRoomImage = this.changeRoomImage.bind(this);
           // else{
           //   this.setState({char})
           // }
-
+          // this.setState({char})
+          this.setState({defaultChar});
           this.setState({charWeapon})
           this.setState({mob})
           this.setState({charSpell})
@@ -269,7 +269,7 @@ healChar(){
         {this.state.combat == false & this.state.combatwindow == true ? <p>{getRandomMob}</p> : null}
         </div>
     </div>
-    <div className="centerNav"><Nav /></div>
+    <div className="row-12 centerNav"><Nav /></div>
       <div className="row bottomrow">
         <div className="col-12 box charWindow">
         <React.Fragment>

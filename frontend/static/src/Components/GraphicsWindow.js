@@ -4,7 +4,7 @@ import gate from '../images/gate.jpg'
 import castle from '../images/castle.jpg'
 import street from '../images/street.jpg'
 import dungeonWalk from '../images/dungeonWalk.gif'
-import dungeonWalk1 from '../images/dungeonWalk1.jpg'
+import dungeonStatic from '../images/dungeonStatic.jpg'
 
 class GraphicsWindow extends Component{
   constructor (props){

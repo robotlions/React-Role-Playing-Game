@@ -7,16 +7,9 @@ class CharWindow extends Component{
   constructor (props){
     super(props);
     this.state =  {
-      charId: "",
-      name: "",
-      lvl: "",
-      ac: "",
-      hpmax: "",
-      hp: "",
-      spmax: "",
-      sp: "",
-      class: "",
-      weapon: "",
+      defaultChar: {},
+      isLoggedIn: !!Cookies.get('Authorization'),
+      userId: !!localStorage.getItem('rpguser'),
     }
 this.saveChar = this.saveChar.bind(this);
   }
@@ -38,12 +31,8 @@ saveChar(char){
 
 
 
-  componentDidMount(){
-          // this.setState(this.props.char)
-}
-
   render(){
-    const char = this.props.all.char
+    const char = this.state.IsLoggedIn || this.state.userId ? this.props.all.char : this.props.all.defaultChar
     const charWeapon = this.props.all.charWeapon
     const saveChar = <button onClick={()=>this.saveChar(char)}>Save Character</button>
     const healChar = <button onClick={this.props.healChar}>Heal Character</button>

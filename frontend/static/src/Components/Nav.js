@@ -19,7 +19,7 @@ class Nav extends Component {
 
 
   return(
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar">
     <div className="container-fluid" id="navContainer">
     <NavLink to="/">Game</NavLink>
     <NavLink to="/login/">Account</NavLink>
