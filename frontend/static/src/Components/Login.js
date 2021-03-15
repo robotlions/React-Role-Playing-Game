@@ -33,7 +33,7 @@ componentDidMount(){
     };
     fetch('/accounts/detail/', options)
     .then(response => response.json())
-    .then(response => this.setState({accountData: {...response}}));
+    .then(response => this.setState({accountData: response, charData: response.character}));
 }
 
 
@@ -180,8 +180,12 @@ const loginForm = (<form onSubmit={(e) => this.handleLogin(e, this.state)}>
 const logOutForm = (<form onSubmit={(e) => this.handleLogout(e, this.state)}>
 <button className="btn btn-secondary" type="submit">Log Out</button></form>)
 
-const acc = this.state.accountData.character
-console.log(acc)
+// const accountChar = this.state.charData
+// const accountInfo = this.state.accountData
+// const accountSheet = <div className="accountSheet">
+// <p>Account: {accountInfo.username}</p>
+// <p>Available characters:</p>
+// <span>{accountChar.name} - Level {accountChar.level} {accountChar.job}</span></div>
 
 
       return(

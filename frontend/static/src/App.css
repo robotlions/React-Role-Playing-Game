@@ -36,6 +36,10 @@ background-color: lightgray;
   font-size: small;
 }
 
+.accountSheet{
+  line-height: 12px;
+}
+
 .box{
   border: 15px solid #f5deb3;
   /* border: 15px solid #778899; */
