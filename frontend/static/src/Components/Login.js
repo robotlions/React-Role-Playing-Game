@@ -14,8 +14,9 @@ class Login extends Component {
           password2: "",
           data: [],
           hasProfile: false,
-          charData: [],
+          charData: null,
           accountData: [],
+          hasAccount: false,
         }
     this.handleInput = this.handleInput.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
@@ -32,8 +33,11 @@ componentDidMount(){
         },
     };
     fetch('/accounts/detail/', options)
-    .then(response => response.ok ? response.json()
-    .then(response => this.setState({hasProfile: true, accountData: response, charData: response.character})) : null)
+    .then(response => {
+      if(response.ok){
+        this.setState({hasAccount: true})}
+        return response.json()
+    .then(response => this.setState({accountData: response, charData: response.character}))})
   }
 
 
@@ -60,7 +64,7 @@ reset(){
     const data = await response.json().catch(handleError);
     if(data.key) {
     Cookies.set('Authorization', `Token ${data.key}`);
-    localStorage.setItem('rpguser', this.state.username)
+    // localStorage.setItem('rpguser', this.state.username)
     }
     this.reset();
   }
@@ -167,17 +171,20 @@ const logOutForm = (<form onSubmit={(e) => this.handleLogout(e, this.state)}>
 
 const accountChar = this.state.charData
 const accountInfo = this.state.accountData
-const accountSheet = this.state.hasProfile === true ? <div className="accountSheet">
-<p>Account: {accountInfo.username}</p>
+const accountName = this.state.hasAccount === true ? <p>Account: {accountInfo.username}</p> : null
+const charInfo = this.state.hasAccount === true && this.state.charData !== null ?
+<div>
 <p>Available characters:</p>
-<span>{accountChar.name} - Level {accountChar.level} {accountChar.job}</span></div> : <p>Please log in to continue</p>
+<span>{accountChar.name} - Level {accountChar.level} {accountChar.job}</span></div> : <p>Please create a character.</p>
+
 
 
       return(
         <div className="loginForm">
         {this.state.isLoggedIn === false ? loginForm : logOutForm}
         {this.state.isLoggedIn === false ? registerForm : null}
-        {accountSheet}
+        {accountName}
+        {charInfo}
         </div>
       );
     }

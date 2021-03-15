@@ -28,7 +28,7 @@ class App extends Component{
     this.state = {
       combatwindow: false,
       combat: false,
-      char : {},
+      char : null,
       charWeapon: {},
       mob: {},
       charSpell: {},
@@ -111,7 +111,7 @@ this.changeRoomImage = this.changeRoomImage.bind(this);
             damMessage: "slams"
     }
 
-          this.setState({char})
+          // this.setState({char})
           // this.setState({mob})
           // char default replaced by player character from database
           // mob default replaced by random mob generator

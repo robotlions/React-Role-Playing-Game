@@ -14,9 +14,6 @@ class CharWindow extends Component{
 this.saveChar = this.saveChar.bind(this);
   }
 
-// saveChar(char){
-//   localStorage.setItem('char', JSON.stringify(char))
-// }
 
 saveChar(char){
   fetch(`/characters/save/${char.id}/`, {
@@ -32,7 +29,7 @@ saveChar(char){
 
 
   render(){
-    const char = this.state.isLoggedIn ? this.props.all.char : this.props.all.defaultChar
+    const char = this.props.all.char != undefined ? this.props.all.char : this.props.all.defaultChar
     const charWeapon = this.props.all.charWeapon
     const saveChar = <button onClick={()=>this.saveChar(char)}>Save Character</button>
     const healChar = <button onClick={this.props.healChar}>Heal Character</button>

@@ -11,7 +11,7 @@ class Character extends Component {
         }
       }
         render(){
-const char = this.state.isLoggedIn ? this.props.all.char : this.props.all.defaultChar
+const char = this.props.all.char != undefined ? this.props.all.char : this.props.all.defaultChar
 const charSheet1 = <div className="charSheet">
 <p>Name: {char.name}</p>
 <p>Class: {char.job}</p>
@@ -30,7 +30,7 @@ const charSheet3 = <div className="charSheet">
 
 
   return(
-
+this.state.isLoggedIn ? <section>
     <div className="row">
     <div className="col">
     {charSheet1}
@@ -41,7 +41,8 @@ const charSheet3 = <div className="charSheet">
     <div className="col">
     {charSheet3}
     </div>
-    </div>
+    </div></section>
+   : null
 
   );
 }

@@ -54,7 +54,7 @@ this.handleSubmit = this.handleSubmit.bind(this);
 
         render(){
 
-          const charCreateForm = <form type="submit" onSubmit={this.handleSubmit} className="charCreateForm">
+          const charCreateForm = <form onSubmit={this.handleSubmit} className="charCreateForm">
           <input type="text" placeholder="Character name" name="name" value={this.state.name} onChange={this.handleInput} />
           <section className="dropdown">
                         <label >
