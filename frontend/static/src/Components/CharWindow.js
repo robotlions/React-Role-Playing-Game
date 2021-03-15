@@ -32,7 +32,7 @@ saveChar(char){
 
 
   render(){
-    const char = this.state.IsLoggedIn || this.state.userId ? this.props.all.char : this.props.all.defaultChar
+    const char = this.state.isLoggedIn ? this.props.all.char : this.props.all.defaultChar
     const charWeapon = this.props.all.charWeapon
     const saveChar = <button onClick={()=>this.saveChar(char)}>Save Character</button>
     const healChar = <button onClick={this.props.healChar}>Heal Character</button>

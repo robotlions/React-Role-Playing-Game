@@ -23,9 +23,11 @@ class Nav extends Component {
     <div className="container-fluid" id="navContainer">
     <NavLink to="/">Game</NavLink>
     <NavLink to="/login/">Account</NavLink>
+    <NavLink to="/character/create/">Create Char</NavLink>
     <NavLink to="/character/">Character</NavLink>
     <NavLink to="/magic/">Magic</NavLink>
     <NavLink to="/inventory/">Inventory</NavLink>
+
     </div>
     </nav>
   );

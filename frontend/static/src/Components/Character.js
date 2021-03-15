@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Cookies from 'js-cookie';
 import {useState} from 'react';
 import '../App.css';
 
@@ -6,11 +7,11 @@ class Character extends Component {
   constructor (props){
         super(props);
         this.state = {
-
+        isLoggedIn: !!Cookies.get('Authorization'),
         }
       }
         render(){
-const char = this.props.all.char
+const char = this.state.isLoggedIn ? this.props.all.char : this.props.all.defaultChar
 const charSheet1 = <div className="charSheet">
 <p>Name: {char.name}</p>
 <p>Class: {char.job}</p>

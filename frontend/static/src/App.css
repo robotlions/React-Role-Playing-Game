@@ -79,7 +79,7 @@ background-color: lightgray;
 }
 
 .bottomrow{
-  height: 25vh;
+  height: 20vh;
 }
 
 .combatButtons {
@@ -110,6 +110,8 @@ transition: opacity 0 1s;
 }
 .centerNav{
   border: 5px inset gray;
+  margin-top: 20px;
+  height: 6vh;
 }
 
 .routeIn{
@@ -124,4 +126,11 @@ transition: opacity 0 1s;
 @keyframes fadeIn {
    0% {opacity: 0;}
    100% {opacity: 1;}
+}
+.dropdown-toggle{
+  margin-left: 10px;
+}
+
+.createField{
+  width: 50px;
 }

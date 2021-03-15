@@ -1,7 +1,7 @@
 const rooms = [{
         id: 1,
         name: "Home Base",
-        desc: "Empty room filled with nothing but hope",
+        desc: "A workshop filled with building materials and monster parts.",
         north: 2,
         south: null,
         east: 8,
@@ -37,8 +37,8 @@ const rooms = [{
       },
       {
         id: 5,
-        name: 'The Pillar of Ice',
-        desc: `A cold, soaring chamber dominated by a gleaming pillar of ice`,
+        name: 'The Waterfall',
+        desc: `A cold, soaring chamber dominated by waterfall plunging from a fissure in the rock.`,
         north: null,
         south: 3,
         east: null,
@@ -47,7 +47,7 @@ const rooms = [{
       {
         id: 6,
         name: 'The Eastern Chamber',
-        desc: `A large cavern strewn with building materials and monster parts`,
+        desc: `A large cavern strewn with discarded monster bits.`,
         north: null,
         south: 7,
         east: null,

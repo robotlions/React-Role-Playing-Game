@@ -13,6 +13,7 @@ import Login from './Components/Login'
 import Cookies from 'js-cookie';
 import {Modal, Button} from "react-bootstrap";
 import Magic from './Components/Magic'
+import CharCreate from './Components/CharCreate'
 import moblist from './moblist'
 import rooms from './roomlist'
 import dungeonStatic from './images/dungeonStatic.jpg'
@@ -37,6 +38,7 @@ class App extends Component{
       isLoggedIn: !!Cookies.get('Authorization'),
       image: dungeonStatic,
       defaultChar: {},
+      playerMessage: "",
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -54,17 +56,31 @@ this.changeRoomImage = this.changeRoomImage.bind(this);
   componentDidMount(){
     const defaultChar = {
             charId: 1,
-            name: "Default the Defaulter",
-            lvl: "1",
-            ac: 10,
-            hpmax: 12,
-            hp: 12,
-            spmax: 12,
-            sp: 12,
-            class: 'warrior',
-            weapon: "",
-            xp: 0,
+            name: "Please log in to load your character",
+            lvl: null,
+            ac: null,
+            hpmax: null,
+            hp: null,
+            spmax: null,
+            sp: null,
+            class: null,
+            weapon: null,
+            xp: null,
           }
+
+          const char = {
+                  charId: 1,
+                  name: "Please log in to load your character",
+                  lvl: null,
+                  ac: null,
+                  hpmax: null,
+                  hp: null,
+                  spmax: null,
+                  sp: null,
+                  class: null,
+                  weapon: null,
+                  xp: null,
+                }
 
     const charWeapon = {
             weaponId: 1,
@@ -94,17 +110,13 @@ this.changeRoomImage = this.changeRoomImage.bind(this);
             spCost: 4,
             damMessage: "slams"
     }
-          // if (localStorage.getItem('char')){
-          //   let loadChar = JSON.parse(localStorage.getItem('char'));
-          //   this.setState({char: loadChar});
-          // }
-          // else{
-          //   this.setState({char})
-          // }
-          // this.setState({char})
+
+          this.setState({char})
+          // this.setState({mob})
+          // char default replaced by player character from database
+          // mob default replaced by random mob generator
           this.setState({defaultChar});
           this.setState({charWeapon})
-          this.setState({mob})
           this.setState({charSpell})
 
 
@@ -112,10 +124,6 @@ this.changeRoomImage = this.changeRoomImage.bind(this);
       .then(response => response.json())
       .then(response => response[0])
       .then(response => this.setState({char: response}))
-      // .then(response => this.setState({charData: response}));
-
-
-      // this.state.data.map((data) => (this.setState({char: data})))
 
   }
 
@@ -130,7 +138,7 @@ else {
 
 changeRoomImage(img, img2){
   this.setState({image: img})
-  setTimeout(() => {this.setState({image: img2})}, 2000);
+  setTimeout(() => {this.setState({image: img2})}, 1500);
 }
 
 rando(min, max) {
@@ -141,8 +149,9 @@ randomMob(){
   const rand = Math.floor(Math.random() * (moblist.length - 1) ) + 1;
   const mob = moblist[rand]
   this.setState({mob})
-  this.setState({playerMessage: `A ${this.state.mob.name} has entered the fight!`})
+  setTimeout(() => {this.setState({playerMessage: `A ${this.state.mob.name} has entered the fight!`})}, 0);
   setTimeout(() => {this.setState({playerMessage: ""})}, 2000);
+
 }
 
 
@@ -271,10 +280,12 @@ healChar(){
     </div>
     <div className="row-12 centerNav"><Nav /></div>
       <div className="row bottomrow">
+
         <div className="col-12 box charWindow">
         <React.Fragment>
     <Switch>
       <Route path="/login/" children=<Login all={this.state}/>/>
+      <Route path="/character/create/" component={CharCreate}/>
       <Route path="/character/" children=<Character all={this.state}/>/>
       <Route path="/inventory/" component={Inventory}/>
       <Route path="/magic/" component={Magic}/>

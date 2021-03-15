@@ -32,10 +32,9 @@ componentDidMount(){
         },
     };
     fetch('/accounts/detail/', options)
-    .then(response => response.json())
-    .then(response => this.setState({accountData: response, charData: response.character}));
-}
-
+    .then(response => response.ok ? response.json()
+    .then(response => this.setState({hasProfile: true, accountData: response, charData: response.character})) : null)
+  }
 
 
 
@@ -136,20 +135,6 @@ async createProfile(){
     }
 
 
-    // async getAccount(){
-    //   const options = {
-    //       method: 'GET',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         'X-CSRFToken': Cookies.get('csrftoken'),
-    //       },
-    //   };
-    //   const handleError = (err) => console.warn(err);
-    //   const response = await fetch('/accounts/detail/', options);
-    //   const data = await response.json().catch(handleError);
-    //   await this.setState({accountData: {...data}})
-    // }
-
 
 
   render(){
@@ -180,18 +165,19 @@ const loginForm = (<form onSubmit={(e) => this.handleLogin(e, this.state)}>
 const logOutForm = (<form onSubmit={(e) => this.handleLogout(e, this.state)}>
 <button className="btn btn-secondary" type="submit">Log Out</button></form>)
 
-// const accountChar = this.state.charData
-// const accountInfo = this.state.accountData
-// const accountSheet = <div className="accountSheet">
-// <p>Account: {accountInfo.username}</p>
-// <p>Available characters:</p>
-// <span>{accountChar.name} - Level {accountChar.level} {accountChar.job}</span></div>
+const accountChar = this.state.charData
+const accountInfo = this.state.accountData
+const accountSheet = this.state.hasProfile === true ? <div className="accountSheet">
+<p>Account: {accountInfo.username}</p>
+<p>Available characters:</p>
+<span>{accountChar.name} - Level {accountChar.level} {accountChar.job}</span></div> : <p>Please log in to continue</p>
 
 
       return(
         <div className="loginForm">
         {this.state.isLoggedIn === false ? loginForm : logOutForm}
         {this.state.isLoggedIn === false ? registerForm : null}
+        {accountSheet}
         </div>
       );
     }
