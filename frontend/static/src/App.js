@@ -100,6 +100,7 @@ this.goto = this.goto.bind(this);
             mobId: 1,
             name: "Bob the Dummy",
             damage: 1,
+            attack: 10,
             hp: 10,
             hpmax: 10,
             sp: "null",

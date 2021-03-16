@@ -126,7 +126,7 @@ this.state.armor = (10 + (this.state.dex-10))
 
           const charCreateForm = <form onSubmit={this.handleSubmit} className="charCreateForm">
           <label>Character Name: </label>
-          <input type="text" name="name" value={this.state.name} onChange={this.handleInput} />
+          <input type="text" name="name" value={this.state.name} onChange={this.handleInput} /><br/>
             <label>
               Character Class:
               <select value={this.state.job} onChange={this.handleDropdown}>
@@ -139,15 +139,19 @@ this.state.armor = (10 + (this.state.dex-10))
           <input className="createField" type="text" placeholder="Lvl 1" name="level" value={this.state.level} onChange={this.handleInput} readOnly/>
           <label>Armor: </label>
           <input className="createField" type="text" placeholder="Armor" name="armor" value={this.state.armor} onChange={this.handleInput} readOnly/>
+          <label>Attack: </label>
+          <input className="createField" type="text" placeholder="Attack" name="attack" value={this.state.attack} onChange={this.handleInput} readOnly/>
+
           <label>Health: </label>
           <input className="createField" type="text" placeholder="Health" name="health" value={this.state.health} onChange={this.handleInput} readOnly/>
           <label>Magic: </label>
           <input className="createField" type="text" placeholder="Magic" name="magic" value={this.state.magic} onChange={this.handleInput} readOnly/>
+          <button className="btn btn-success charSubmit" type="submit">Save this Character</button>
           <br/>
           <input hidden name="hpmax" value={this.state.health} readOnly/>
           <input hidden name="spmax" value={this.state.magic} readOnly/>
           <input hidden name="xp" value='0' readOnly/>
-          <br/><button className="btn btn-success" type="submit">Save this Character</button></form>
+          <br/></form>
 
   const stats = <div>
           <label>Strength: </label>
