@@ -43,7 +43,6 @@ else {
 
 
   render(){
-    const roomtest = this.props.currentRoom.name;
     const roomname = this.state.currentroom.name;
     const desc = this.state.currentroom.desc;
     const nsew = <>
@@ -61,7 +60,6 @@ else {
   return (
     <div>
     <h1>{roomname}</h1>
-    <p>{roomtest}</p>
     <p id="moveMsg">{moveMsg}</p>
     <p>{desc}</p>
     <p id="nsew">{nsew}</p>

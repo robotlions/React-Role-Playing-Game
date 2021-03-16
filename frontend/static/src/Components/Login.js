@@ -22,6 +22,7 @@ class Login extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.reset = this.reset.bind(this);
+    this.deleteChar = this.deleteChar.bind(this);
       }
 
 
@@ -140,7 +141,18 @@ async createProfile(){
 
     }
 
-
+deleteChar(charId){
+  const options = {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': Cookies.get('csrftoken'),
+        },
+    };
+    fetch(`/characters/delete/${charId.id}/`, options)
+      .then(response => response.json())
+      .then(response => this.setState({data: response}));
+}
 
 
   render(){
@@ -177,7 +189,7 @@ const accountName = this.state.hasAccount === true ? <p>Account: {accountInfo.us
 const charInfo = this.state.hasAccount === true && this.state.charData !== null ?
 <div>
 <p>Available characters:</p>
-<span>{accountChar.name} - Level {accountChar.level} {accountChar.job}</span></div> : <p>Please create a character.</p>
+<span>{accountChar.name} - Level {accountChar.level} {accountChar.job}</span><button onClick={()=>this.deleteChar(accountChar)}>Delete</button></div> : <p>Please create a character.</p>
 
 
 

@@ -40,6 +40,7 @@ class App extends Component{
       defaultChar: {},
       playerMessage: "",
       currentRoom: rooms[2],
+      immWindow: "",
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -129,6 +130,7 @@ this.goto = this.goto.bind(this);
       .then(response => response.json())
       .then(response => response[0])
       .then(response => this.setState({char: response}))
+
 
   }
 
@@ -252,7 +254,6 @@ this.setState({[event.target.name]: event.target.value});
 
 handleImmInput(event){
 this.setState({[event.target.name]: event.target.value});
-console.log(this.state.immWindow)
 }
 
 
@@ -260,9 +261,13 @@ immtest(){
   alert('This worked!')
 }
 
-goto(){
-  alert('working');
+goto() {
+  alert(this.state.currentRoom);
+  this.setState({currentRoom: rooms[3]});
 }
+
+
+
 
   render(){
     const char = this.state.char
@@ -278,8 +283,7 @@ goto(){
     const playerMessage = this.state.playerMessage;
     const command = this.state.immWindow
     const immWindow = <form onSubmit={this.[command]}>
-    <input className="immWindow" type="text" placeholder="Imm powers" name="immWindow" value={this.state.immWindow} onChange={this.handleImmInput}/>
-    <button type="submit">Powers</button>
+    <input className="immWindow" type="text" placeholder="input command" name="immWindow" value={this.state.immWindow} onChange={this.handleImmInput}/>
     </form>
 
 
