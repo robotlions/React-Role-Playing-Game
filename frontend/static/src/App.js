@@ -39,7 +39,7 @@ class App extends Component{
       image: dungeonStatic,
       defaultChar: {},
       playerMessage: "",
-      immWindow: "",
+      currentRoom: rooms[2],
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -55,6 +55,7 @@ this.changeRoomImage = this.changeRoomImage.bind(this);
 this.handleInput = this.handleInput.bind(this);
 this.immtest = this.immtest.bind(this);
 this.handleImmInput = this.handleImmInput.bind(this);
+this.goto = this.goto.bind(this);
   }
 
   componentDidMount(){
@@ -260,8 +261,7 @@ immtest(){
 }
 
 goto(){
-  const dest = prompt('Where to?');
-  this.setState({currentroom: rooms[3]})
+  alert('working');
 }
 
   render(){
@@ -297,7 +297,7 @@ goto(){
         <p>{charAttackMessage}</p>
         <p>{mobAttackMessage}</p>
         <p>{playerMessage}</p>
-        {this.state.combatwindow == false ? <Rooms changeRoomImage={this.changeRoomImage}/>
+        {this.state.combatwindow == false ? <Rooms currentRoom={this.state.currentRoom} changeRoomImage={this.changeRoomImage}/>
         : <p className="combatButtons">{meleeAttackButton}{magicAttackButton}{runAwayButton}</p>}
         <p className="switchViewsButton">{switchViewsButton}</p>
         {this.state.combat == false & this.state.combatwindow == true ? <p>{getRandomMob}</p> : null}
@@ -316,7 +316,6 @@ goto(){
       <Route path="/" children=<CharWindow healChar={this.healChar} all={this.state}/>/>
       </Switch>
     </React.Fragment>
-    {immWindow}
     <div className="centerNav"><Nav /></div>
         </div>
 
