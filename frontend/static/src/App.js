@@ -39,6 +39,7 @@ class App extends Component{
       image: dungeonStatic,
       defaultChar: {},
       playerMessage: "",
+      immWindow: "",
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -51,6 +52,9 @@ this.randomMob = this.randomMob.bind(this);
 this.healChar = this.healChar.bind(this);
 this.charWins = this.charWins.bind(this);
 this.changeRoomImage = this.changeRoomImage.bind(this);
+this.handleInput = this.handleInput.bind(this);
+this.immtest = this.immtest.bind(this);
+this.handleImmInput = this.handleImmInput.bind(this);
   }
 
   componentDidMount(){
@@ -241,8 +245,24 @@ healChar(){
 
 }
 
+handleInput(event){
+this.setState({[event.target.name]: event.target.value});
+}
+
+handleImmInput(event){
+this.setState({[event.target.name]: event.target.value});
+console.log(this.state.immWindow)
+}
 
 
+immtest(){
+  alert('This worked!')
+}
+
+goto(){
+  const dest = prompt('Where to?');
+  this.setState({currentroom: rooms[3]})
+}
 
   render(){
     const char = this.state.char
@@ -256,7 +276,11 @@ healChar(){
     const charAttackMessage = this.state.charAttackMessage;
     const mobAttackMessage = this.state.mobAttackMessage;
     const playerMessage = this.state.playerMessage;
-
+    const command = this.state.immWindow
+    const immWindow = <form onSubmit={this.[command]}>
+    <input className="immWindow" type="text" placeholder="Imm powers" name="immWindow" value={this.state.immWindow} onChange={this.handleImmInput}/>
+    <button type="submit">Powers</button>
+    </form>
 
 
   return (
@@ -292,6 +316,7 @@ healChar(){
       <Route path="/" children=<CharWindow healChar={this.healChar} all={this.state}/>/>
       </Switch>
     </React.Fragment>
+    {immWindow}
     <div className="centerNav"><Nav /></div>
         </div>
 
