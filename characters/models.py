@@ -17,6 +17,11 @@ class Character(models.Model):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=255, null=True)
+    str = models.IntegerField(null=True)
+    int = models.IntegerField(null=True)
+    dex = models.IntegerField(null=True)
+    con = models.IntegerField(null=True)
+    attack = models.IntegerField(null=True)
     level = models.IntegerField(null=True)
     hp = models.IntegerField(null=True)
     ac = models.IntegerField(null=True)

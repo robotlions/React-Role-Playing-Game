@@ -11,6 +11,7 @@ class CharCreate extends Component {
           name: "",
           job: "",
           level: 1,
+          attack: 10,
           armor: 10,
           health: 10,
           magic: 10,
@@ -18,7 +19,7 @@ class CharCreate extends Component {
           int: 10,
           dex: 10,
           con: 10,
-          available: 12,
+          available: 15,
 
         isLoggedIn: !!Cookies.get('Authorization'),
         completed: "",
@@ -45,6 +46,7 @@ this.statDown = this.statDown.bind(this);
     async handleSubmit(e){
       e.preventDefault();
       const obj = {
+        attack: this.state.attack,
         name: this.state.name,
         job: this.state.job,
         level: this.state.level,
@@ -53,6 +55,10 @@ this.statDown = this.statDown.bind(this);
         sp: this.state.magic,
         hpmax: this.state.health,
         spmax: this.state.magic,
+        str: this.state.str,
+        int: this.state.int,
+        dex: this.state.dex,
+        con: this.state.con,
         xp: 0,
 
       }
@@ -79,6 +85,7 @@ statUp(stat){
   const tar = stat.target.name
   let newStat = this.state.[tar]
   let avail = this.state.available
+  let abil
   if (avail > 0){
     newStat += 1
     avail -= 1
@@ -88,6 +95,10 @@ statUp(stat){
   else {
     alert('No available points')
 }
+  this.state.attack = (10 + (this.state.str-10))
+  this.state.health = (10 + (this.state.con-10))
+  this.state.magic = (10 + (this.state.int-10))
+  this.state.armor = (10 + (this.state.dex-10))
 }
 
 statDown(stat){
@@ -103,7 +114,13 @@ statDown(stat){
 else{
   alert('This stat cannot go lower')
 }
+this.state.attack = (10 + (this.state.str-10))
+this.state.health = (10 + (this.state.con-10))
+this.state.magic = (10 + (this.state.int-10))
+this.state.armor = (10 + (this.state.dex-10))
 }
+
+
 
         render(){
 
