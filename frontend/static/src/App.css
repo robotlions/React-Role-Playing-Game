@@ -32,9 +32,6 @@ background-color: lightgray;
   font-weight: bold;
 }
 
-.img{
-
- }
 
 .charSheet{
   font-size: small;
@@ -139,4 +136,7 @@ transition: opacity 0 1s;
 .navBox{
   text-align: center;
   margin-left: 65px;
+}
+.img {
+  
 }

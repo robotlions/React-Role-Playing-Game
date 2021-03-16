@@ -14,12 +14,20 @@ class CharCreate extends Component {
           armor: 10,
           health: 10,
           magic: 10,
+          str: 10,
+          int: 10,
+          dex: 10,
+          con: 10,
+          available: 12,
+
         isLoggedIn: !!Cookies.get('Authorization'),
         completed: "",
         }
 this.handleInput = this.handleInput.bind(this);
 this.handleDropdown = this.handleDropdown.bind(this);
 this.handleSubmit = this.handleSubmit.bind(this);
+this.statUp = this.statUp.bind(this);
+this.statDown = this.statDown.bind(this);
 
       }
 
@@ -67,6 +75,35 @@ this.handleSubmit = this.handleSubmit.bind(this);
     }
 
 
+statUp(stat){
+  const tar = stat.target.name
+  let newStat = this.state.[tar]
+  let avail = this.state.available
+  if (avail > 0){
+    newStat += 1
+    avail -= 1
+    this.setState({[tar]: newStat})
+    this.setState({available: avail})
+}
+  else {
+    alert('No available points')
+}
+}
+
+statDown(stat){
+  const tar = stat.target.name
+  let newStat = this.state.[tar]
+  let avail = this.state.available
+  if (newStat >= 6){
+  newStat -= 1
+  avail += 1
+  this.setState({[tar]: newStat})
+  this.setState({available: avail})
+}
+else{
+  alert('This stat cannot go lower')
+}
+}
 
         render(){
 
@@ -89,10 +126,24 @@ this.handleSubmit = this.handleSubmit.bind(this);
           <input className="createField" type="text" placeholder="Health" name="health" value={this.state.health} onChange={this.handleInput} readOnly/>
           <label>Magic: </label>
           <input className="createField" type="text" placeholder="Magic" name="magic" value={this.state.magic} onChange={this.handleInput} readOnly/>
+          <br/>
           <input hidden name="hpmax" value={this.state.health} readOnly/>
           <input hidden name="spmax" value={this.state.magic} readOnly/>
           <input hidden name="xp" value='0' readOnly/>
-          <button className="btn btn-success" type="submit">Save this Character</button></form>
+          <br/><button className="btn btn-success" type="submit">Save this Character</button></form>
+
+  const stats = <div>
+          <label>Strength: </label>
+          <input className="createField" type="text" name="str" value={this.state.str}readOnly/><button name="str" value={this.state.str} onClick={this.statUp}>+</button><button value={this.state.str} name="str" onClick={this.statDown}>-</button>
+          <label>Intelligence: </label>
+          <input className="createField" type="text" name="int" value={this.state.int}readOnly/><button name="int" value={this.state.int} onClick={this.statUp}>+</button><button name="int" value={this.state.int} onClick={this.statDown}>-</button>
+          <label>Dexterity: </label>
+          <input className="createField" type="text" name="dex" value={this.state.dex}readOnly/><button name="dex" value={this.state.dex} onClick={this.statUp}>+</button><button name="dex" value={this.state.dex} onClick={this.statDown}>-</button>
+          <label>Constitution: </label>
+          <input className="createField" type="text" name="con" value={this.state.con}readOnly/><button name="con" value={this.state.con} onClick={this.statUp}>+</button><button name="con" value={this.state.con} onClick={this.statDown}>-</button>
+          <label>Available Points</label>
+          <input className="createField" type="int" name="available" value={this.state.available} readOnly/>
+          </div>
 
 const createMessage = `${this.state.completed}`
 
@@ -101,6 +152,7 @@ const createMessage = `${this.state.completed}`
           return(
             <div>
             {charCreateForm}
+            {stats}
             {createMessage}
             </div>
 

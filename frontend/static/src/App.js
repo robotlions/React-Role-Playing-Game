@@ -295,7 +295,6 @@ goto() {
           <GraphicsWindow all={this.state}/>
           </div>
           <div className="col-1 effectsWindow">
-
           </div>
         <div className="col-6 box textWindow">
         <p>{charAttackMessage}</p>
@@ -309,7 +308,7 @@ goto() {
     </div>
 
       <div className="row bottomRow">
-        <div className="col-12 box charWindow">
+        <div className="col-sm-12 box charWindow">
         <React.Fragment>
     <Switch>
       <Route path="/login/" children=<Login all={this.state}/>/>
