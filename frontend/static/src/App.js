@@ -266,7 +266,8 @@ healChar(){
           <div className="col-5 box graphicsWindow" style={{padding: "0px"}}>
           <GraphicsWindow all={this.state}/>
           </div>
-          <div className="col-1 box effectsWindow">
+          <div className="col-1 effectsWindow">
+
           </div>
         <div className="col-6 box textWindow">
         <p>{charAttackMessage}</p>
@@ -278,9 +279,8 @@ healChar(){
         {this.state.combat == false & this.state.combatwindow == true ? <p>{getRandomMob}</p> : null}
         </div>
     </div>
-    <div className="row-12 centerNav"><Nav /></div>
-      <div className="row bottomrow">
 
+      <div className="row bottomRow">
         <div className="col-12 box charWindow">
         <React.Fragment>
     <Switch>
@@ -292,8 +292,11 @@ healChar(){
       <Route path="/" children=<CharWindow healChar={this.healChar} all={this.state}/>/>
       </Switch>
     </React.Fragment>
+    <div className="centerNav"><Nav /></div>
         </div>
+
         </div>
+
         </div>
 
   );

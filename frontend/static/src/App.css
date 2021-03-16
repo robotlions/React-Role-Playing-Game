@@ -1,7 +1,11 @@
 /* .App {
 background-color: lightgray;
 } */
-
+.centerNav {
+  font-size: x-large;
+  bottom: 15px;
+  position:fixed;
+}
 .centerNav a{
   color: black;
 }
@@ -41,7 +45,7 @@ background-color: lightgray;
 }
 
 .box{
-  border: 15px solid #f5deb3;
+  border: 15px solid #778899;
   /* border: 15px solid #778899; */
   border-style: ridge;
 }
@@ -54,8 +58,10 @@ background-color: lightgray;
 }
 
 .effectsWindow{
+  padding-top: 20px;
   background-color: #fffafa;
-  box-shadow: inset 7px 7px 7px darkgray;
+  border-top: 15px solid #778899;
+  border-style: ridge;
 }
 
 
@@ -75,21 +81,21 @@ background-color: lightgray;
 }
 
 .toprow{
-  height: 65vh;
+  height: 58vh;
 }
 
-.bottomrow{
-  height: 20vh;
+.bottomRow{
+  height: 42vh;
 }
 
 .combatButtons {
   position: absolute;
-  bottom: 5px;
+  bottom: 50px;
 }
 
 .switchViewsButton{
   left: 20px;
-  bottom: 50px;
+  bottom: 90px;
   position: absolute;
 }
 
@@ -97,7 +103,7 @@ background-color: lightgray;
   letter-spacing: 5px;
   font-weight: bold;
   position: absolute;
-  bottom: 0px;
+  bottom: 80px;
   right: 0px;
   cursor: pointer;
 }
@@ -107,11 +113,6 @@ background-color: lightgray;
   animation-delay: 3s; */
 transition: opacity 0 1s;
 
-}
-.centerNav{
-  border: 5px inset gray;
-  margin-top: 20px;
-  height: 6vh;
 }
 
 .routeIn{
@@ -133,4 +134,9 @@ transition: opacity 0 1s;
 
 .createField{
   width: 50px;
+}
+
+.navBox{
+  text-align: center;
+  margin-left: 60px;
 }

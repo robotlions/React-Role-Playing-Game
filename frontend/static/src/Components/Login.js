@@ -7,6 +7,7 @@ class Login extends Component {
         super(props);
         this.state = {
           isLoggedIn: !!Cookies.get('Authorization'),
+          inSession: !!Cookies.get('sessionid'),
           username: "",
           email: "",
           password: "",
@@ -132,6 +133,7 @@ async createProfile(){
           .then(response => response.json())
           .then(response => this.setState({data: response}));
           Cookies.remove('Authorization');
+          Cookies.remove('sessionid');
           localStorage.clear()
           window.location.reload();
 
@@ -181,7 +183,7 @@ const charInfo = this.state.hasAccount === true && this.state.charData !== null 
 
       return(
         <div className="loginForm">
-        {this.state.isLoggedIn === false ? loginForm : logOutForm}
+        {this.state.isLoggedIn === false && this.state.inSession === false ? loginForm : logOutForm}
         {this.state.isLoggedIn === false ? registerForm : null}
         {accountName}
         {charInfo}

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Cookies from 'js-cookie';
+import JobDropdown from './JobDropdown'
 import {useState} from 'react';
 import '../App.css';
 
@@ -14,9 +15,10 @@ class CharCreate extends Component {
           health: 10,
           magic: 10,
         isLoggedIn: !!Cookies.get('Authorization'),
+        completed: "",
         }
 this.handleInput = this.handleInput.bind(this);
-this.handleChange = this.handleChange.bind(this);
+this.handleDropdown = this.handleDropdown.bind(this);
 this.handleSubmit = this.handleSubmit.bind(this);
 
       }
@@ -26,16 +28,26 @@ this.handleSubmit = this.handleSubmit.bind(this);
     this.setState({[event.target.name]: event.target.value});
   }
 
-  handleChange(event) {
-      this.setState({value: event.target.value});
+  handleDropdown(event) {
+      this.setState({job: event.target.value});
     }
 
 
 
-
-    async handleSubmit(e, obj){
+    async handleSubmit(e){
       e.preventDefault();
+      const obj = {
+        name: this.state.name,
+        job: this.state.job,
+        level: this.state.level,
+        ac: this.state.armor,
+        hp: this.state.health,
+        sp: this.state.magic,
+        hpmax: this.state.health,
+        spmax: this.state.magic,
+        xp: 0,
 
+      }
       const options = {
         method: 'POST',
         headers: {
@@ -47,7 +59,11 @@ this.handleSubmit = this.handleSubmit.bind(this);
       const handleError = (err) => console.warn(err);
       const response = await fetch('/characters/create/', options);
       const data = await response.json().catch(handleError);
-
+      if(response.ok){
+        this.setState({completed: `Character ${data.name}, a level ${data.level} ${data.job}, created!`})
+        this.setState({name: ""})
+        this.setState({job: "Choose"})
+      }
     }
 
 
@@ -55,16 +71,16 @@ this.handleSubmit = this.handleSubmit.bind(this);
         render(){
 
           const charCreateForm = <form onSubmit={this.handleSubmit} className="charCreateForm">
-          <input type="text" placeholder="Character name" name="name" value={this.state.name} onChange={this.handleInput} />
-          <section className="dropdown">
-                        <label >
-                          Class
-                          <select className="btn-sm btn-secondary dropdown-toggle" value={this.state.job} onChange={this.handleChange}>
-                            <option value="warrior">Warrior</option>
-                            <option value="magician">Magician</option>
-                          </select>
-                        </label>
-                        </section>
+          <label>Character Name: </label>
+          <input type="text" name="name" value={this.state.name} onChange={this.handleInput} />
+            <label>
+              Character Class:
+              <select value={this.state.job} onChange={this.handleDropdown}>
+                <option value="Choose">Choose</option>
+                <option value="Warrior">Warrior</option>
+                <option value="Magician">Magician</option>
+              </select>
+            </label>
           <label>Level: </label>
           <input className="createField" type="text" placeholder="Lvl 1" name="level" value={this.state.level} onChange={this.handleInput} readOnly/>
           <label>Armor: </label>
@@ -78,9 +94,15 @@ this.handleSubmit = this.handleSubmit.bind(this);
           <input hidden name="xp" value='0' readOnly/>
           <button className="btn btn-success" type="submit">Save this Character</button></form>
 
+const createMessage = `${this.state.completed}`
+
+
+
           return(
             <div>
-            {charCreateForm}</div>
+            {charCreateForm}
+            {createMessage}
+            </div>
 
 
           );

@@ -19,17 +19,17 @@ class Nav extends Component {
 
 
   return(
-    <nav className="navbar">
-    <div className="container-fluid" id="navContainer">
-    <NavLink to="/">Game</NavLink>
-    <NavLink to="/login/">Account</NavLink>
-    <NavLink to="/character/create/">Create Char</NavLink>
-    <NavLink to="/character/">Character</NavLink>
-    <NavLink to="/magic/">Magic</NavLink>
-    <NavLink to="/inventory/">Inventory</NavLink>
-
+    <nav className="navbar navbar-expand-lg">
+    <div className="container-fluid">
+    <div className="navBox"><NavLink to="/">Game</NavLink></div>
+    <div className="navBox"><NavLink to="/login/">Account</NavLink></div>
+    <div className="navBox"><NavLink to="/character/create/">Create Char</NavLink></div>
+    <div className="navBox"><NavLink to="/character/">Character</NavLink></div>
+    <div className="navBox"><NavLink to="/magic/">Magic</NavLink></div>
+    <div className="navBox"><NavLink to="/inventory/">Inventory</NavLink></div>
     </div>
     </nav>
+
   );
 }
 }
