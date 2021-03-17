@@ -41,6 +41,7 @@ class App extends Component{
       playerMessage: "",
       currentRoom: rooms[2],
       immWindow: "",
+      arg: "",
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -57,6 +58,7 @@ this.handleInput = this.handleInput.bind(this);
 this.immtest = this.immtest.bind(this);
 this.handleImmInput = this.handleImmInput.bind(this);
 this.goto = this.goto.bind(this);
+this.travel = this.travel.bind(this);
   }
 
   componentDidMount(){
@@ -262,9 +264,22 @@ immtest(){
   alert('This worked!')
 }
 
-goto() {
-  alert(this.state.currentRoom);
-  this.setState({currentRoom: rooms[3]});
+travel(dest) {
+  this.setState({currentRoom: dest});
+  this.resetWindow();
+}
+
+goto(arg){
+  let dest = rooms.filter(room => room.id == arg)
+  dest = dest[0]
+  console.log(dest)
+  if (dest){
+  this.setState({currentRoom: dest, immWindow: "", arg: ""});
+  this.resetWindow();
+}
+else {
+  alert("That's not a real room.")
+}
 }
 
 
@@ -283,9 +298,12 @@ goto() {
     const mobAttackMessage = this.state.mobAttackMessage;
     const playerMessage = this.state.playerMessage;
     const command = this.state.immWindow
-    const immWindow = <form onSubmit={this.[command]}>
+    const arg = this.state.arg
+    const immWindow = <div>
     <input className="immWindow" type="text" placeholder="input command" name="immWindow" value={this.state.immWindow} onChange={this.handleImmInput}/>
-    </form>
+    <input type="text" placeholder="arg" name="arg" value={this.state.arg} onChange={this.handleImmInput}/>
+    <button type="submit" onClick={()=>this.[command](arg)}>Go</button>
+    </div>
 
 
   return (
@@ -301,7 +319,7 @@ goto() {
         <p>{charAttackMessage}</p>
         <p>{mobAttackMessage}</p>
         <p>{playerMessage}</p>
-        {this.state.combatwindow == false ? <Rooms currentRoom={this.state.currentRoom} changeRoomImage={this.changeRoomImage}/>
+        {this.state.combatwindow == false ? <Rooms travel={this.travel} goto={this.goto} currentRoom={this.state.currentRoom} changeRoomImage={this.changeRoomImage}/>
         : <p className="combatButtons">{meleeAttackButton}{magicAttackButton}{runAwayButton}</p>}
         <p className="switchViewsButton">{switchViewsButton}</p>
         {this.state.combat == false & this.state.combatwindow == true ? <p>{getRandomMob}</p> : null}
@@ -320,6 +338,7 @@ goto() {
       <Route path="/" children=<CharWindow healChar={this.healChar} all={this.state}/>/>
       </Switch>
     </React.Fragment>
+    {immWindow}
     <div className="centerNav"><Nav /></div>
         </div>
 

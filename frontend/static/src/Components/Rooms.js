@@ -21,20 +21,21 @@ move(e){
 let dir = e.target.title
 let dest;
 if (dir == "north"){
-  dest = rooms.filter(room => room.id == this.state.currentroom.north)}
+  dest = rooms.filter(room => room.id == this.props.currentRoom.north)}
 if (dir == "south"){
-  dest = rooms.filter(room => room.id == this.state.currentroom.south)}
+  dest = rooms.filter(room => room.id == this.props.currentRoom.south)}
 if (dir == "east"){
-  dest = rooms.filter(room => room.id == this.state.currentroom.east)}
+  dest = rooms.filter(room => room.id == this.props.currentRoom.east)}
 if (dir == "west"){
-  dest = rooms.filter(room => room.id == this.state.currentroom.west)}
+  dest = rooms.filter(room => room.id == this.props.currentRoom.west)}
 dest = dest[0]
 if (dest) {
   this.props.changeRoomImage(dungeonWalk, dungeonStatic)
   this.setState({moveMsg: `You walk to the ${dir}.`})
   this.setState({name: "", desc: ""});
   setTimeout(() => {this.setState({moveMsg: ""})}, 1000);
-  setTimeout(() => {this.setState({currentroom: dest})}, 1000);
+  this.props.travel(dest)
+  // setTimeout(() => {this.setState({currentRoom: dest})}, 1000);
 }
 else {
   this.setState({moveMsg: "There's no exit in that direction!"})
@@ -42,14 +43,16 @@ else {
 }
 
 
+
+
   render(){
-    const roomname = this.state.currentroom.name;
-    const desc = this.state.currentroom.desc;
+    const roomname = this.props.currentRoom.name;
+    const desc = this.props.currentRoom.desc;
     const nsew = <>
-    {this.state.currentroom.north ? <span title="north" onClick={this.move}>{`<N>`}</span> : null}
-    {this.state.currentroom.south ? <span title="south" onClick={this.move}>{`<S>`}</span> : null}
-    {this.state.currentroom.east ? <span title="east" onClick={this.move}>{`<E>`}</span> : null}
-    {this.state.currentroom.west ?<span title="west" onClick={this.move}>{`<W>`}</span> : null}
+    {this.props.currentRoom.north ? <span title="north" onClick={this.move}>{`<N>`}</span> : null}
+    {this.props.currentRoom.south ? <span title="south" onClick={this.move}>{`<S>`}</span> : null}
+    {this.props.currentRoom.east ? <span title="east" onClick={this.move}>{`<E>`}</span> : null}
+    {this.props.currentRoom.west ?<span title="west" onClick={this.move}>{`<W>`}</span> : null}
     </>
 
     let moveMsg = this.state.moveMsg
