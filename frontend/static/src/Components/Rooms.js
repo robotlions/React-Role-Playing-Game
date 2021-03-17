@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import '../App.css';
 import rooms from '../roomlist';
-import dungeonWalk from '../images/dungeonWalk.gif'
-import dungeonStatic from '../images/dungeonStatic.jpg'
+// import dungeonWalk from '../images/dungeonWalk.gif'
+// import dungeonStatic from '../images/dungeonStatic.jpg'
 
 class Rooms extends Component{
   constructor (props){
@@ -30,7 +30,7 @@ if (dir == "west"){
   dest = rooms.filter(room => room.id == this.props.currentRoom.west)}
 dest = dest[0]
 if (dest) {
-  this.props.changeRoomImage(dungeonWalk, dungeonStatic)
+  // this.props.changeRoomImage(this.props.currentRoom.walk, this.props.currentRoom.static)
   this.setState({moveMsg: `You walk to the ${dir}.`})
   this.setState({name: "", desc: ""});
   setTimeout(() => {this.setState({moveMsg: ""})}, 1000);
@@ -62,10 +62,10 @@ else {
 
   return (
     <div>
-    <h1>{roomname}</h1>
+    {this.props.all.gameOn === true ? <h1>{roomname}</h1> : <h1>Welcome to This Unnamed Role Playing Game</h1>}
     <p id="moveMsg">{moveMsg}</p>
-    <p>{desc}</p>
-    <p id="nsew">{nsew}</p>
+    {this.props.all.gameOn === true ? <p>{desc}</p> : null}
+    {this.props.all.gameOn === true ? <p id="nsew">{nsew}</p> : null}
     </div>
   );
 }

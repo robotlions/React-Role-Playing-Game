@@ -1,3 +1,5 @@
+import dungeonStatic from './images/dungeonStatic.jpg'
+import dungeonWalk from './images/dungeonWalk.gif'
 const rooms = [{
         id: 1,
         name: "Home Base",
@@ -6,6 +8,8 @@ const rooms = [{
         south: null,
         east: 8,
         west: null,
+        static: dungeonStatic,
+        walk: dungeonWalk,
       },
       {
         id: 2,
@@ -16,6 +20,8 @@ const rooms = [{
         south: 1,
         east: null,
         west: null,
+        static: dungeonStatic,
+        walk: dungeonWalk,
       },
       {
         id: 3,
@@ -25,6 +31,8 @@ const rooms = [{
         south: 2,
         east: 6,
         west: 4,
+        static: dungeonStatic,
+        walk: dungeonWalk,
       },
       {
         id: 4,
@@ -34,6 +42,8 @@ const rooms = [{
         south: null,
         east: 3,
         west: null,
+        static: dungeonStatic,
+        walk: dungeonWalk,
       },
       {
         id: 5,
@@ -43,6 +53,8 @@ const rooms = [{
         south: 3,
         east: null,
         west: null,
+        static: dungeonStatic,
+        walk: dungeonWalk,
       },
       {
         id: 6,
@@ -52,6 +64,8 @@ const rooms = [{
         south: 7,
         east: null,
         west: 3,
+        static: dungeonStatic,
+        walk: dungeonWalk,
       },
       {
         id: 7,
@@ -62,6 +76,8 @@ const rooms = [{
         south: 8,
         east: null,
         west: null,
+        static: dungeonStatic,
+        walk: dungeonWalk,
       },
       {
         id: 8,
@@ -72,6 +88,8 @@ const rooms = [{
         south: null,
         east: null,
         west: 1,
+        static: dungeonStatic,
+        walk: dungeonWalk,
       }
 ]
 export default rooms

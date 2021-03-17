@@ -18,6 +18,7 @@ import moblist from './moblist'
 import rooms from './roomlist'
 import dungeonStatic from './images/dungeonStatic.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import arch from './images/arch.jpg'
 import './App.css';
 
 
@@ -36,12 +37,14 @@ class App extends Component{
       mobAttackMessage: "",
       data: [],
       isLoggedIn: !!Cookies.get('Authorization'),
-      image: dungeonStatic,
+      image: arch,
       defaultChar: {},
       playerMessage: "",
       currentRoom: rooms[2],
       immWindow: "",
       arg: "",
+      builderInput: false,
+      gameOn: false,
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -60,6 +63,8 @@ this.goto = this.goto.bind(this);
 this.travel = this.travel.bind(this);
 this.peace = this.peace.bind(this);
 this.set = this.set.bind(this);
+this.logKey = this.logKey.bind(this);
+this.gameOn = this.gameOn.bind(this);
   }
 
   componentDidMount(){
@@ -135,8 +140,24 @@ this.set = this.set.bind(this);
       .then(response => response[0])
       .then(response => this.setState({char: response}))
 
+      document.addEventListener('keydown', this.logKey);
 
-  }
+
+}
+
+  logKey(e) {
+    if(e.code === 'MetaRight'){
+      this.setState(prevState => ({
+  builderInput: !prevState.builderInput
+}));
+    }
+}
+
+gameOn(){
+  this.setState({image: this.state.currentRoom.static})
+  this.setState({gameOn: true})
+  setTimeout(()=>{window.location.reload()}, 2000);
+}
 
 changeToCombatWindow(){
   if (this.state.combatwindow == false) {
@@ -290,8 +311,10 @@ heal(){
 
 travel(dest) {
   this.setState({currentRoom: dest});
-  this.resetWindow();
-}
+  this.setState({image: this.state.currentRoom.walk})
+  setTimeout(() => {this.setState({image: this.state.currentRoom.static})}, 1500);
+  }
+
 
 goto(arg){
   let dest = rooms.filter(room => room.id == arg)
@@ -313,6 +336,10 @@ peace(){
 
 
   render(){
+    if(this.state.isLoggedIn == true && this.state.char){
+      this.state.image = this.state.currentRoom.static;
+      this.state.gameOn = true;
+    }
     const char = this.state.char
     const mob = this.state.mob
     const charWeapon = this.state.charWeapon
@@ -346,9 +373,9 @@ peace(){
         <p>{charAttackMessage}</p>
         <p>{mobAttackMessage}</p>
         <p>{playerMessage}</p>
-        {this.state.combatwindow == false ? <Rooms travel={this.travel} goto={this.goto} currentRoom={this.state.currentRoom} changeRoomImage={this.changeRoomImage}/>
+        {this.state.combatwindow == false ? <Rooms all={this.state} travel={this.travel} goto={this.goto} currentRoom={this.state.currentRoom} changeRoomImage={this.changeRoomImage}/>
         : <p className="combatButtons">{meleeAttackButton}{magicAttackButton}{runAwayButton}</p>}
-        <p className="switchViewsButton">{switchViewsButton}</p>
+        {this.state.gameOn == true ? <p className="switchViewsButton">{switchViewsButton}</p> : null}
         {this.state.combat == false & this.state.combatwindow == true ? <p>{getRandomMob}</p> : null}
         </div>
     </div>
@@ -359,15 +386,15 @@ peace(){
         <div className="centerNav"><Nav all={this.state}/></div>
         <React.Fragment>
     <Switch>
-      <Route path="/login/" children=<Login all={this.state}/>/>
-      <Route path="/character/create/" component={CharCreate}/>
+      <Route path="/login/" children=<Login gameOn={this.gameOn} all={this.state}/>/>
+      <Route path="/character/create/" children=<CharCreate all={this.state} gameOn={this.gameOn}/>/>
       <Route path="/character/" children=<Character all={this.state}/>/>
       <Route path="/inventory/" component={Inventory}/>
       <Route path="/magic/" component={Magic}/>
       <Route path="/" children=<CharWindow heal={this.heal} all={this.state}/>/>
       </Switch>
     </React.Fragment>
-    {immWindow}
+    {this.state.builderInput === true ? immWindow : null}
 
         </div>
 

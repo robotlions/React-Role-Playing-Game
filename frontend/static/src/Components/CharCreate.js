@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Cookies from 'js-cookie';
-import JobDropdown from './JobDropdown'
+import JobDropdown from './JobDropdown';
+import {withRouter} from 'react-router-dom';
 import {useState} from 'react';
 import '../App.css';
 
@@ -74,9 +75,11 @@ this.statDown = this.statDown.bind(this);
       const response = await fetch('/characters/create/', options);
       const data = await response.json().catch(handleError);
       if(response.ok){
-        this.setState({completed: `Character ${data.name}, a level ${data.level} ${data.job}, created!`})
-        this.setState({name: ""})
-        this.setState({job: "Choose"})
+        this.setState({completed: `Character ${data.name}, a level ${data.level} ${data.job}, created!`, name: "", job: "Choose"});
+        setTimeout(()=>{this.props.history.push("/")}, 1500);
+        this.props.gameOn();
+
+
       }
     }
 
@@ -182,4 +185,4 @@ const createMessage = `${this.state.completed}`
         }
       }
 
-  export default CharCreate
+  export default withRouter(CharCreate);

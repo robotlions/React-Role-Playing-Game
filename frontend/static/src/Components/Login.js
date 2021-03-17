@@ -40,6 +40,11 @@ componentDidMount(){
         this.setState({hasAccount: true})}
         return response.json()
     .then(response => this.setState({accountData: response, charData: response.character}))})
+
+    if (this.state.charData){
+      this.props.gameOn()
+    }
+
   }
 
 
@@ -142,6 +147,7 @@ async createProfile(){
     }
 
 deleteChar(charId){
+  if(prompt('Are you sure?') === 'y'){
   const options = {
         method: 'DELETE',
         headers: {
@@ -152,10 +158,15 @@ deleteChar(charId){
     fetch(`/characters/delete/${charId.id}/`, options)
       .then(response => response.json())
       .then(response => this.setState({data: response}));
+    window.location.reload();
+}
 }
 
 
   render(){
+
+
+
 const charData = [this.props.all.charData]
 const registerForm = (<form onSubmit={(e) => this.handleRegistration(e, this.state)}>
       <input className="input-group form-control" type="text" placeholder="username" name="username" value={this.state.username} onChange={this.handleInput}/>
@@ -189,7 +200,7 @@ const accountName = this.state.hasAccount === true ? <p>Account: {accountInfo.us
 const charInfo = this.state.hasAccount === true && this.state.charData !== null ?
 <div>
 <p>Available characters:</p>
-<span>{accountChar.name} - Level {accountChar.level} {accountChar.job}</span><button onClick={()=>this.deleteChar(accountChar)}>Delete</button></div> : <p>Please create a character.</p>
+<span>{accountChar.name} - Level {accountChar.level} {accountChar.job}</span><button onClick={()=>this.deleteChar(accountChar)}>Delete</button></div> : <p>Create a character to enter a world of adventure.</p>
 
 
 
