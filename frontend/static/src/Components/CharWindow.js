@@ -16,6 +16,7 @@ this.saveChar = this.saveChar.bind(this);
 
 
 saveChar(char){
+
   fetch(`/characters/save/${char.id}/`, {
       method: 'PUT',
       headers: {
@@ -32,10 +33,7 @@ saveChar(char){
     const char = this.props.all.char != undefined ? this.props.all.char : this.props.all.defaultChar
     const charWeapon = this.props.all.charWeapon
     const saveChar = <button onClick={()=>this.saveChar(char)}>Save Character</button>
-    const healChar = <button onClick={this.props.healChar}>Heal Character</button>
-
-  return (
-    <div className="App">
+    const charWindow = <div>
     <div className="row charbanner">
     <div className="col-3 char">Name</div>
     <div className="col-2 class">Class</div>
@@ -56,25 +54,12 @@ saveChar(char){
     <p className="col-1 sp1">{char.sp != null ? `${char.sp}/${char.spmax}` : 'N/A'}</p>
     <p className="col-1 xp1">{char.xp}</p>
     <p className="col-1 weapon">{charWeapon.name}</p>
-    </div>
-    <div className="row char2row">
-    <p className="col-3 char2"></p>
-    <p className="col-2 lvl2"></p>
-    <p className="col-2 ac2"></p>
-    <p className="col-2 hp2"></p>
-    <p className="col-2 sp2"></p>
-    <p className="col-1 cl2"></p>
-    </div>
-    <div className="row char3row">
-    <p className="col-3 char3"></p>
-    <p className="col-2 lvl3"></p>
-    <p className="col-2 ac3"></p>
-    <p className="col-2 hp3"></p>
-    <p className="col-2 sp3"></p>
-    <p className="col-1 cl3"></p>
-    </div>
-    {saveChar}
-    {healChar}
+    </div></div>
+
+  return (
+<div>
+    {this.props.all.char ? charWindow : <p>Please log in to load your character or feel free to play our demo.</p>}
+    {this.props.all.char ? saveChar : null}
     </div>
   );
 }

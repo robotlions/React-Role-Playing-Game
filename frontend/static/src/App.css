@@ -3,8 +3,8 @@ background-color: lightgray;
 } */
 .centerNav {
   font-size: x-large;
-  bottom: 15px;
-  position:fixed;
+  /* bottom: 15px;
+  position:fixed; */
 }
 .centerNav a{
   color: black;

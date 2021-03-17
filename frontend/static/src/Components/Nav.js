@@ -23,10 +23,9 @@ class Nav extends Component {
     <div className="container-fluid">
     <div className="navBox"><NavLink to="/">Game</NavLink></div>
     <div className="navBox"><NavLink to="/login/">Account</NavLink></div>
-    <div className="navBox"><NavLink to="/character/create/">Create Char</NavLink></div>
-    <div className="navBox"><NavLink to="/character/">Character</NavLink></div>
-    <div className="navBox"><NavLink to="/magic/">Magic</NavLink></div>
-    <div className="navBox"><NavLink to="/inventory/">Inventory</NavLink></div>
+    {!this.props.all.char ? <div className="navBox"><NavLink to="/character/create/">Create Char</NavLink></div> : null}
+    {this.props.all.char ? <div className="navBox"><NavLink to="/character/">Character</NavLink></div> : null}
+    {this.props.all.char ? <div className="navBox"><NavLink to="/magic/">Magic</NavLink></div> : null}
     </div>
     </nav>
 
@@ -34,3 +33,6 @@ class Nav extends Component {
 }
 }
 export default Nav;
+
+
+// <div className="navBox"><NavLink to="/inventory/">Inventory</NavLink></div>

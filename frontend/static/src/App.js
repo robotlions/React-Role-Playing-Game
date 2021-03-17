@@ -51,14 +51,15 @@ this.runAway = this.runAway.bind(this);
 this.rando = this.rando.bind(this);
 this.resetWindow = this.resetWindow.bind(this);
 this.randomMob = this.randomMob.bind(this);
-this.healChar = this.healChar.bind(this);
+this.heal = this.heal.bind(this);
 this.charWins = this.charWins.bind(this);
 this.changeRoomImage = this.changeRoomImage.bind(this);
 this.handleInput = this.handleInput.bind(this);
-this.immtest = this.immtest.bind(this);
 this.handleImmInput = this.handleImmInput.bind(this);
 this.goto = this.goto.bind(this);
 this.travel = this.travel.bind(this);
+this.peace = this.peace.bind(this);
+this.set = this.set.bind(this);
   }
 
   componentDidMount(){
@@ -181,9 +182,16 @@ meleeAttack(char, mob, charWeapon) {
     mob.hp = mob.hpmax
     char.hp = char.hpmax
   }
-  const damage = this.rando(charWeapon.damageLow, charWeapon.damageHigh)
-  mob.hp = mob.hp - damage
-  this.setState({charAttackMessage: `${char.name} ${charWeapon.damMessage} the ${mob.name} for ${damage} points of damage!`});
+  const charAttack = this.rando(1, 20) + char.attack
+  const mobEvade = this.rando(1, 20) + mob.ac
+  if (charAttack > mobEvade){
+    const damage = this.rando(charWeapon.damageLow, charWeapon.damageHigh)
+    mob.hp = mob.hp - damage
+    this.setState({charAttackMessage: `${char.name} ${charWeapon.damMessage} the ${mob.name} for ${damage} points of damage!`});
+  }
+  else {
+    this.setState({charAttackMessage: `${char.name} misses the ${mob.name}!`})
+  }
   if (mob.hp <= 0) {
     this.charWins(char, mob)
   }
@@ -200,6 +208,9 @@ meleeAttack(char, mob, charWeapon) {
 }
 
 magicAttack(char, mob, charWeapon){
+  if (this.state.combat == false){
+    this.setState({combat:  true});
+  }
   let charSpell = this.state.charSpell
   if (char.sp >= charSpell.spCost ){
     char.sp = char.sp - charSpell.spCost
@@ -214,11 +225,16 @@ magicAttack(char, mob, charWeapon){
     this.charWins(char, mob)
   }
   else{
-    char.hp = (char.hp - mob.damage)
-    this.setState({char});
-    setTimeout(() => {this.setState({mobAttackMessage: `The ${mob.name} hits ${char.name} for ${mob.damage} points of damage!`})}, 1500);
-    setTimeout(() => {this.setState({charAttackMessage: ""})}, 4000);
-    setTimeout(() => {this.setState({mobAttackMessage: ""})}, 4000);
+    let mobAttack = this.rando(1, 20) + mob.attack
+    let charEvade = this.rando(1, 20) + char.ac
+    if (mobAttack > charEvade){
+      char.hp = (char.hp - mob.damage)
+      this.setState({char});
+      setTimeout(() => {this.setState({mobAttackMessage: `The ${mob.name} hits ${char.name} for ${mob.damage} points of damage!`})}, 1500);
+      setTimeout(() => {this.setState({charAttackMessage: ""})}, 4000);
+      setTimeout(() => {this.setState({mobAttackMessage: ""})}, 4000);
+    }
+    else this.setState({mobAttackMessage: `The ${mob.name} misses ${char.name}!`})
   }
 }
 
@@ -243,25 +259,33 @@ charDeath(char){
   <Rooms death={()=>this.setState({currentroom: rooms[0]})}/>
 }
 
-healChar(){
-  let char = this.state.char
-  this.state.char.hp = this.state.char.hpmax;
-  this.state.char.sp = this.state.char.spmax;
-  this.setState({char})
 
-}
 
 handleInput(event){
 this.setState({[event.target.name]: event.target.value});
+}
+
+
+
+//builder commands below
+
+
+set(arg, arg2){
+  this.setState({arg: arg2})
+  alert("This doesn't work yet.")
 }
 
 handleImmInput(event){
 this.setState({[event.target.name]: event.target.value});
 }
 
+heal(){
+  let char = this.state.char
+  this.state.char.hp = this.state.char.hpmax;
+  this.state.char.sp = this.state.char.spmax;
+  this.setState({char})
+  this.setState({immWindow: ""})
 
-immtest(){
-  alert('This worked!')
 }
 
 travel(dest) {
@@ -281,7 +305,10 @@ else {
   alert("That's not a real room.")
 }
 }
-
+peace(){
+  this.setState({combat: false})
+  alert('Combat stopped.')
+}
 
 
 
@@ -327,7 +354,9 @@ else {
     </div>
 
       <div className="row bottomRow">
+
         <div className="col-sm-12 box charWindow">
+        <div className="centerNav"><Nav all={this.state}/></div>
         <React.Fragment>
     <Switch>
       <Route path="/login/" children=<Login all={this.state}/>/>
@@ -335,11 +364,11 @@ else {
       <Route path="/character/" children=<Character all={this.state}/>/>
       <Route path="/inventory/" component={Inventory}/>
       <Route path="/magic/" component={Magic}/>
-      <Route path="/" children=<CharWindow healChar={this.healChar} all={this.state}/>/>
+      <Route path="/" children=<CharWindow heal={this.heal} all={this.state}/>/>
       </Switch>
     </React.Fragment>
     {immWindow}
-    <div className="centerNav"><Nav /></div>
+
         </div>
 
         </div>

@@ -3,8 +3,9 @@ const moblist = [
       {
         mobId: 1,
         name: "Bob the Dummy",
+        desc: "",
         damage: 1,
-        attack: 10,
+        attack: 7,
         hp: 10,
         hpmax: 10,
         sp: "null",
@@ -18,8 +19,9 @@ const moblist = [
       {
         mobId: 2,
         name: "drop bear",
+        desc: "",
         damage: 1,
-        attack: 11,
+        attack: 9,
         hp: 10,
         hpmax: 10,
         sp: "null",
@@ -33,6 +35,7 @@ const moblist = [
       {
         mobId: 3,
         name: "giant tarantula",
+        desc: "",
         damage: 1,
         attack: 12,
         hp: 12,
@@ -48,8 +51,9 @@ const moblist = [
       {
         mobId: 4,
         name: "hobgoblin",
+        desc: "",
         damage: 1,
-        attack: 14,
+        attack: 12,
         hp: 12,
         hpmax: 12,
         sp: "null",
@@ -62,8 +66,9 @@ const moblist = [
       {
         mobId: 5,
         name: "giant rat",
+        desc: "",
         damage: 1,
-        attack: 11,
+        attack: 10,
         hp: 7,
         hpmax: 7,
         sp: "null",
@@ -76,8 +81,9 @@ const moblist = [
       {
         mobId: 6,
         name: "black slime",
+        desc: "",
         damage: 1,
-        attack: 12,
+        attack: 15,
         hp: 6,
         hpmax: 6,
         sp: "null",
@@ -91,6 +97,7 @@ const moblist = [
       {
         mobId: 7,
         name: "kobold",
+        desc: "",
         damage: 1,
         attack: 14,
         hp: 13,

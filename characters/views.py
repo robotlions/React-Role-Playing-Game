@@ -17,10 +17,10 @@ class CharacterListView(generics.ListAPIView):
 
 class CharacterUpdateAPIView(generics.UpdateAPIView):
     # permission_classes = (permissions.IsAdminUser | IsOwnerOrReadOnly,)
-    # queryset = Character.objects.all()
+    queryset = Character.objects.all()
     serializer_class = CharacterSerializer
-    def get_object(self):
-        return self.request.user
+    # def get_object(self):
+    #     return self.request.user
 
 class CharacterCreateAPIView(generics.CreateAPIView):
     # queryset = Character.objects.all()
