@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {useState} from 'react';
 import {Route, Switch} from 'react-router-dom';
-import TextWindow from './Components/TextWindow';
 import CharWindow from './Components/CharWindow';
 import GraphicsWindow from './Components/GraphicsWindow';
 import Rooms from './Components/Rooms';
@@ -251,6 +250,9 @@ travel(dest) {
   this.setState({currentRoom: dest});
   this.setState({image: this.state.currentRoom.walk});
   setTimeout(() => {this.setState({image: this.state.currentRoom.static})}, 1500);
+  if(this.rando(1, 5) === 1){
+  this.state.char.hp = this.state.char.hp +1
+}
   }
 
 
