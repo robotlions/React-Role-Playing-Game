@@ -23,6 +23,8 @@ class Login extends Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.reset = this.reset.bind(this);
     this.deleteChar = this.deleteChar.bind(this);
+    this.submitPhoto = this.submitPhoto.bind(this);
+    this.handleImage = this.handleImage.bind(this);
       }
 
 
@@ -71,7 +73,6 @@ reset(){
     const data = await response.json().catch(handleError);
     if(data.key) {
     Cookies.set('Authorization', `Token ${data.key}`);
-    // localStorage.setItem('rpguser', this.state.username)
     }
     this.reset();
   }
@@ -125,6 +126,43 @@ async createProfile(){
 
     await fetch('/profiles/', options);
     }
+
+
+    async submitPhoto(e){
+      e.preventDefault();
+
+      let formData = new FormData();
+      formData.append('profile_picture', this.state.profile_picture);
+      formData.append('user', 1);
+
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+      body: formData,
+    }
+
+    await fetch('/profiles/', options);
+    }
+
+    handleImage(e){
+
+    //this is taking the selected image from our decice and storing it in state
+    let file = e.target.files[0]
+    this.setState({profile_picture: file,})
+
+    let reader = new FileReader()
+    reader.onloadend = () => {
+      this.setState({
+        preview: reader.result
+      });
+    }
+
+    reader.readAsDataURL(file);
+    }
+
 
 
 
@@ -204,7 +242,13 @@ const charInfo = this.state.hasAccount === true && this.state.charData !== null 
 <p>Available characters:</p>
 <span>{accountChar.name} - Level {accountChar.level} {accountChar.job}</span><button onClick={()=>this.deleteChar(accountChar)}>Delete</button></div> : <p>Create a character to enter a world of adventure.</p>
 
-
+const photoSubmit = <form className="photoSubmit" onSubmit={this.submitPhoto}>
+<p>Submit a profile photo</p>
+  <input type="file" name="profile_picture" onChange={this.handleImage}/>
+{this.state.profile_picture && <img width="500" src={this.state.preview} alt="preview" />}
+<button className="btn" type="submit">Save</button>
+{localStorage.user === this.state.data.username ? <button className="btn" onClick={this.editPhoto}>Edit</button> : null}
+</form>
 
       return(
         <div className="loginForm">
@@ -212,6 +256,7 @@ const charInfo = this.state.hasAccount === true && this.state.charData !== null 
         {this.state.isLoggedIn === false ? registerForm : null}
         {accountName}
         {charInfo}
+        {this.state.isLoggedIn === true ? photoSubmit : null}
         </div>
       );
     }

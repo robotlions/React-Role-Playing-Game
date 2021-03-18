@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.abdfa6ea.chunk.css",
-    "main.js": "/static/js/main.f5202009.chunk.js",
-    "main.js.map": "/static/js/main.f5202009.chunk.js.map",
+    "main.css": "/static/css/main.15273997.chunk.css",
+    "main.js": "/static/js/main.14aa2681.chunk.js",
+    "main.js.map": "/static/js/main.14aa2681.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.c3526872.js",
     "runtime-main.js.map": "/static/js/runtime-main.c3526872.js.map",
     "static/css/2.150d169a.chunk.css": "/static/css/2.150d169a.chunk.css",
-    "static/js/2.2fe3c5a1.chunk.js": "/static/js/2.2fe3c5a1.chunk.js",
-    "static/js/2.2fe3c5a1.chunk.js.map": "/static/js/2.2fe3c5a1.chunk.js.map",
+    "static/js/2.71a7ac89.chunk.js": "/static/js/2.71a7ac89.chunk.js",
+    "static/js/2.71a7ac89.chunk.js.map": "/static/js/2.71a7ac89.chunk.js.map",
     "static/js/3.73f4d5d7.chunk.js": "/static/js/3.73f4d5d7.chunk.js",
     "static/js/3.73f4d5d7.chunk.js.map": "/static/js/3.73f4d5d7.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.150d169a.chunk.css.map": "/static/css/2.150d169a.chunk.css.map",
-    "static/css/main.abdfa6ea.chunk.css.map": "/static/css/main.abdfa6ea.chunk.css.map",
-    "static/js/2.2fe3c5a1.chunk.js.LICENSE.txt": "/static/js/2.2fe3c5a1.chunk.js.LICENSE.txt",
+    "static/css/main.15273997.chunk.css.map": "/static/css/main.15273997.chunk.css.map",
+    "static/js/2.71a7ac89.chunk.js.LICENSE.txt": "/static/js/2.71a7ac89.chunk.js.LICENSE.txt",
     "static/media/arch.eca5c6a6.jpg": "/static/media/arch.eca5c6a6.jpg",
     "static/media/castle.df9d2fb9.jpg": "/static/media/castle.df9d2fb9.jpg",
     "static/media/dungeonStatic.015cc2eb.jpg": "/static/media/dungeonStatic.015cc2eb.jpg",
@@ -23,13 +23,14 @@
     "static/media/nButton.eff28f4e.png": "/static/media/nButton.eff28f4e.png",
     "static/media/sButton.0f221342.png": "/static/media/sButton.0f221342.png",
     "static/media/street.f9fdf14e.jpg": "/static/media/street.f9fdf14e.jpg",
+    "static/media/victory.5b584663.png": "/static/media/victory.5b584663.png",
     "static/media/wButton.20845629.png": "/static/media/wButton.20845629.png"
   },
   "entrypoints": [
     "static/js/runtime-main.c3526872.js",
     "static/css/2.150d169a.chunk.css",
-    "static/js/2.2fe3c5a1.chunk.js",
-    "static/css/main.abdfa6ea.chunk.css",
-    "static/js/main.f5202009.chunk.js"
+    "static/js/2.71a7ac89.chunk.js",
+    "static/css/main.15273997.chunk.css",
+    "static/js/main.14aa2681.chunk.js"
   ]
 }

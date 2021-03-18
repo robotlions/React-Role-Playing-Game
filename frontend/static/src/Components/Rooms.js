@@ -17,7 +17,9 @@ class Rooms extends Component{
             }
 
 this.move = this.move.bind(this);
-  }
+
+}
+
 
 
 move(e){
@@ -68,7 +70,7 @@ else {
     {this.props.all.gameOn === true ? <h1>{roomname}</h1> : <h1 className="welcomeTitle">Welcome to This Unnamed Role Playing Game</h1>}
     <p id="moveMsg">{moveMsg}</p>
     {this.props.all.gameOn === true ? <p>{desc}</p> : null}
-    {this.props.all.gameOn === true ? <p id="nsew">{nsew}</p> : null}
+    {this.props.all.gameOn === true ? <section id="nsew">{nsew}</section> : null}
     </div>
   );
 }

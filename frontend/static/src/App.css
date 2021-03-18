@@ -181,3 +181,6 @@ transition: opacity 0 1s;
   top: 50%;
   transform: translateY(-50%);
 }
+.photoSubmit{
+  float: right;
+}

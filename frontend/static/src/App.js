@@ -21,6 +21,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import arch from './images/arch.jpg';
 import './App.css';
 import mobImage from './images/mob.jpg'
+import victory from './images/victory.png'
 
 
 
@@ -67,6 +68,7 @@ this.set = this.set.bind(this);
 this.logKey = this.logKey.bind(this);
 this.gameOn = this.gameOn.bind(this);
 this.startRandomFight = this.startRandomFight.bind(this);
+this.timeHeal = this.timeHeal.bind(this);
   }
 
   componentDidMount(){
@@ -113,10 +115,22 @@ this.startRandomFight = this.startRandomFight.bind(this);
 
       document.addEventListener('keydown', this.logKey);
 
+
+
+      this.timerID = setInterval(
+        () => this.timeHeal(),
+        15000
+      );
+
+
+
+
+
+
+
 }
 
 logKey(e) {
-  console.log(e.code)
   if(e.code === 'MetaRight'){
     this.setState(prevState => ({
       builderInput: !prevState.builderInput
@@ -231,7 +245,8 @@ charWins(char, mob){
   setTimeout(() => {this.setState({playerMessage: `${char.name} has defeated the ${mob.name}! The fight is over.`})}, 1000);
   setTimeout(() => {this.setState({playerMessage: `${char.name} receives ${mob.xp} points of experience.`})}, 2500);
   this.state.char.xp = this.state.char.xp + this.state.mob.xp
-  this.setState({image: this.state.currentRoom.static});
+  this.setState({image: victory})
+  setTimeout(()=>{this.setState({image: this.state.currentRoom.static})}, 4000);
   this.setState({char});
   this.resetWindow();
 }
@@ -255,17 +270,10 @@ handleInput(event){
 
 travel(dest) {
   this.setState({currentRoom: dest});
-  this.setState({image: this.state.currentRoom.walk});
-  setTimeout(() => {this.setState({image: this.state.currentRoom.static})}, 750);
-  if(this.rando(1, 5) === 1){
-    if(this.state.char.hp < this.state.char.hpmax){
-      this.state.char.hp = this.state.char.hp +1}
-      if(this.state.char.sp < this.state.char.spmax){
-        this.state.char.sp = this.state.char.sp +1
-      }
-    }
+  this.setState({image: this.state.currentRoom.walk})
+  setTimeout(() => {this.setState({image: this.state.currentRoom.static})}, 600);
   if(this.rando(1, 6) === 1 && this.state.currentRoom.danger === true){
-    this.startRandomFight()
+    setTimeout(()=>{this.startRandomFight()}, 601)
   }
   }
 
@@ -289,6 +297,24 @@ startRandomFight(){
   setTimeout(() => {this.setState({charAttackMessage: ""})}, 3000);
   setTimeout(() => {this.setState({mobAttackMessage: ""})}, 3000);
 }
+
+
+timeHeal() {
+  const char = this.state.char;
+  if(this.state.combat === false){
+  if(this.state.char.hp < this.state.char.hpmax){
+    this.state.char.hp = this.state.char.hp +1}
+    this.setState({char});
+    if(this.state.char.sp < this.state.char.spmax){
+      this.state.char.sp = this.state.char.sp +1
+      this.setState({char});
+    }
+}
+}
+
+
+
+
 
 
 //builder commands below
@@ -330,6 +356,8 @@ else {
 
 peace(){
   this.setState({combat: false})
+  this.setState({image: this.state.currentRoom.static})
+  this.setState({mob: null});
   alert('Combat stopped.')
 }
 
@@ -339,6 +367,9 @@ peace(){
 
     if(this.state.isLoggedIn == true && this.state.char){
       this.state.gameOn = true;
+    }
+    if(this.state.combat == true){
+      this.state.image = this.state.mob.image
     }
     const char = this.state.char
     const mob = this.state.mob
