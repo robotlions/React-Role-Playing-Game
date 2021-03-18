@@ -3,6 +3,7 @@ background-color: lightgray;
 } */
 .centerNav {
   font-size: x-large;
+  font-weight: bold;
   /* bottom: 15px;
   position:fixed; */
 }
@@ -31,10 +32,8 @@ background-color: lightgray;
 .charbanner{
   font-weight: bold;
 }
-
-
 .charSheet{
-  font-size: small;
+  font-weight: bold;
 }
 
 .accountSheet{
@@ -142,4 +141,10 @@ transition: opacity 0 1s;
 }
 .charSubmit{
   margin-left: 20px;
+}
+
+.welcomeTitle{
+  font-weight: bold;
+  text-align: center;
+  padding-top: 20%;
 }

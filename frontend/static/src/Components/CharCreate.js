@@ -76,7 +76,7 @@ this.statDown = this.statDown.bind(this);
       const data = await response.json().catch(handleError);
       if(response.ok){
         this.setState({completed: `Character ${data.name}, a level ${data.level} ${data.job}, created!`, name: "", job: "Choose"});
-        setTimeout(()=>{this.props.history.push("/")}, 1500);
+        setTimeout(()=>{this.props.history.push("/character/")}, 1500);
         this.props.gameOn();
 
 

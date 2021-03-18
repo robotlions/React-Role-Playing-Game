@@ -18,16 +18,21 @@ const charSheet1 = <div className="charSheet">
 <p>Level: {char.level}</p>
 </div>
 const charSheet2 = <div className="charSheet">
+<p>Strength: {char.str}</p>
+<p>Intelligence: {char.int}</p>
+<p>Dexterity: {char.dex}</p>
+<p>Constitution: {char.con}</p>
+</div>
+const charSheet3 = <div className="charSheet">
 <p>Armor: {char.ac}</p>
 <p>Health: {char.hp}</p>
 <p>Max Health: {char.hpmax}</p>
 </div>
-const charSheet3 = <div className="charSheet">
+const charSheet4 = <div className="charSheet">
 <p>Magic: {char.sp}</p>
 <p>Max Magic: {char.spmax}</p>
 <p>Experience: {char.xp}</p>
 </div>
-
 
   return(
 this.state.isLoggedIn ? <section>
@@ -41,7 +46,8 @@ this.state.isLoggedIn ? <section>
     <div className="col">
     {charSheet3}
     </div>
-    </div></section>
+    <div className="col">
+    {charSheet4}</div></div></section>
    : null
 
   );

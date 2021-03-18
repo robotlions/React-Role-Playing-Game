@@ -5,20 +5,21 @@ import TextWindow from './Components/TextWindow';
 import CharWindow from './Components/CharWindow';
 import GraphicsWindow from './Components/GraphicsWindow';
 import Rooms from './Components/Rooms';
-import CombatWindow from './Components/CombatWindow'
-import Nav from './Components/Nav'
-import Inventory from './Components/Inventory'
-import Character from './Components/Character'
-import Login from './Components/Login'
+import CombatWindow from './Components/CombatWindow';
+import Nav from './Components/Nav';
+import Inventory from './Components/Inventory';
+import Character from './Components/Character';
+import Login from './Components/Login';
 import Cookies from 'js-cookie';
 import {Modal, Button} from "react-bootstrap";
-import Magic from './Components/Magic'
-import CharCreate from './Components/CharCreate'
-import moblist from './moblist'
-import rooms from './roomlist'
-import dungeonStatic from './images/dungeonStatic.jpg'
+import Magic from './Components/Magic';
+import CharCreate from './Components/CharCreate';
+import moblist from './moblist';
+import rooms from './roomlist';
+import dungeonWalk from './images/dungeonWalk.gif';
+import dungeonStatic from './images/dungeonStatic.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import arch from './images/arch.jpg'
+import arch from './images/arch.jpg';
 import './App.css';
 
 
@@ -56,7 +57,7 @@ this.resetWindow = this.resetWindow.bind(this);
 this.randomMob = this.randomMob.bind(this);
 this.heal = this.heal.bind(this);
 this.charWins = this.charWins.bind(this);
-this.changeRoomImage = this.changeRoomImage.bind(this);
+// this.changeRoomImage = this.changeRoomImage.bind(this);
 this.handleInput = this.handleInput.bind(this);
 this.handleImmInput = this.handleImmInput.bind(this);
 this.goto = this.goto.bind(this);
@@ -82,20 +83,6 @@ this.gameOn = this.gameOn.bind(this);
             xp: null,
           }
 
-          const char = {
-                  charId: 1,
-                  name: "Please log in to load your character",
-                  lvl: null,
-                  ac: null,
-                  hpmax: null,
-                  hp: null,
-                  spmax: null,
-                  sp: null,
-                  class: null,
-                  weapon: null,
-                  xp: null,
-                }
-
     const charWeapon = {
             weaponId: 1,
             name: "longsword",
@@ -104,19 +91,6 @@ this.gameOn = this.gameOn.bind(this);
             damMessage: "slashes",
           }
 
-    const mob = {
-            mobId: 1,
-            name: "Bob the Dummy",
-            damage: 1,
-            attack: 10,
-            hp: 10,
-            hpmax: 10,
-            sp: "null",
-            spmax: "null",
-            ac: 10,
-            weapon: "wooden sword",
-            damMessage: "pokes",
-    }
     const charSpell = {
             spellId: 1,
             name: "force bolt",
@@ -126,10 +100,6 @@ this.gameOn = this.gameOn.bind(this);
             damMessage: "slams"
     }
 
-          // this.setState({char})
-          // this.setState({mob})
-          // char default replaced by player character from database
-          // mob default replaced by random mob generator
           this.setState({defaultChar});
           this.setState({charWeapon})
           this.setState({charSpell})
@@ -142,20 +112,19 @@ this.gameOn = this.gameOn.bind(this);
 
       document.addEventListener('keydown', this.logKey);
 
-
 }
 
-  logKey(e) {
-    if(e.code === 'MetaRight'){
-      this.setState(prevState => ({
-  builderInput: !prevState.builderInput
-}));
-    }
+logKey(e) {
+  if(e.code === 'MetaRight'){
+    this.setState(prevState => ({
+      builderInput: !prevState.builderInput
+    }));
+  }
 }
 
 gameOn(){
   this.setState({image: this.state.currentRoom.static})
-  this.setState({gameOn: true})
+  this.setState(prevState => ({gameOn: !prevState.gameOn}));
   setTimeout(()=>{window.location.reload()}, 2000);
 }
 
@@ -168,10 +137,7 @@ else {
 }
 }
 
-changeRoomImage(img, img2){
-  this.setState({image: img})
-  setTimeout(() => {this.setState({image: img2})}, 1500);
-}
+
 
 rando(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
@@ -186,7 +152,6 @@ randomMob(){
 
 }
 
-
 resetWindow(){
   setTimeout(() => {this.setState({combat: false})}, 4000);
   setTimeout(() => {this.setState({combatwindow: false})}, 4000);
@@ -194,8 +159,6 @@ resetWindow(){
   setTimeout(() => {this.setState({mobAttackMessage: ""})}, 4000);
   setTimeout(() => {this.setState({playerMessage: ""})}, 4000);
 }
-
-
 
 meleeAttack(char, mob, charWeapon) {
   if (this.state.combat == false){
@@ -280,12 +243,15 @@ charDeath(char){
   <Rooms death={()=>this.setState({currentroom: rooms[0]})}/>
 }
 
-
-
 handleInput(event){
-this.setState({[event.target.name]: event.target.value});
+  this.setState({[event.target.name]: event.target.value});
 }
 
+travel(dest) {
+  this.setState({currentRoom: dest});
+  this.setState({image: this.state.currentRoom.walk});
+  setTimeout(() => {this.setState({image: this.state.currentRoom.static})}, 1500);
+  }
 
 
 //builder commands below
@@ -297,7 +263,7 @@ set(arg, arg2){
 }
 
 handleImmInput(event){
-this.setState({[event.target.name]: event.target.value});
+  this.setState({[event.target.name]: event.target.value});
 }
 
 heal(){
@@ -309,11 +275,7 @@ heal(){
 
 }
 
-travel(dest) {
-  this.setState({currentRoom: dest});
-  this.setState({image: this.state.currentRoom.walk})
-  setTimeout(() => {this.setState({image: this.state.currentRoom.static})}, 1500);
-  }
+
 
 
 goto(arg){
@@ -328,6 +290,7 @@ else {
   alert("That's not a real room.")
 }
 }
+
 peace(){
   this.setState({combat: false})
   alert('Combat stopped.')
@@ -336,8 +299,8 @@ peace(){
 
 
   render(){
+
     if(this.state.isLoggedIn == true && this.state.char){
-      this.state.image = this.state.currentRoom.static;
       this.state.gameOn = true;
     }
     const char = this.state.char
@@ -395,11 +358,8 @@ peace(){
       </Switch>
     </React.Fragment>
     {this.state.builderInput === true ? immWindow : null}
-
         </div>
-
         </div>
-
         </div>
 
   );

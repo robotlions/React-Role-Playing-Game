@@ -62,7 +62,7 @@ else {
 
   return (
     <div>
-    {this.props.all.gameOn === true ? <h1>{roomname}</h1> : <h1>Welcome to This Unnamed Role Playing Game</h1>}
+    {this.props.all.gameOn === true ? <h1>{roomname}</h1> : <h1 className="welcomeTitle">Welcome to This Unnamed Role Playing Game</h1>}
     <p id="moveMsg">{moveMsg}</p>
     {this.props.all.gameOn === true ? <p>{desc}</p> : null}
     {this.props.all.gameOn === true ? <p id="nsew">{nsew}</p> : null}

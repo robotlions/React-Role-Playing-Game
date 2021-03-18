@@ -104,6 +104,7 @@ async handleRegistration(e, obj){
         Cookies.set('Authorization', `Token ${data.key}`);
       }
       this.setState({username: "", email: "", password1: "", password2: ""})
+      window.location.reload();
     }
 
 
@@ -127,7 +128,7 @@ async createProfile(){
 
 
 
-    handleLogout(){
+handleLogout(){
       const options = {
             method: 'POST',
             headers: {
@@ -142,6 +143,7 @@ async createProfile(){
           Cookies.remove('sessionid');
           localStorage.clear()
           window.location.reload();
+          this.props.gameOn();
 
 
     }
