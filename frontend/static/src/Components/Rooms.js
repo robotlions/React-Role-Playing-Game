@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import '../App.css';
 import rooms from '../roomlist';
-// import dungeonWalk from '../images/dungeonWalk.gif'
-// import dungeonStatic from '../images/dungeonStatic.jpg'
+import nButton from '../images/nButton.png'
+import sButton from '../images/sButton.png'
+import eButton from '../images/eButton.png'
+import wButton from '../images/wButton.png'
+
 
 class Rooms extends Component{
   constructor (props){
@@ -48,12 +51,12 @@ else {
   render(){
     const roomname = this.props.currentRoom.name;
     const desc = this.props.currentRoom.desc;
-    const nsew = <>
-    {this.props.currentRoom.north ? <span title="north" onClick={this.move}>{`<N>`}</span> : null}
-    {this.props.currentRoom.south ? <span title="south" onClick={this.move}>{`<S>`}</span> : null}
-    {this.props.currentRoom.east ? <span title="east" onClick={this.move}>{`<E>`}</span> : null}
-    {this.props.currentRoom.west ?<span title="west" onClick={this.move}>{`<W>`}</span> : null}
-    </>
+    const nsew = <div className="directionBox">
+    {this.props.currentRoom.north ? <div id="nButton" title="north" onClick={this.move}><img title="north" src={nButton}/></div> : null}
+    {this.props.currentRoom.south ? <div id="sButton" title="south" onClick={this.move}><img title="south" src={sButton}/></div> : null}
+    {this.props.currentRoom.east ? <div id="eButton" title="east" onClick={this.move}><img title="east" src={eButton}/></div> : null}
+    {this.props.currentRoom.west ? <div id="wButton" title="west" onClick={this.move}><img title="west" src={wButton}/></div> : null}
+    </div>
 
     let moveMsg = this.state.moveMsg
 

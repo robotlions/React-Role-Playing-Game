@@ -1,3 +1,4 @@
+import mobImage from './images/mob.jpg'
 const moblist = [
 
       {
@@ -14,6 +15,7 @@ const moblist = [
         weapon: "wooden sword",
         damMessage: "pokes",
         xp: 10,
+        image: mobImage,
       },
 
       {
@@ -30,6 +32,7 @@ const moblist = [
         weapon: "claws",
         damMessage: "rakes",
         xp: 10,
+        image: mobImage,
       },
 
       {
@@ -46,6 +49,7 @@ const moblist = [
         weapon: "fangs",
         damMessage: "pierce",
         xp: 10,
+        image: mobImage,
       },
 
       {
@@ -62,6 +66,7 @@ const moblist = [
         weapon: "short sword",
         damMessage: "slashes",
         xp: 10,
+        image: mobImage,
       },
       {
         mobId: 5,
@@ -77,6 +82,7 @@ const moblist = [
         weapon: "teeth",
         damMessage: "gouge",
         xp: 10,
+        image: mobImage,
       },
       {
         mobId: 6,
@@ -92,6 +98,7 @@ const moblist = [
         weapon: "acid goo",
         damMessage: "burns",
         xp: 10,
+        image: mobImage,
       },
 
       {
@@ -107,7 +114,8 @@ const moblist = [
         ac: 10,
         weapon: "rusty knife",
         damMessage: "pierces",
-        xp: 10
+        xp: 10,
+        image: mobImage,
       },
 ]
 export default moblist

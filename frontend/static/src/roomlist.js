@@ -10,6 +10,7 @@ const rooms = [{
         west: null,
         static: dungeonStatic,
         walk: dungeonWalk,
+        danger: false,
       },
       {
         id: 2,
@@ -22,6 +23,7 @@ const rooms = [{
         west: null,
         static: dungeonStatic,
         walk: dungeonWalk,
+        danger: true,
       },
       {
         id: 3,
@@ -33,6 +35,7 @@ const rooms = [{
         west: 4,
         static: dungeonStatic,
         walk: dungeonWalk,
+        danger: true,
       },
       {
         id: 4,
@@ -44,6 +47,7 @@ const rooms = [{
         west: null,
         static: dungeonStatic,
         walk: dungeonWalk,
+        danger: true,
       },
       {
         id: 5,
@@ -55,6 +59,7 @@ const rooms = [{
         west: null,
         static: dungeonStatic,
         walk: dungeonWalk,
+        danger: true,
       },
       {
         id: 6,
@@ -66,6 +71,7 @@ const rooms = [{
         west: 3,
         static: dungeonStatic,
         walk: dungeonWalk,
+        danger: true,
       },
       {
         id: 7,
@@ -78,6 +84,7 @@ const rooms = [{
         west: null,
         static: dungeonStatic,
         walk: dungeonWalk,
+        danger: true,
       },
       {
         id: 8,
@@ -90,6 +97,7 @@ const rooms = [{
         west: 1,
         static: dungeonStatic,
         walk: dungeonWalk,
+        danger: true,
       }
 ]
 export default rooms

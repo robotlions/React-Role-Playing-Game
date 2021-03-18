@@ -146,3 +146,38 @@ transition: opacity 0 1s;
   text-align: center;
   padding-top: 20%;
 }
+.directionBox{
+  height: 100px;
+  width: 100px;
+  font-size: x-Large;
+}
+.directionBox img{
+  height: 40px;
+}
+#nButton{
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* #nButton img{
+  height: 40px;
+} */
+#sButton{
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#eButton{
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#wButton{
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+}

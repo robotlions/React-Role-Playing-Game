@@ -20,6 +20,7 @@ import dungeonStatic from './images/dungeonStatic.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import arch from './images/arch.jpg';
 import './App.css';
+import mobImage from './images/mob.jpg'
 
 
 
@@ -65,6 +66,7 @@ this.peace = this.peace.bind(this);
 this.set = this.set.bind(this);
 this.logKey = this.logKey.bind(this);
 this.gameOn = this.gameOn.bind(this);
+this.startRandomFight = this.startRandomFight.bind(this);
   }
 
   componentDidMount(){
@@ -114,12 +116,15 @@ this.gameOn = this.gameOn.bind(this);
 }
 
 logKey(e) {
+  console.log(e.code)
   if(e.code === 'MetaRight'){
     this.setState(prevState => ({
       builderInput: !prevState.builderInput
     }));
   }
+
 }
+
 
 gameOn(){
   this.setState({image: this.state.currentRoom.static})
@@ -179,14 +184,14 @@ meleeAttack(char, mob, charWeapon) {
     this.charWins(char, mob)
   }
   else{
-    setTimeout(() => {this.setState({mobAttackMessage: `The ${mob.name} hits ${char.name} for ${mob.damage} points of damage!`})}, 1500);
+    setTimeout(() => {this.setState({mobAttackMessage: `The ${mob.name} hits ${char.name} for ${mob.damage} points of damage!`})}, 1000);
     char.hp = (char.hp - mob.damage)
     this.setState({char});
     if (char.hp <= 0){
       setTimeout(() => {this.charDeath(char)}, 2000);
     }
-    setTimeout(() => {this.setState({charAttackMessage: ""})}, 4000);
-    setTimeout(() => {this.setState({mobAttackMessage: ""})}, 4000);
+    setTimeout(() => {this.setState({charAttackMessage: ""})}, 3000);
+    setTimeout(() => {this.setState({mobAttackMessage: ""})}, 3000);
   }
 }
 
@@ -214,18 +219,20 @@ magicAttack(char, mob, charWeapon){
       char.hp = (char.hp - mob.damage)
       this.setState({char});
       setTimeout(() => {this.setState({mobAttackMessage: `The ${mob.name} hits ${char.name} for ${mob.damage} points of damage!`})}, 1500);
-      setTimeout(() => {this.setState({charAttackMessage: ""})}, 4000);
-      setTimeout(() => {this.setState({mobAttackMessage: ""})}, 4000);
+
     }
     else this.setState({mobAttackMessage: `The ${mob.name} misses ${char.name}!`})
   }
+  setTimeout(() => {this.setState({charAttackMessage: ""})}, 3000);
+  setTimeout(() => {this.setState({mobAttackMessage: ""})}, 3000);
 }
 
 charWins(char, mob){
   setTimeout(() => {this.setState({playerMessage: `${char.name} has defeated the ${mob.name}! The fight is over.`})}, 1000);
   setTimeout(() => {this.setState({playerMessage: `${char.name} receives ${mob.xp} points of experience.`})}, 2500);
   this.state.char.xp = this.state.char.xp + this.state.mob.xp
-  this.setState({char})
+  this.setState({image: this.state.currentRoom.static});
+  this.setState({char});
   this.resetWindow();
 }
 
@@ -249,11 +256,39 @@ handleInput(event){
 travel(dest) {
   this.setState({currentRoom: dest});
   this.setState({image: this.state.currentRoom.walk});
-  setTimeout(() => {this.setState({image: this.state.currentRoom.static})}, 1500);
+  setTimeout(() => {this.setState({image: this.state.currentRoom.static})}, 750);
   if(this.rando(1, 5) === 1){
-  this.state.char.hp = this.state.char.hp +1
-}
+    if(this.state.char.hp < this.state.char.hpmax){
+      this.state.char.hp = this.state.char.hp +1}
+      if(this.state.char.sp < this.state.char.spmax){
+        this.state.char.sp = this.state.char.sp +1
+      }
+    }
+  if(this.rando(1, 6) === 1 && this.state.currentRoom.danger === true){
+    this.startRandomFight()
   }
+  }
+
+
+startRandomFight(){
+  const char = this.state.char
+  this.setState({combat: true});
+  this.setState({combatwindow: true});
+  const rand = Math.floor(Math.random() * (moblist.length - 1) ) + 1;
+  const mob = moblist[rand]
+  this.setState({mob})
+  this.setState({image: mob.image})
+  setTimeout(() => {this.setState({playerMessage: `A ${this.state.mob.name} leaps at you!`})}, 0);
+  setTimeout(() => {this.setState({playerMessage: ""})}, 1500);
+  setTimeout(() => {this.setState({mobAttackMessage: `The ${mob.name} hits ${char.name} for ${mob.damage} points of damage!`})}, 1500);
+  char.hp = (char.hp - mob.damage)
+  this.setState({char});
+  if (char.hp <= 0){
+    setTimeout(() => {this.charDeath(char)}, 2000);
+  }
+  setTimeout(() => {this.setState({charAttackMessage: ""})}, 3000);
+  setTimeout(() => {this.setState({mobAttackMessage: ""})}, 3000);
+}
 
 
 //builder commands below
@@ -318,7 +353,9 @@ peace(){
     const playerMessage = this.state.playerMessage;
     const command = this.state.immWindow
     const arg = this.state.arg
+    const combatTitle = <h2>COMBAT!</h2>
     const immWindow = <div>
+
     <input className="immWindow" type="text" placeholder="input command" name="immWindow" value={this.state.immWindow} onChange={this.handleImmInput}/>
     <input type="text" placeholder="arg" name="arg" value={this.state.arg} onChange={this.handleImmInput}/>
     <button type="submit" onClick={()=>this.[command](arg)}>Go</button>
@@ -335,6 +372,7 @@ peace(){
           <div className="col-1 effectsWindow">
           </div>
         <div className="col-6 box textWindow">
+        {this.state.combat == true ? combatTitle : null}
         <p>{charAttackMessage}</p>
         <p>{mobAttackMessage}</p>
         <p>{playerMessage}</p>
