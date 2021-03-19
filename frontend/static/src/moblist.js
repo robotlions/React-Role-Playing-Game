@@ -1,4 +1,4 @@
-import mobImage from './images/mob.jpg'
+import mobImage from './images/mob.png'
 const moblist = [
 
       {

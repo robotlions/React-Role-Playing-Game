@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.747495e1.chunk.css",
-    "main.js": "/static/js/main.2e87ddcc.chunk.js",
-    "main.js.map": "/static/js/main.2e87ddcc.chunk.js.map",
+    "main.js": "/static/js/main.062f962d.chunk.js",
+    "main.js.map": "/static/js/main.062f962d.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.c3526872.js",
     "runtime-main.js.map": "/static/js/runtime-main.c3526872.js.map",
     "static/css/2.150d169a.chunk.css": "/static/css/2.150d169a.chunk.css",
@@ -21,6 +21,7 @@
     "static/media/dungeonWalk.690d4cb0.gif": "/static/media/dungeonWalk.690d4cb0.gif",
     "static/media/gate.4fc8e47b.jpg": "/static/media/gate.4fc8e47b.jpg",
     "static/media/mob.56468410.jpg": "/static/media/mob.56468410.jpg",
+    "static/media/mob.f1e1ab94.png": "/static/media/mob.f1e1ab94.png",
     "static/media/nButton.eff28f4e.png": "/static/media/nButton.eff28f4e.png",
     "static/media/poolOfWater.438ef880.png": "/static/media/poolOfWater.438ef880.png",
     "static/media/sButton.0f221342.png": "/static/media/sButton.0f221342.png",
@@ -36,6 +37,6 @@
     "static/css/2.150d169a.chunk.css",
     "static/js/2.b9e21908.chunk.js",
     "static/css/main.747495e1.chunk.css",
-    "static/js/main.2e87ddcc.chunk.js"
+    "static/js/main.062f962d.chunk.js"
   ]
 }
