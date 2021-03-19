@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import Cookies from 'js-cookie'
+import {withRouter} from 'react-router-dom';
+import {useState} from 'react';
 import '../App.css';
 
 class Login extends Component {
@@ -74,7 +76,10 @@ reset(){
     if(data.key) {
     Cookies.set('Authorization', `Token ${data.key}`);
     }
+    // setTimeout(()=>{this.props.history.push("/")}, 1000);
+
     this.reset();
+    // this.props.gameOn()
   }
 
 
@@ -249,7 +254,6 @@ const photoSubmit = <form className="photoSubmit" onSubmit={this.submitPhoto}>
 <button className="saveButton" type="submit">Save</button>
 </form>
 const profTest = {...this.state.accountData.profile}
-console.log(profTest)
 const profPicture = <img className="profPic" src={profTest.profile_picture}/>
 
       return(
@@ -264,4 +268,4 @@ const profPicture = <img className="profPic" src={profTest.profile_picture}/>
       );
     }
   }
-  export default Login
+  export default withRouter(Login)

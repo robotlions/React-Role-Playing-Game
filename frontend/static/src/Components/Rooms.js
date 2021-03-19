@@ -36,9 +36,9 @@ if (dir == "west"){
 dest = dest[0]
 if (dest) {
   // this.props.changeRoomImage(this.props.currentRoom.walk, this.props.currentRoom.static)
-  this.setState({moveMsg: `You walk to the ${dir}.`})
+  // this.setState({moveMsg: `You walk to the ${dir}.`})
   this.setState({name: "", desc: ""});
-  setTimeout(() => {this.setState({moveMsg: ""})}, 1000);
+  // setTimeout(() => {this.setState({moveMsg: ""})}, 1000);
   this.props.travel(dest)
   // setTimeout(() => {this.setState({currentRoom: dest})}, 1000);
 }

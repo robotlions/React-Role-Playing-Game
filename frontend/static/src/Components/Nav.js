@@ -21,7 +21,7 @@ class Nav extends Component {
   return(
     <nav className="navbar navbar-expand-lg">
     <div className="container-fluid">
-    {this.props.all.gameOn == true ? <div className="navBox"><NavLink to="/">Game</NavLink></div> : null}
+    {this.props.all.gameOn == true ? <div className="navBox"><NavLink to="/">Play Game</NavLink></div> : null}
 
     {!this.props.all.char && this.props.all.isLoggedIn === true ? <div className="navBox"><NavLink to="/character/create/">Create Character</NavLink></div> : null}
     {this.props.all.gameOn ? <div className="navBox"><NavLink to="/character/">Character</NavLink></div> : null}

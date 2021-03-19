@@ -127,7 +127,6 @@ this.timeHeal = this.timeHeal.bind(this);
 
 
 
-
 }
 
 logKey(e) {
@@ -141,9 +140,10 @@ logKey(e) {
 
 
 gameOn(){
+  this.setState({currentRoom: rooms[0]})
   this.setState({image: this.state.currentRoom.static})
   this.setState(prevState => ({gameOn: !prevState.gameOn}));
-  setTimeout(()=>{window.location.reload()}, 2000);
+  // setTimeout(()=>{window.location.reload()}, 2000);
 }
 
 changeToCombatWindow(){
@@ -199,7 +199,7 @@ meleeAttack(char, mob, charWeapon) {
     this.charWins(char, mob)
   }
   else{
-    setTimeout(() => {this.setState({mobAttackMessage: `The ${mob.name} hits ${char.name} for ${mob.damage} points of damage!`})}, 1000);
+    setTimeout(() => {this.setState({mobAttackMessage: `The ${mob.name} hits ${char.name} for ${mob.damage} points of damage!`})}, 2000);
     char.hp = (char.hp - mob.damage)
     this.setState({char});
     if (char.hp <= 0){
@@ -219,8 +219,8 @@ magicAttack(char, mob, charWeapon){
   if (char.sp >= charSpell.spCost ){
     char.sp = char.sp - charSpell.spCost
   let charDamage = this.rando(charSpell.damageLow, charSpell.damageHigh)
-    setTimeout(() => {this.setState({charAttackMessage: `${char.name}'s ${charSpell.name} ${charSpell.damMessage} into the ${mob.name}, doing ${charDamage} damage!`})}, 1500);
-    setTimeout(() => {mob.hp = mob.hp - charDamage}, 1500);
+    setTimeout(() => {this.setState({charAttackMessage: `${char.name}'s ${charSpell.name} ${charSpell.damMessage} into the ${mob.name}, doing ${charDamage} damage!`})}, 200);
+    setTimeout(() => {mob.hp = mob.hp - charDamage}, 500);
   }
   else {
     setTimeout(() => {this.setState({playerMessage: `You don't have enough spell points to cast that.`})}, 1500);
@@ -234,7 +234,7 @@ magicAttack(char, mob, charWeapon){
     if (mobAttack > charEvade){
       char.hp = (char.hp - mob.damage)
       this.setState({char});
-      setTimeout(() => {this.setState({mobAttackMessage: `The ${mob.name} hits ${char.name} for ${mob.damage} points of damage!`})}, 1500);
+      setTimeout(() => {this.setState({mobAttackMessage: `The ${mob.name} hits ${char.name} for ${mob.damage} points of damage!`})}, 2500);
 
     }
     else this.setState({mobAttackMessage: `The ${mob.name} misses ${char.name}!`})
@@ -244,11 +244,11 @@ magicAttack(char, mob, charWeapon){
 }
 
 charWins(char, mob){
-  setTimeout(() => {this.setState({playerMessage: `${char.name} has defeated the ${mob.name}! The fight is over.`})}, 2000);
-  setTimeout(() => {this.setState({playerMessage: `${char.name} receives ${mob.xp} points of experience.`})}, 2000);
+  setTimeout(() => {this.setState({playerMessage: `${char.name} has defeated the ${mob.name}! The fight is over.`})}, 3000);
+  setTimeout(() => {this.setState({playerMessage: `${char.name} receives ${mob.xp} points of experience.`})}, 3000);
   this.state.char.xp = this.state.char.xp + this.state.mob.xp
   this.setState({combat: false});
-  this.setState({image: victory})
+  setTimeout(() => {this.setState({image: victory})}, 1000);
   setTimeout(()=>{this.setState({image: this.state.currentRoom.static})}, 4000);
   this.setState({char});
   this.resetWindow();
@@ -256,6 +256,7 @@ charWins(char, mob){
 
 runAway(){
   this.setState({playerMessage: `You turn and run!`})
+  setTimeout(() => {this.setState({combat: false})}, 1000);
   this.resetWindow();
 }
 
@@ -275,7 +276,7 @@ travel(dest) {
   this.setState({currentRoom: dest});
   this.setState({image: this.state.currentRoom.walk})
   setTimeout(() => {this.setState({image: this.state.currentRoom.static})}, 600);
-  if(this.rando(1, 6) === 1 && this.state.currentRoom.danger === true){
+  if(this.rando(1, 5) === 1 && this.state.currentRoom.danger === true){
     setTimeout(()=>{this.startRandomFight()}, 601)
   }
   }
@@ -304,18 +305,19 @@ startRandomFight(){
 
 
 timeHeal() {
-  const char = this.state.char;
-  if(this.state.combat === false){
-  if(this.state.char.hp < this.state.char.hpmax){
-    this.state.char.hp = this.state.char.hp +1}
-    this.setState({char});
-    if(this.state.char.sp < this.state.char.spmax){
-      this.state.char.sp = this.state.char.sp +1
-      this.setState({char});
+  if(this.state.char){
+    const char = this.state.char;
+    if(this.state.combat === false){
+      if(this.state.char.hp < this.state.char.hpmax){
+        this.state.char.hp = this.state.char.hp +1}
+        this.setState({char});
+        if(this.state.char.sp < this.state.char.spmax){
+          this.state.char.sp = this.state.char.sp +1
+          this.setState({char});
     }
 }
 }
-
+}
 
 
 
@@ -375,6 +377,7 @@ peace(){
     if(this.state.combat == true){
       this.state.image = this.state.mob.image
     }
+
     const char = this.state.char
     const mob = this.state.mob
     const charWeapon = this.state.charWeapon
@@ -399,7 +402,7 @@ peace(){
 
   return (
     <div className="App">
-      <div className="container">
+      <div className="container-fluid no-padding">
         <div className="row toprow">
 
           <div className="col-md-5 box graphicsWindow" style={{padding: "0px"}}>

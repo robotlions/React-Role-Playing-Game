@@ -2,22 +2,24 @@ import dungeonStatic from './images/dungeonStatic.jpg'
 import dungeonWalk from './images/dungeonWalk.gif'
 import waterfall from './images/waterfall.png'
 import poolOfWater from './images/poolOfWater.png'
+import caveEnter from './images/caveEnter.png'
+import wellBottom from './images/wellBottom.png'
 const rooms = [{
         id: 1,
-        name: "Home Base",
-        desc: "A workshop filled with building materials and monster parts.",
+        name: "Cavern Entrance",
+        desc: "You stand at the bottom of a well in the entrance of foul-smelling cave. The dank floor is littered with the bloody body parts of...are those the other adventurers that came before you? Well, yes. But they probably deserved it. The cave heads north into darkness.",
         north: 2,
         south: null,
         east: 8,
         west: null,
-        static: dungeonStatic,
+        static: wellBottom,
         walk: dungeonWalk,
         danger: false,
       },
       {
         id: 2,
-        name: 'Room to the North',
-        desc: `A surprisingly difficult to reach destination. There are exits
+        name: 'Cave to the North',
+        desc: `Slimy globs of rotting human guts ooze down the blood-stained walls. From the distant north comes the sound of running water. There are exits
         to the north and south.`,
         north: 3,
         south: 1,
@@ -29,8 +31,8 @@ const rooms = [{
       },
       {
         id: 3,
-        name: 'Center of the Build',
-        desc: 'A soaring cavern with exits in all directions',
+        name: 'Center of the Cave',
+        desc: 'A soaring cavern with exits in all directions. From the north comes the sound of running water. Far to the south is the faintest flicker of light.',
         north: 5,
         south: 2,
         east: 6,
@@ -53,8 +55,8 @@ const rooms = [{
       },
       {
         id: 5,
-        name: 'The Waterfall',
-        desc: `A cold, soaring chamber dominated by waterfall plunging from a fissure in the rock.`,
+        name: 'Subterranean Waterfall',
+        desc: `A cold, soaring chamber dominated by waterfall plunging from the darkness high above.`,
         north: null,
         south: 3,
         east: null,
@@ -71,7 +73,7 @@ const rooms = [{
         south: 7,
         east: null,
         west: 3,
-        static: dungeonStatic,
+        static: caveEnter,
         walk: dungeonWalk,
         danger: true,
       },
@@ -91,8 +93,7 @@ const rooms = [{
       {
         id: 8,
         name: `The Study`,
-        desc: `A small, quiet room with floor-to-ceiling bookshelves and many
-        comfortable chairs.`,
+        desc: `Some one, some nerd probably, apparently uses this as a makeshift workshop. It's filled with books, drawings and dozens of broken coffee machines.`,
         north: 7,
         south: null,
         east: null,
