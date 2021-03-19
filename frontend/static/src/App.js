@@ -22,6 +22,7 @@ import arch from './images/arch.jpg';
 import './App.css';
 import mobImage from './images/mob.jpg'
 import victory from './images/victory.png'
+import archWall from './images/archWall.png'
 
 
 
@@ -47,6 +48,7 @@ class App extends Component{
       arg: "",
       builderInput: false,
       gameOn: false,
+      startGame: false,
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -69,6 +71,7 @@ this.logKey = this.logKey.bind(this);
 this.gameOn = this.gameOn.bind(this);
 this.startRandomFight = this.startRandomFight.bind(this);
 this.timeHeal = this.timeHeal.bind(this);
+this.startGame = this.startGame.bind(this);
   }
 
   componentDidMount(){
@@ -137,7 +140,11 @@ logKey(e) {
   }
 
 }
-
+startGame(){
+  this.setState({currentRoom: rooms[8]})
+  this.setState({image: arch})
+  this.setState({startGame: true});
+}
 
 gameOn(){
   this.setState({currentRoom: rooms[0]})
@@ -392,7 +399,9 @@ peace(){
     const command = this.state.immWindow
     const arg = this.state.arg
     const combatTitle = <h2>COMBAT!</h2>
+    const startButton = <button id="startButton" className="saveButton" Click={this.gameOn}>Start Game</button>
     const immWindow = <div>
+
 
     <input className="immWindow" type="text" placeholder="input command" name="immWindow" value={this.state.immWindow} onChange={this.handleImmInput}/>
     <input type="text" placeholder="arg" name="arg" value={this.state.arg} onChange={this.handleImmInput}/>
@@ -402,6 +411,7 @@ peace(){
 
   return (
     <div className="App">
+    {this.state.startGame === false && this.state.gameOn === false ? <img onClick={this.startGame} className="splashPage" src={archWall}/> :
       <div className="container-fluid no-padding">
         <div className="row toprow">
 
@@ -436,7 +446,7 @@ peace(){
     {this.state.builderInput === true ? immWindow : null}
         </div>
         </div>
-        </div>
+        </div>}
 </div>
   );
 }

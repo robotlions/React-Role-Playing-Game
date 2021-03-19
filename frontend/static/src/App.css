@@ -231,7 +231,10 @@ transition: opacity 0 1s;
 .profPic{
   max-width: 150px;
 }
-
+.splashPage{
+  max-width: 100%;
+  object-fit: fill;
+}
 
 
 /* Mobile formatting below */

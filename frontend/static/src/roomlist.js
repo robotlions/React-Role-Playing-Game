@@ -95,12 +95,24 @@ const rooms = [{
         name: `The Study`,
         desc: `Some one, some nerd probably, apparently uses this as a makeshift workshop. It's filled with books, drawings and dozens of broken coffee machines.`,
         north: 7,
-        south: null,
+        south: 9,
         east: null,
         west: 1,
         static: dungeonStatic,
         walk: dungeonWalk,
         danger: true,
-      }
+      },
+      {
+      id: 9,
+      name: `Extra Room`,
+      desc: `This is a temporary start room`,
+      north: 8,
+      south: null,
+      east: null,
+      west: null,
+      static: dungeonStatic,
+      walk: dungeonWalk,
+      danger: false,
+    }
 ]
 export default rooms
