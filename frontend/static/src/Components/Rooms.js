@@ -61,13 +61,13 @@ else {
     </div>
 
     let moveMsg = this.state.moveMsg
-
+    const welcomeTitle = <div className="welcomeTitle"><h1>B.R.I.D.G.E.</h1><h4>Buildable, Retro-Inspired Database and Game Engine</h4></div>
 
 
 
   return (
     <div>
-    {this.props.all.gameOn === true ? <h1>{roomname}</h1> : <h1 className="welcomeTitle">Welcome to This Unnamed Role Playing Game</h1>}
+    {this.props.all.gameOn === true ? <h1>{roomname}</h1> : welcomeTitle}
     <p id="moveMsg">{moveMsg}</p>
     {this.props.all.gameOn === true ? <p>{desc}</p> : null}
     {this.props.all.gameOn === true ? <section id="nsew">{nsew}</section> : null}

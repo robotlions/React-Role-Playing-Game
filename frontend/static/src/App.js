@@ -402,12 +402,11 @@ peace(){
       <div className="container">
         <div className="row toprow">
 
-          <div className="col-5 box graphicsWindow" style={{padding: "0px"}}>
+          <div className="col-md-5 box graphicsWindow" style={{padding: "0px"}}>
           <GraphicsWindow all={this.state}/>
           </div>
-          <div className="col-1 effectsWindow">
-          </div>
-        <div className="col-6 box textWindow">
+
+        <div className="col-md-7 box textWindow">
         {this.state.combat == true ? combatTitle : null}
         <p>{charAttackMessage}</p>
         <p>{mobAttackMessage}</p>
