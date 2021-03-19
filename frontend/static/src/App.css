@@ -1,5 +1,5 @@
 .App {
-background-image: linear-gradient(lightslategray, black);
+background-image: linear-gradient(whitesmoke, darkslategray);
 height: 130vh;
 }
 .centerNav {
@@ -41,7 +41,7 @@ height: 130vh;
 
 .box{
   border: 40px solid transparent;
-  border-image-source: url("./images/texture2.png");
+  border-image-source: url("./images/texturegreen.png");
   border-image-slice: 60 60 60 60;
   border-image-repeat: 20 round;
   border-image-outset: .15;
@@ -59,7 +59,7 @@ height: 130vh;
   background-image: linear-gradient(lightgray, lightslategray);
   border-top: 40px solid transparent;
   border-bottom: 40px solid transparent;
-  border-image-source: url("./images/texture2.png");
+  border-image-source: url("./images/texturegreen.png");
   border-image-slice: 30%;
   border-image-repeat: 20 repeat;
 }
