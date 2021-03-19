@@ -18,8 +18,8 @@ class GraphicsWindow extends Component{
 
 
   return (
-    <div>
-    <img className="img img-fluid" src={this.props.all.image} alt="gate" />
+    <div className="graphicsParent">
+    <img className="graphicsFill" src={this.props.all.image} alt="gate" />
     </div>
   );
 }

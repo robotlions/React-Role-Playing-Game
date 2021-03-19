@@ -32,7 +32,7 @@ saveChar(char){
   render(){
     const char = this.props.all.char != undefined ? this.props.all.char : this.props.all.defaultChar
     const charWeapon = this.props.all.charWeapon
-    const saveChar = <button onClick={()=>this.saveChar(char)}>Save Character</button>
+    const saveChar = <button className="saveButton" onClick={()=>this.saveChar(char)}>Save Character</button>
     const charWindow = <div>
     <div className="row charbanner">
     <div className="col-3 char">Name</div>

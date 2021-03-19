@@ -27,6 +27,7 @@ const charSheet3 = <div className="charSheet">
 <p>Armor: {char.ac}</p>
 <p>Health: {char.hp}</p>
 <p>Max Health: {char.hpmax}</p>
+<p>Attack: {char.attack}</p>
 </div>
 const charSheet4 = <div className="charSheet">
 <p>Magic: {char.sp}</p>

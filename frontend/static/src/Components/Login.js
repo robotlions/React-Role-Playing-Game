@@ -232,7 +232,7 @@ const loginForm = (<form onSubmit={(e) => this.handleLogin(e, this.state)}>
 
 
 const logOutForm = (<form onSubmit={(e) => this.handleLogout(e, this.state)}>
-<button className="btn btn-secondary" type="submit">Log Out</button></form>)
+<button className="saveButton" type="submit">Log Out</button></form>)
 
 const accountChar = this.state.charData
 const accountInfo = this.state.accountData
@@ -240,15 +240,17 @@ const accountName = this.state.hasAccount === true ? <p>Account: {accountInfo.us
 const charInfo = this.state.hasAccount === true && this.state.charData !== null ?
 <div>
 <p>Available characters:</p>
-<span>{accountChar.name} - Level {accountChar.level} {accountChar.job}</span><button onClick={()=>this.deleteChar(accountChar)}>Delete</button></div> : <p>Create a character to enter a world of adventure.</p>
+<span>{accountChar.name} - Level {accountChar.level} {accountChar.job}</span><button className="saveButton" onClick={()=>this.deleteChar(accountChar)}>Delete Character</button></div> : <p>Create a character to enter a world of adventure.</p>
 
 const photoSubmit = <form className="photoSubmit" onSubmit={this.submitPhoto}>
 <p>Submit a profile photo</p>
   <input type="file" name="profile_picture" onChange={this.handleImage}/>
-{this.state.profile_picture && <img width="500" src={this.state.preview} alt="preview" />}
-<button className="btn" type="submit">Save</button>
-{localStorage.user === this.state.data.username ? <button className="btn" onClick={this.editPhoto}>Edit</button> : null}
+{this.state.profile_picture && <img width="200" src={this.state.preview} alt="preview" />}
+<button className="saveButton" type="submit">Save</button>
 </form>
+const profTest = {...this.state.accountData.profile}
+console.log(profTest)
+const profPicture = <img className="profPic" src={profTest.profile_picture}/>
 
       return(
         <div className="loginForm">
@@ -256,6 +258,7 @@ const photoSubmit = <form className="photoSubmit" onSubmit={this.submitPhoto}>
         {this.state.isLoggedIn === false ? registerForm : null}
         {accountName}
         {charInfo}
+        {profPicture}
         {this.state.isLoggedIn === true ? photoSubmit : null}
         </div>
       );

@@ -1,5 +1,7 @@
 import dungeonStatic from './images/dungeonStatic.jpg'
 import dungeonWalk from './images/dungeonWalk.gif'
+import waterfall from './images/waterfall.png'
+import poolOfWater from './images/poolOfWater.png'
 const rooms = [{
         id: 1,
         name: "Home Base",
@@ -39,13 +41,13 @@ const rooms = [{
       },
       {
         id: 4,
-        name: 'The Western Chamber',
-        desc: `A quiet space for working and testing. There's an exit to the east`,
+        name: 'Underground Pool',
+        desc: `A quiet alcove with a pool of dark water fed by a slow trickle from a fissure in the wall. `,
         north: null,
         south: null,
         east: 3,
         west: null,
-        static: dungeonStatic,
+        static: poolOfWater,
         walk: dungeonWalk,
         danger: true,
       },
@@ -57,7 +59,7 @@ const rooms = [{
         south: 3,
         east: null,
         west: null,
-        static: dungeonStatic,
+        static: waterfall,
         walk: dungeonWalk,
         danger: true,
       },

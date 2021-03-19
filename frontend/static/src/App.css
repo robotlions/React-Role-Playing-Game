@@ -1,6 +1,7 @@
-/* .App {
-background-color: lightgray;
-} */
+.App {
+background-image: linear-gradient(lightslategray, black);
+height: 130vh;
+}
 .centerNav {
   font-size: x-large;
   font-weight: bold;
@@ -39,58 +40,80 @@ background-color: lightgray;
 }
 
 .box{
-  border: 15px solid #778899;
-  /* border: 15px solid #778899; */
-  border-style: ridge;
+  border: 40px solid transparent;
+  border-image-source: url("./images/texture2.png");
+  border-image-slice: 60 60 60 60;
+  border-image-repeat: 20 round;
+  border-image-outset: .15;
+
 }
 
 .graphicsWindow{
-  background-color: #fffafa;
   background-color: lightgray;
-  box-shadow: inset 7px 7px 7px darkgray;
-  border-top-left-radius: 10px;
+  box-shadow: inset 7px 7px 7px 7px darkgray;
 }
 
 .effectsWindow{
+  box-shadow: inset 7px 7px 7px 7px darkgray;
   padding-top: 20px;
-  background-color: #fffafa;
-  border-top: 15px solid #778899;
-  border-style: ridge;
+  background-image: linear-gradient(lightgray, lightslategray);
+  border-top: 40px solid transparent;
+  border-bottom: 40px solid transparent;
+  border-image-source: url("./images/texture2.png");
+  border-image-slice: 30%;
+  border-image-repeat: 20 repeat;
 }
-
-
 
 .textWindow{
+  text-align: center;
   padding-top: 10px;
-  background-color: #fffafa;
-  box-shadow: inset 7px 7px 7px darkgray;
-  border-top-right-radius: 10px;
+  background-image: linear-gradient(lightgray, lightslategray);
+  box-shadow: inset 7px 7px 7px 7px darkgray;
+}
+.textWindow h2{
+  text-align: center;
 }
 
+
 .charWindow{
-  background-color: #fffafa;
-  box-shadow: inset 7px 7px 7px darkgray;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top: 0;
+  background-image: linear-gradient(lightgray, lightslategray);
+  box-shadow: inset 7px 7px 7px 7px darkgray;
+  min-height:38vh;
 }
 
 .toprow{
-  height: 58vh;
+  height: 60vh;
 }
 
 .bottomRow{
-  height: 42vh;
+  height: 30vh;
+}
+
+.loginForm button{
+  float: right;
 }
 
 .combatButtons {
-  position: absolute;
-  bottom: 50px;
+position: absolute;
+bottom: 20px;
+left: 15%;
+}
+
+.combatButtons button{
+  background-image: linear-gradient(whitesmoke, steelblue);
+  border-radius: 4px;
 }
 
 .switchViewsButton{
   left: 20px;
   bottom: 90px;
   position: absolute;
+}
+
+.saveButton{
+  border-radius: 4px;
+  background-image: linear-gradient(whitesmoke, steelblue);
 }
 
 #nsew{
@@ -134,7 +157,16 @@ transition: opacity 0 1s;
   text-align: center;
   margin-left: 65px;
 }
-.img {
+
+.graphicsParent img{
+  width: 400px;
+  height: 400px;
+}
+
+.graphicsFill {
+  max-width: 400px;
+  max-height: 350px;
+  object-fit: fill;
 
 }
 .charSubmit{
@@ -160,9 +192,7 @@ transition: opacity 0 1s;
   left: 50%;
   transform: translateX(-50%);
 }
-/* #nButton img{
-  height: 40px;
-} */
+
 #sButton{
   position: absolute;
   bottom: 0px;
@@ -183,4 +213,7 @@ transition: opacity 0 1s;
 }
 .photoSubmit{
   float: right;
+}
+.profPic{
+  max-width: 150px;
 }

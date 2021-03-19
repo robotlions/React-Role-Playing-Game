@@ -42,7 +42,7 @@ class App extends Component{
       image: arch,
       defaultChar: {},
       playerMessage: "",
-      currentRoom: rooms[2],
+      currentRoom: rooms[0],
       immWindow: "",
       arg: "",
       builderInput: false,
@@ -102,7 +102,7 @@ this.timeHeal = this.timeHeal.bind(this);
             spCost: 4,
             damMessage: "slams"
     }
-
+          this.setState({char: defaultChar})
           this.setState({defaultChar});
           this.setState({charWeapon})
           this.setState({charSpell})
@@ -179,6 +179,7 @@ resetWindow(){
 }
 
 meleeAttack(char, mob, charWeapon) {
+  this.setState({playerMessage: ""});
   if (this.state.combat == false){
     this.setState({combat:  true});
     mob.hp = mob.hpmax
@@ -210,6 +211,7 @@ meleeAttack(char, mob, charWeapon) {
 }
 
 magicAttack(char, mob, charWeapon){
+  this.setState({playerMessage: ""})
   if (this.state.combat == false){
     this.setState({combat:  true});
   }
@@ -217,11 +219,11 @@ magicAttack(char, mob, charWeapon){
   if (char.sp >= charSpell.spCost ){
     char.sp = char.sp - charSpell.spCost
   let charDamage = this.rando(charSpell.damageLow, charSpell.damageHigh)
-    this.setState({charAttackMessage: `${char.name}'s ${charSpell.name} ${charSpell.damMessage} into the ${mob.name}, doing ${charDamage} damage!`})
-    mob.hp = mob.hp - charDamage
+    setTimeout(() => {this.setState({charAttackMessage: `${char.name}'s ${charSpell.name} ${charSpell.damMessage} into the ${mob.name}, doing ${charDamage} damage!`})}, 1500);
+    setTimeout(() => {mob.hp = mob.hp - charDamage}, 1500);
   }
   else {
-    this.setState({playerMessage: `You don't have enough spell points to cast that.`})
+    setTimeout(() => {this.setState({playerMessage: `You don't have enough spell points to cast that.`})}, 1500);
   }
   if (mob.hp <= 0) {
     this.charWins(char, mob)
@@ -242,9 +244,10 @@ magicAttack(char, mob, charWeapon){
 }
 
 charWins(char, mob){
-  setTimeout(() => {this.setState({playerMessage: `${char.name} has defeated the ${mob.name}! The fight is over.`})}, 1000);
-  setTimeout(() => {this.setState({playerMessage: `${char.name} receives ${mob.xp} points of experience.`})}, 2500);
+  setTimeout(() => {this.setState({playerMessage: `${char.name} has defeated the ${mob.name}! The fight is over.`})}, 2000);
+  setTimeout(() => {this.setState({playerMessage: `${char.name} receives ${mob.xp} points of experience.`})}, 2000);
   this.state.char.xp = this.state.char.xp + this.state.mob.xp
+  this.setState({combat: false});
   this.setState({image: victory})
   setTimeout(()=>{this.setState({image: this.state.currentRoom.static})}, 4000);
   this.setState({char});
@@ -286,16 +289,17 @@ startRandomFight(){
   const mob = moblist[rand]
   this.setState({mob})
   this.setState({image: mob.image})
-  setTimeout(() => {this.setState({playerMessage: `A ${this.state.mob.name} leaps at you!`})}, 0);
-  setTimeout(() => {this.setState({playerMessage: ""})}, 1500);
-  setTimeout(() => {this.setState({mobAttackMessage: `The ${mob.name} hits ${char.name} for ${mob.damage} points of damage!`})}, 1500);
-  char.hp = (char.hp - mob.damage)
-  this.setState({char});
-  if (char.hp <= 0){
-    setTimeout(() => {this.charDeath(char)}, 2000);
-  }
-  setTimeout(() => {this.setState({charAttackMessage: ""})}, 3000);
-  setTimeout(() => {this.setState({mobAttackMessage: ""})}, 3000);
+  setTimeout(() => {this.setState({playerMessage: `A bloodthirsty ${this.state.mob.name} emerges from the shadows! \n Will you fight or flee?`})}, 0);
+
+  // setTimeout(() => {this.setState({playerMessage: ""})}, 1500);
+  // setTimeout(() => {this.setState({mobAttackMessage: `The ${mob.name} hits ${char.name} for ${mob.damage} points of damage!`})}, 1500);
+  // char.hp = (char.hp - mob.damage)
+  // this.setState({char});
+  // if (char.hp <= 0){
+  //   setTimeout(() => {this.charDeath(char)}, 2000);
+  // }
+  // setTimeout(() => {this.setState({charAttackMessage: ""})}, 3000);
+  // setTimeout(() => {this.setState({mobAttackMessage: ""})}, 3000);
 }
 
 
@@ -394,6 +398,7 @@ peace(){
 
 
   return (
+    <div className="App">
       <div className="container">
         <div className="row toprow">
 
@@ -409,8 +414,6 @@ peace(){
         <p>{playerMessage}</p>
         {this.state.combatwindow == false ? <Rooms all={this.state} travel={this.travel} goto={this.goto} currentRoom={this.state.currentRoom} changeRoomImage={this.changeRoomImage}/>
         : <p className="combatButtons">{meleeAttackButton}{magicAttackButton}{runAwayButton}</p>}
-        {this.state.gameOn == true ? <p className="switchViewsButton">{switchViewsButton}</p> : null}
-        {this.state.combat == false & this.state.combatwindow == true ? <p>{getRandomMob}</p> : null}
         </div>
     </div>
 
@@ -432,7 +435,7 @@ peace(){
         </div>
         </div>
         </div>
-
+</div>
   );
 }
 }
