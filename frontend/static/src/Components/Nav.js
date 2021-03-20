@@ -26,7 +26,7 @@ class Nav extends Component {
     {!this.props.all.char && this.props.all.isLoggedIn === true ? <div className="navBox"><NavLink to="/character/create/">Create Character</NavLink></div> : null}
     {this.props.all.gameOn ? <div className="navBox"><NavLink to="/character/">Character</NavLink></div> : null}
     {this.props.all.gameOn ? <div className="navBox"><NavLink to="/magic/">Magic</NavLink></div> : null}
-    <div className="navBox"><NavLink to="/login/">{this.props.all.isLoggedIn ? `Account` : `Log In/Register`}</NavLink></div>
+    <div className="navBox"><NavLink to="/account/">{this.props.all.isLoggedIn ? `Account` : `Log In/Register`}</NavLink></div>
     </div>
     </nav>
 

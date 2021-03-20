@@ -13,6 +13,8 @@ import Cookies from 'js-cookie';
 import {Modal, Button} from "react-bootstrap";
 import Magic from './Components/Magic';
 import CharCreate from './Components/CharCreate';
+import Splash from './Components/Splash';
+import Account from './Components/Account';
 import moblist from './moblist';
 import rooms from './roomlist';
 import dungeonWalk from './images/dungeonWalk.gif';
@@ -22,7 +24,7 @@ import arch from './images/arch.jpg';
 import './App.css';
 import mobImage from './images/mob.jpg'
 import victory from './images/victory.png'
-import archWall from './images/archWall.png'
+import archWall from './images/archWall2.png'
 
 
 
@@ -40,7 +42,7 @@ class App extends Component{
       mobAttackMessage: "",
       data: [],
       isLoggedIn: !!Cookies.get('Authorization'),
-      image: arch,
+      image: "",
       defaultChar: {},
       playerMessage: "",
       currentRoom: rooms[0],
@@ -105,7 +107,7 @@ this.startGame = this.startGame.bind(this);
             spCost: 4,
             damMessage: "slams"
     }
-          this.setState({char: defaultChar})
+          // this.setState({char: defaultChar})
           this.setState({defaultChar});
           this.setState({charWeapon})
           this.setState({charSpell})
@@ -126,7 +128,7 @@ this.startGame = this.startGame.bind(this);
       );
 
 
-
+      this.setState({image: arch})
 
 
 
@@ -149,7 +151,7 @@ startGame(){
 gameOn(){
   this.setState({currentRoom: rooms[0]})
   this.setState({image: this.state.currentRoom.static})
-  this.setState(prevState => ({gameOn: !prevState.gameOn}));
+  this.setState({gameOn: true});
   // setTimeout(()=>{window.location.reload()}, 2000);
 }
 
@@ -384,7 +386,6 @@ peace(){
     if(this.state.combat == true){
       this.state.image = this.state.mob.image
     }
-
     const char = this.state.char
     const mob = this.state.mob
     const charWeapon = this.state.charWeapon
@@ -411,7 +412,7 @@ peace(){
 
   return (
     <div className="App">
-    {this.state.startGame === false && this.state.gameOn === false ? <img onClick={this.startGame} className="splashPage" src={archWall}/> :
+   {this.state.startGame == false ? <Splash gameOn={this.gameOn} all={this.state} startGame={this.startGame}/> :
       <div className="container-fluid no-padding">
         <div className="row toprow">
 
@@ -435,7 +436,8 @@ peace(){
         <div className="centerNav"><Nav all={this.state}/></div>
         <React.Fragment>
     <Switch>
-      <Route path="/login/" children=<Login gameOn={this.gameOn} all={this.state}/>/>
+
+      <Route path="/account/" children=<Account gameOn={this.gameOn} all={this.state}/>/>
       <Route path="/character/create/" children=<CharCreate all={this.state} gameOn={this.gameOn}/>/>
       <Route path="/character/" children=<Character all={this.state}/>/>
       <Route path="/inventory/" component={Inventory}/>
