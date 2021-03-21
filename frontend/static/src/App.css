@@ -46,11 +46,19 @@ height: 100vh;
 
 .box{
   border: 40px solid transparent;
-  border-image-source: url("./images/texturegreen.png");
+  /* border-image-source: url("./images/texturegreen.png"); */
   border-image-slice: 60 60 60 60;
   border-image-repeat: 20 round;
   border-image-outset: .15;
 
+}
+
+.peaceClass {
+  border-image-source: url("./images/texturegreen.png");
+}
+
+.combatClass {
+  border-image-source: url("./images/texturered.png");
 }
 
 .graphicsWindow{

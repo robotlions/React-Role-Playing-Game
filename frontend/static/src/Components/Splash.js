@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import '../App.css';
 import Cookies from 'js-cookie'
-import gate from '../images/gate.jpg'
-import castle from '../images/castle.jpg'
-import street from '../images/street.jpg'
 import dungeonWalk from '../images/dungeonWalk.gif'
 import dungeonStatic from '../images/dungeonStatic.jpg'
 import archWall from '../images/archWall2.png'

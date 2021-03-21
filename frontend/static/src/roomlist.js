@@ -4,12 +4,13 @@ import waterfall from './images/waterfall.png'
 import poolOfWater from './images/poolOfWater.png'
 import caveEnter from './images/caveEnter.png'
 import wellBottom from './images/wellBottom.png'
+import arch from './images/arch.jpg'
 const rooms = [{
         id: 1,
-        name: "Cavern Entrance",
+        name: "Bottom of the Well",
         desc: "You stand at the bottom of a well in the entrance of foul-smelling cave. The dank floor is littered with the bloody body parts of...are those the other adventurers that came before you? Well, yes. But they probably deserved it. The cave heads north into darkness.",
         north: 2,
-        south: null,
+        south: 10,
         east: 8,
         west: null,
         static: wellBottom,
@@ -104,15 +105,27 @@ const rooms = [{
       },
       {
       id: 9,
-      name: `Extra Room`,
-      desc: `This is a temporary start room`,
+      name: `Stalactite-Filled Cavern`,
+      desc: `Stalactites jut from the damp, stony floor of this sprawling cavern.`,
       north: 8,
       south: null,
       east: null,
       west: null,
       static: dungeonStatic,
       walk: dungeonWalk,
-      danger: false,
-    }
+      danger: true,
+    },
+    {
+    id: 10,
+    name: `Abandoned Well`,
+    desc: `In a quiet corner of the woods, surrounded by silence and trees, is the stone-ringed mouth of an ancient well. A rusty chain leads down into the darkness.`,
+    north: 1,
+    south: null,
+    east: null,
+    west: null,
+    static: arch,
+    walk: dungeonWalk,
+    danger: false,
+  }
 ]
 export default rooms

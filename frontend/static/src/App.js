@@ -45,12 +45,13 @@ class App extends Component{
       image: "",
       defaultChar: {},
       playerMessage: "",
-      currentRoom: rooms[0],
+      currentRoom: rooms[9],
       immWindow: "",
       arg: "",
       builderInput: false,
       gameOn: false,
       startGame: false,
+      combatClass : "",
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -62,7 +63,6 @@ this.resetWindow = this.resetWindow.bind(this);
 this.randomMob = this.randomMob.bind(this);
 this.heal = this.heal.bind(this);
 this.charWins = this.charWins.bind(this);
-// this.changeRoomImage = this.changeRoomImage.bind(this);
 this.handleInput = this.handleInput.bind(this);
 this.handleImmInput = this.handleImmInput.bind(this);
 this.goto = this.goto.bind(this);
@@ -143,16 +143,15 @@ logKey(e) {
 
 }
 startGame(){
-  this.setState({currentRoom: rooms[8]})
+  this.setState({currentRoom: rooms[9]})
   this.setState({image: arch})
   this.setState({startGame: true});
 }
 
 gameOn(){
-  this.setState({currentRoom: rooms[0]})
+  this.setState({currentRoom: rooms[9]})
   this.setState({image: this.state.currentRoom.static})
   this.setState({gameOn: true});
-  // setTimeout(()=>{window.location.reload()}, 2000);
 }
 
 changeToCombatWindow(){
@@ -227,13 +226,18 @@ magicAttack(char, mob, charWeapon){
   let charSpell = this.state.charSpell
   if (char.sp >= charSpell.spCost ){
     char.sp = char.sp - charSpell.spCost
-  let charDamage = this.rando(charSpell.damageLow, charSpell.damageHigh)
-    setTimeout(() => {this.setState({charAttackMessage: `${char.name}'s ${charSpell.name} ${charSpell.damMessage} into the ${mob.name}, doing ${charDamage} damage!`})}, 200);
+    let charDamage = this.rando(charSpell.damageLow, charSpell.damageHigh)
+    setTimeout(() => {this.setState({charAttackMessage: `${char.name}'s ${charSpell.name} ${charSpell.damMessage} into the ${mob.name}, doing ${charDamage} damage!`})}, 100);
     setTimeout(() => {mob.hp = mob.hp - charDamage}, 500);
   }
   else {
-    setTimeout(() => {this.setState({playerMessage: `You don't have enough spell points to cast that.`})}, 1500);
+    if (char.sp < charSpell.spCost){
+    this.setState({playerMessage: `You don't have enough spell points to cast that.`});
+    setTimeout(() => {this.setState({playerMessage: ""})}, 1200);
+    }
   }
+
+
   if (mob.hp <= 0) {
     this.charWins(char, mob)
   }
@@ -243,18 +247,20 @@ magicAttack(char, mob, charWeapon){
     if (mobAttack > charEvade){
       char.hp = (char.hp - mob.damage)
       this.setState({char});
-      setTimeout(() => {this.setState({mobAttackMessage: `The ${mob.name} hits ${char.name} for ${mob.damage} points of damage!`})}, 2500);
+      setTimeout(() => {this.setState({mobAttackMessage: `The ${mob.name} hits ${char.name} for ${mob.damage} points of damage!`})}, 1500);
 
     }
-    else this.setState({mobAttackMessage: `The ${mob.name} misses ${char.name}!`})
+    else{
+      setTimeout(()=>{this.setState({mobAttackMessage: `The ${mob.name} misses ${char.name}!`})}, 1000);
+    }
+    setTimeout(() => {this.setState({charAttackMessage: ""})}, 2500);
+    setTimeout(() => {this.setState({mobAttackMessage: ""})}, 2500);
   }
-  setTimeout(() => {this.setState({charAttackMessage: ""})}, 3000);
-  setTimeout(() => {this.setState({mobAttackMessage: ""})}, 3000);
 }
 
 charWins(char, mob){
-  setTimeout(() => {this.setState({playerMessage: `${char.name} has defeated the ${mob.name}! The fight is over.`})}, 3000);
-  setTimeout(() => {this.setState({playerMessage: `${char.name} receives ${mob.xp} points of experience.`})}, 3000);
+  setTimeout(() => {this.setState({playerMessage: `${char.name} has defeated the ${mob.name}! The fight is over.`})}, 1000);
+  setTimeout(() => {this.setState({playerMessage: `${char.name} receives ${mob.xp} points of experience.`})}, 2000);
   this.state.char.xp = this.state.char.xp + this.state.mob.xp
   this.setState({combat: false});
   setTimeout(() => {this.setState({image: victory})}, 1000);
@@ -301,15 +307,6 @@ startRandomFight(){
   this.setState({image: mob.image})
   setTimeout(() => {this.setState({playerMessage: `A bloodthirsty ${this.state.mob.name} emerges from the shadows! \n Will you fight or flee?`})}, 0);
 
-  // setTimeout(() => {this.setState({playerMessage: ""})}, 1500);
-  // setTimeout(() => {this.setState({mobAttackMessage: `The ${mob.name} hits ${char.name} for ${mob.damage} points of damage!`})}, 1500);
-  // char.hp = (char.hp - mob.damage)
-  // this.setState({char});
-  // if (char.hp <= 0){
-  //   setTimeout(() => {this.charDeath(char)}, 2000);
-  // }
-  // setTimeout(() => {this.setState({charAttackMessage: ""})}, 3000);
-  // setTimeout(() => {this.setState({mobAttackMessage: ""})}, 3000);
 }
 
 
@@ -379,6 +376,11 @@ peace(){
 
 
   render(){
+    if(this.state.combat == true){
+      this.state.combatClass = "combatClass"}
+    else {
+      this.state.combatClass = "peaceClass"
+    }
 
     if(this.state.isLoggedIn == true && this.state.char){
       this.state.gameOn = true;
@@ -398,6 +400,7 @@ peace(){
     const mobAttackMessage = this.state.mobAttackMessage;
     const playerMessage = this.state.playerMessage;
     const command = this.state.immWindow
+    const combatStatus = this.state.combatClass
     const arg = this.state.arg
     const combatTitle = <h2>COMBAT!</h2>
     const startButton = <button id="startButton" className="saveButton" Click={this.gameOn}>Start Game</button>
@@ -416,11 +419,11 @@ peace(){
       <div className="container-fluid no-padding">
         <div className="row toprow">
 
-          <div className="col-md-5 box graphicsWindow" style={{padding: "0px"}}>
+          <div className={`col-md-5 box ${combatStatus} graphicsWindow`} style={{padding: "0px"}}>
           <GraphicsWindow all={this.state}/>
           </div>
 
-        <div className="col-md-7 box textWindow">
+        <div className={`col-md-7 box ${combatStatus} textWindow`}>
         {this.state.combat == true ? combatTitle : null}
         <p>{charAttackMessage}</p>
         <p>{mobAttackMessage}</p>
@@ -432,7 +435,7 @@ peace(){
 
       <div className="row bottomRow">
 
-        <div className="col-sm-12 box charWindow">
+        <div className={`col-sm-12 box ${combatStatus} charWindow`}>
         <div className="centerNav"><Nav all={this.state}/></div>
         <React.Fragment>
     <Switch>
