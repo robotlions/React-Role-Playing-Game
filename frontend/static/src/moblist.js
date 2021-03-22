@@ -1,4 +1,5 @@
 import mobImage from './images/mob.png'
+import spider from './images/spider.png'
 const moblist = [
 
       {
@@ -49,7 +50,7 @@ const moblist = [
         weapon: "fangs",
         damMessage: "pierce",
         xp: 10,
-        image: mobImage,
+        image: spider,
       },
 
       {

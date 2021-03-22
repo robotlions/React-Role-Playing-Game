@@ -2,7 +2,7 @@ import dungeonStatic from './images/dungeonStatic.jpg'
 import dungeonWalk from './images/dungeonWalk.gif'
 import waterfall from './images/waterfall.png'
 import poolOfWater from './images/poolOfWater.png'
-import caveEnter from './images/caveEnter.png'
+import cave from './images/caveEnter.png'
 import wellBottom from './images/wellBottom.png'
 import arch from './images/arch.jpg'
 const rooms = [{
@@ -26,7 +26,7 @@ const rooms = [{
         south: 1,
         east: null,
         west: null,
-        static: dungeonStatic,
+        static: cave,
         walk: dungeonWalk,
         danger: true,
       },
@@ -38,7 +38,7 @@ const rooms = [{
         south: 2,
         east: 6,
         west: 4,
-        static: dungeonStatic,
+        static: cave,
         walk: dungeonWalk,
         danger: true,
       },
@@ -74,7 +74,7 @@ const rooms = [{
         south: 7,
         east: null,
         west: 3,
-        static: caveEnter,
+        static: cave,
         walk: dungeonWalk,
         danger: true,
       },
@@ -87,7 +87,7 @@ const rooms = [{
         south: 8,
         east: null,
         west: null,
-        static: dungeonStatic,
+        static: cave,
         walk: dungeonWalk,
         danger: true,
       },
@@ -99,7 +99,7 @@ const rooms = [{
         south: 9,
         east: null,
         west: 1,
-        static: dungeonStatic,
+        static: cave,
         walk: dungeonWalk,
         danger: true,
       },
@@ -111,7 +111,7 @@ const rooms = [{
       south: null,
       east: null,
       west: null,
-      static: dungeonStatic,
+      static: cave,
       walk: dungeonWalk,
       danger: true,
     },

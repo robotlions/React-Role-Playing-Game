@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+import os
 import tweepy as tweepy
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -12,7 +13,11 @@ from .models import Post
 
 @api_view(['POST'])
 def tweet_post(request):
-    
+    twitter_auth_keys = {
+    "consumer_key" : os.environ.get("CONSUMER_KEY"),
+    "consumer_secret" :  os.environ.get("CONSUMER_SECRET"),
+    "access_token": os.environ.get("ACCESS_TOKEN"),
+    "access_token_secret": os.environ.get("ACCESS_TOKEN_SECRET"),
     }
 
     auth = tweepy.OAuthHandler(

@@ -27,7 +27,6 @@ import './App.css';
 import mobImage from './images/mob.jpg'
 import victory from './images/victory.png'
 import archWall from './images/archWall2.png'
-import tweet from './Components/Twitter.js'
 
 class App extends Component{
   constructor (props){
@@ -55,7 +54,7 @@ class App extends Component{
       combatClass : "",
       spells: [],
       magicAttack: false,
-      tweetTitle: 'This is the default tweet',
+      tweetTitle: 'This is the second default tweet',
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -297,10 +296,10 @@ charWins(char, mob){
   this.setState({combat: false});
   setTimeout(() => {this.setState({image: victory})}, 1000);
   setTimeout(()=>{this.setState({image: this.state.currentRoom.static})}, 4000);
-  this.setState({tweetTitle: `${char.name} has defeated the ${mob.name}!`})
-  setTimeout(()=>{this.sendTweet()}, 500);
-  // this.setState({char});
-  // this.resetWindow();
+  // this.setState({tweetTitle: `${char.name} has defeated the ${mob.name}!`})
+  // setTimeout(()=>{this.sendTweet()}, 500);
+  this.setState({char});
+  this.resetWindow();
 }
 
 runAway(){
