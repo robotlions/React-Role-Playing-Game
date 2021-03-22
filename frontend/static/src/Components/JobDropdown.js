@@ -25,7 +25,7 @@ class JobDropdown extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Pick your favorite flavor:
+          Pick your job class:
           <select value={this.state.value} onChange={this.handleChange}>
             <option value="Warrior">Warrior</option>
             <option value="Magician">Magician</option>

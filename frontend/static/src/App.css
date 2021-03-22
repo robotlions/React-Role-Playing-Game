@@ -257,6 +257,8 @@ transition: opacity 0 1s;
 }
 
 .startButton{
+  bottom: 50px;
+  position: absolute;
   text-shadow: 2px 2px 2px gray;
   font-size: xxx-large;
   font-weight: bold;
@@ -266,4 +268,7 @@ transition: opacity 0 1s;
 
 }
 
+.startButtonColumn{
+  height: 100vh;
+}
 /* Mobile formatting below */

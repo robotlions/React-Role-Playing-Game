@@ -23,7 +23,7 @@ const startButton = <button onClick={this.props.startGame} className="startButto
     <div className="row">
     <div className="col-4"></div>
     <div className="col-4"></div>
-    <div className="col-4">
+    <div className="col-4 startButtonColumn">
     <Login all={this.props} gameOn={this.props.gameOn}/>
     {this.state.isLoggedIn === true ? startButton : null}
     </div>

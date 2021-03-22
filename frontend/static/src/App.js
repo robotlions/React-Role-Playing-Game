@@ -17,6 +17,7 @@ import Splash from './Components/Splash';
 import Account from './Components/Account';
 import moblist from './moblist';
 import rooms from './roomlist';
+import spells from './spellList';
 import dungeonWalk from './images/dungeonWalk.gif';
 import dungeonStatic from './images/dungeonStatic.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -25,7 +26,6 @@ import './App.css';
 import mobImage from './images/mob.jpg'
 import victory from './images/victory.png'
 import archWall from './images/archWall2.png'
-
 
 
 class App extends Component{
@@ -52,6 +52,8 @@ class App extends Component{
       gameOn: false,
       startGame: false,
       combatClass : "",
+      spells: [],
+      magicAttack: false,
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -74,6 +76,9 @@ this.gameOn = this.gameOn.bind(this);
 this.startRandomFight = this.startRandomFight.bind(this);
 this.timeHeal = this.timeHeal.bind(this);
 this.startGame = this.startGame.bind(this);
+this.startMagicAttack = this.startMagicAttack.bind(this);
+this.handleSpellChange = this.handleSpellChange.bind(this);
+this.handleSpellSubmit = this.handleSpellSubmit.bind(this);
   }
 
   componentDidMount(){
@@ -109,8 +114,9 @@ this.startGame = this.startGame.bind(this);
     }
           // this.setState({char: defaultChar})
           this.setState({defaultChar});
-          this.setState({charWeapon})
-          this.setState({charSpell})
+          this.setState({charWeapon});
+          this.setState({charSpell});
+          this.setState({spells});
 
 
         fetch("/characters/")
@@ -124,7 +130,7 @@ this.startGame = this.startGame.bind(this);
 
       this.timerID = setInterval(
         () => this.timeHeal(),
-        15000
+        10000
       );
 
 
@@ -163,6 +169,12 @@ else {
 }
 }
 
+handleSpellChange(event) {
+  this.setState({charSpell: spells[event.target.value]});
+}
+handleSpellSubmit(event) {
+  event.preventDefault();
+}
 
 
 rando(min, max) {
@@ -178,16 +190,22 @@ randomMob(){
 
 }
 
+
+
+
+
 resetWindow(){
   setTimeout(() => {this.setState({combat: false})}, 4000);
   setTimeout(() => {this.setState({combatwindow: false})}, 4000);
   setTimeout(() => {this.setState({charAttackMessage: ""})}, 4000);
   setTimeout(() => {this.setState({mobAttackMessage: ""})}, 4000);
   setTimeout(() => {this.setState({playerMessage: ""})}, 4000);
+  setTimeout(() => {this.setState({magicAttack: false})}, 4000);
 }
 
 meleeAttack(char, mob, charWeapon) {
   this.setState({playerMessage: ""});
+  this.setState({magicAttack: false})
   if (this.state.combat == false){
     this.setState({combat:  true});
     mob.hp = mob.hpmax
@@ -219,21 +237,32 @@ meleeAttack(char, mob, charWeapon) {
 }
 
 magicAttack(char, mob, charWeapon){
-  this.setState({playerMessage: ""})
-  if (this.state.combat == false){
-    this.setState({combat:  true});
-  }
   let charSpell = this.state.charSpell
-  if (char.sp >= charSpell.spCost ){
-    char.sp = char.sp - charSpell.spCost
-    let charDamage = this.rando(charSpell.damageLow, charSpell.damageHigh)
-    setTimeout(() => {this.setState({charAttackMessage: `${char.name}'s ${charSpell.name} ${charSpell.damMessage} into the ${mob.name}, doing ${charDamage} damage!`})}, 100);
-    setTimeout(() => {mob.hp = mob.hp - charDamage}, 500);
+  if(charSpell == null){
+    this.setState({playerMessage: "Please choose a spell"});
+    setTimeout(()=>{this.setState({playerMessage: ""})}, 1200);
+    return;
   }
   else {
-    if (char.sp < charSpell.spCost){
-    this.setState({playerMessage: `You don't have enough spell points to cast that.`});
-    setTimeout(() => {this.setState({playerMessage: ""})}, 1200);
+    this.setState({magicAttack: false})
+    this.setState({playerMessage: ""})
+    if (this.state.combat == false){
+      this.setState({combat:  true});
+    }
+
+    if (char.sp >= charSpell.spCost ){
+      char.sp = char.sp - charSpell.spCost
+      let charDamage = this.rando(charSpell.damageLow, charSpell.damageHigh)
+      setTimeout(() => {this.setState({charAttackMessage: `${char.name}'s ${charSpell.name} ${charSpell.damMessage} into the ${mob.name}, doing ${charDamage} damage!`})}, 100);
+      setTimeout(() => {mob.hp = mob.hp - charDamage}, 500);
+      this.setState({charSpell: null})
+    }
+    else {
+      if (char.sp < charSpell.spCost){
+        this.setState({playerMessage: `You don't have enough spell points to cast that.`});
+        setTimeout(() => {this.setState({playerMessage: ""})}, 1200);
+        this.setState({charSpell: null})
+      }
     }
   }
 
@@ -280,7 +309,7 @@ charDeath(char){
   this.setState({playerMessage: "You have been killed. You materialize in the home room."});
   this.state.char.hp = this.state.char.hpmax;
   this.state.char.sp = this.state.char.spmax;
-  <Rooms death={()=>this.setState({currentroom: rooms[0]})}/>
+  <Rooms death={()=>this.setState({currentroom: rooms[9]})}/>
 }
 
 handleInput(event){
@@ -325,7 +354,9 @@ timeHeal() {
 }
 }
 
-
+startMagicAttack(char, mob, charWeapon){
+  this.setState({magicAttack: true});
+}
 
 
 
@@ -370,6 +401,8 @@ peace(){
   this.setState({combat: false})
   this.setState({image: this.state.currentRoom.static})
   this.setState({mob: null});
+  this.setState({combatWindow: false});
+  this.resetWindow();
   alert('Combat stopped.')
 }
 
@@ -388,13 +421,29 @@ peace(){
     if(this.state.combat == true){
       this.state.image = this.state.mob.image
     }
+
+
     const char = this.state.char
     const mob = this.state.mob
     const charWeapon = this.state.charWeapon
+    const spellChoice = <form className="spell-dropdown" value={this.state.charSpell} onSubmit={this.handleSpellSubmit}>
+      <label>
+        Pick your spell:
+        <select onChange={this.handleSpellChange}>
+        <option value={null}>Choose</option>
+        {this.state.spells.map((spell, index) => (
+          <option key={spell.id} value={index}>{spell.name}-{spell.spCost}sp</option>))}
+        </select>
+      </label>
+      <input className="saveButton" type="submit" onClick={()=>this.magicAttack(char, mob, charWeapon)} value="Cast!" />
+    </form>
+
+
     const switchViewsButton = <button onClick={this.changeToCombatWindow}>Switch View</button>;
     const getRandomMob = <button onClick={this.randomMob}>Generate Mob</button>;
     const meleeAttackButton = <button onClick={()=> {this.meleeAttack(char, mob, charWeapon)}}>Melee Attack</button>;
-    const magicAttackButton = <button onClick={()=> {this.magicAttack(char, mob, charWeapon)}}>Cast Spell</button>
+    // const magicAttackButton = <button onClick={()=> {this.magicAttack(char, mob, charWeapon)}}>Cast Spell</button>
+    const magicAttackButton = <button onClick={()=> {this.startMagicAttack(char, mob, charWeapon)}}>Cast Spell</button>
     const runAwayButton = <button onClick={this.runAway}>Run Away!</button>
     const charAttackMessage = this.state.charAttackMessage;
     const mobAttackMessage = this.state.mobAttackMessage;
@@ -404,13 +453,19 @@ peace(){
     const arg = this.state.arg
     const combatTitle = <h2>COMBAT!</h2>
     const startButton = <button id="startButton" className="saveButton" Click={this.gameOn}>Start Game</button>
+
     const immWindow = <div>
-
-
     <input className="immWindow" type="text" placeholder="input command" name="immWindow" value={this.state.immWindow} onChange={this.handleImmInput}/>
     <input type="text" placeholder="arg" name="arg" value={this.state.arg} onChange={this.handleImmInput}/>
     <button type="submit" onClick={()=>this.[command](arg)}>Go</button>
     </div>
+
+    const spellMenu = this.state.spells.map((spell) =>(
+      <section key={spell.id}>
+    <p>Name: {spell.name}</p>
+    <p>Element {spell.element}</p>
+  </section>));
+
 
 
   return (
@@ -430,6 +485,7 @@ peace(){
         <p>{playerMessage}</p>
         {this.state.combatwindow == false ? <Rooms all={this.state} travel={this.travel} goto={this.goto} currentRoom={this.state.currentRoom} changeRoomImage={this.changeRoomImage}/>
         : <p className="combatButtons">{meleeAttackButton}{magicAttackButton}{runAwayButton}</p>}
+        {this.state.magicAttack === true ? spellChoice : null}
         </div>
     </div>
 
@@ -444,7 +500,7 @@ peace(){
       <Route path="/character/create/" children=<CharCreate all={this.state} gameOn={this.gameOn}/>/>
       <Route path="/character/" children=<Character all={this.state}/>/>
       <Route path="/inventory/" component={Inventory}/>
-      <Route path="/magic/" component={Magic}/>
+      <Route path="/magic/" children=<Magic all={this.state}/>/>
       <Route path="/" children=<CharWindow heal={this.heal} all={this.state}/>/>
       </Switch>
     </React.Fragment>
