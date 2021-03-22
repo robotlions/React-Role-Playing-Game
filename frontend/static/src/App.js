@@ -15,6 +15,7 @@ import Magic from './Components/Magic';
 import CharCreate from './Components/CharCreate';
 import Splash from './Components/Splash';
 import Account from './Components/Account';
+import Oauth from 'oauth';
 import moblist from './moblist';
 import rooms from './roomlist';
 import spells from './spellList';
@@ -26,7 +27,7 @@ import './App.css';
 import mobImage from './images/mob.jpg'
 import victory from './images/victory.png'
 import archWall from './images/archWall2.png'
-
+import tweet from './Components/Twitter.js'
 
 class App extends Component{
   constructor (props){
@@ -54,6 +55,7 @@ class App extends Component{
       combatClass : "",
       spells: [],
       magicAttack: false,
+      tweetTitle: 'This is the default tweet',
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -79,6 +81,7 @@ this.startGame = this.startGame.bind(this);
 this.startMagicAttack = this.startMagicAttack.bind(this);
 this.handleSpellChange = this.handleSpellChange.bind(this);
 this.handleSpellSubmit = this.handleSpellSubmit.bind(this);
+this.sendTweet = this.sendTweet.bind(this);
   }
 
   componentDidMount(){
@@ -294,8 +297,10 @@ charWins(char, mob){
   this.setState({combat: false});
   setTimeout(() => {this.setState({image: victory})}, 1000);
   setTimeout(()=>{this.setState({image: this.state.currentRoom.static})}, 4000);
-  this.setState({char});
-  this.resetWindow();
+  this.setState({tweetTitle: `${char.name} has defeated the ${mob.name}!`})
+  setTimeout(()=>{this.sendTweet()}, 500);
+  // this.setState({char});
+  // this.resetWindow();
 }
 
 runAway(){
@@ -405,6 +410,31 @@ peace(){
   this.resetWindow();
   alert('Combat stopped.')
 }
+
+
+sendTweet() {
+  const tweet = {
+    title: this.state.tweetTitle,
+    // content: this.state.tweetContent,
+  }
+    fetch(`/posts/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': Cookies.get('csrftoken'),
+        },
+        body: JSON.stringify(tweet),
+      })
+  }
+
+
+
+
+
+
+
+
+
 
 
 
