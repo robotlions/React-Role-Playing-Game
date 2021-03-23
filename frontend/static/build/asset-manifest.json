@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.76ecfe44.chunk.css",
-    "main.js": "/static/js/main.f70abedf.chunk.js",
-    "main.js.map": "/static/js/main.f70abedf.chunk.js.map",
+    "main.js": "/static/js/main.f4414ac0.chunk.js",
+    "main.js.map": "/static/js/main.f4414ac0.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.dfd94eca.js",
     "runtime-main.js.map": "/static/js/runtime-main.dfd94eca.js.map",
     "static/css/2.150d169a.chunk.css": "/static/css/2.150d169a.chunk.css",
@@ -19,13 +19,9 @@
     "static/media/caveEnter.cada21b1.png": "/static/media/caveEnter.cada21b1.png",
     "static/media/dungeonStatic.015cc2eb.jpg": "/static/media/dungeonStatic.015cc2eb.jpg",
     "static/media/dungeonWalk.690d4cb0.gif": "/static/media/dungeonWalk.690d4cb0.gif",
-    "static/media/giantRat.5211e95f.png": "/static/media/giantRat.5211e95f.png",
-    "static/media/mob.56468410.jpg": "/static/media/mob.56468410.jpg",
-    "static/media/mob.f1e1ab94.png": "/static/media/mob.f1e1ab94.png",
     "static/media/nButton.eff28f4e.png": "/static/media/nButton.eff28f4e.png",
     "static/media/poolOfWater.438ef880.png": "/static/media/poolOfWater.438ef880.png",
     "static/media/sButton.0f221342.png": "/static/media/sButton.0f221342.png",
-    "static/media/spider.7e0f1116.png": "/static/media/spider.7e0f1116.png",
     "static/media/App.css": "/static/media/texturered.b0f651fa.png",
     "static/media/victory.5b584663.png": "/static/media/victory.5b584663.png",
     "static/media/wButton.20845629.png": "/static/media/wButton.20845629.png",
@@ -37,6 +33,6 @@
     "static/css/2.150d169a.chunk.css",
     "static/js/2.85d622f6.chunk.js",
     "static/css/main.76ecfe44.chunk.css",
-    "static/js/main.f70abedf.chunk.js"
+    "static/js/main.f4414ac0.chunk.js"
   ]
 }

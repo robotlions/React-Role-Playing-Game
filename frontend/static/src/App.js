@@ -16,7 +16,7 @@ import CharCreate from './Components/CharCreate';
 import Splash from './Components/Splash';
 import Account from './Components/Account';
 import Oauth from 'oauth';
-import moblist from './moblist';
+import Spells from './Components/Spells';
 import rooms from './roomlist';
 import spells from './spellList';
 import dungeonWalk from './images/dungeonWalk.gif';
@@ -24,7 +24,6 @@ import dungeonStatic from './images/dungeonStatic.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import arch from './images/arch.jpg';
 import './App.css';
-import mobImage from './images/mob.jpg'
 import victory from './images/victory.png'
 import archWall from './images/archWall2.png'
 
@@ -42,6 +41,7 @@ class App extends Component{
       charSpell: {},
       charAttackMessage: "",
       mobAttackMessage: "",
+      mobList: [],
       data: [],
       isLoggedIn: !!Cookies.get('Authorization'),
       image: "",
@@ -86,6 +86,7 @@ this.sendTweet = this.sendTweet.bind(this);
 this.checkLevel = this.checkLevel.bind(this);
 this.levelUp = this.levelUp.bind(this);
 this.resetNow = this.resetNow.bind(this);
+this.showInfo = this.showInfo.bind(this);
 
   }
 
@@ -131,6 +132,10 @@ this.resetNow = this.resetNow.bind(this);
       .then(response => response.json())
       .then(response => response[0])
       .then(response => this.setState({char: response}))
+
+      fetch("/mobs/")
+    .then(response => response.json())
+    .then(response => this.setState({mobList: response}))
 
       document.addEventListener('keydown', this.logKey);
 
@@ -190,8 +195,9 @@ rando(min, max) {
 }
 
 randomMob(){
-  const rand = Math.floor(Math.random() * (moblist.length - 1) ) + 1;
-  const mob = moblist[rand]
+  const mobList = this.state.mobList
+  // const rand = Math.floor(Math.random() * (mobList.length - 1) ) + 1;
+  const mob = mobList[0]
   this.setState({mob})
   setTimeout(() => {this.setState({playerMessage: `A ${this.state.mob.name} has entered the fight!`})}, 0);
   setTimeout(() => {this.setState({playerMessage: ""})}, 2000);
@@ -348,8 +354,9 @@ startRandomFight(){
   const char = this.state.char
   this.setState({combat: true});
   this.setState({combatwindow: true});
-  const rand = Math.floor(Math.random() * (moblist.length - 1) ) + 1;
-  const mob = moblist[rand]
+  const mobList = this.state.mobList;
+  // const rand = Math.floor(Math.random() * (mobList.length - 1) ) + 1;
+  const mob = mobList[0]
   this.setState({mob})
   this.setState({image: mob.image})
   setTimeout(() => {this.setState({playerMessage: `A bloodthirsty ${this.state.mob.name} emerges from the shadows! \n Will you fight or flee?`})}, 0);
@@ -481,7 +488,9 @@ sendTweet() {
   }
 
 
-
+showInfo(){
+  alert('this will show spell, weapon and mob info when you click on them')
+}
 
 
 
@@ -521,7 +530,7 @@ sendTweet() {
       <input className="saveButton" type="submit" onClick={()=>this.magicAttack(char, mob, charWeapon)} value="Cast!" />
     </form>
 
-
+    // console.log(this.state.mobList)
     const switchViewsButton = <button onClick={this.changeToCombatWindow}>Switch View</button>;
     const getRandomMob = <button onClick={this.randomMob}>Generate Mob</button>;
     const meleeAttackButton = <button onClick={()=> {this.meleeAttack(char, mob, charWeapon)}}>Melee Attack</button>;
@@ -586,7 +595,7 @@ sendTweet() {
       <Route path="/character/create/" children=<CharCreate all={this.state} gameOn={this.gameOn}/>/>
       <Route path="/character/" children=<Character all={this.state}/>/>
       <Route path="/inventory/" component={Inventory}/>
-      <Route path="/magic/" children=<Magic all={this.state}/>/>
+      <Route path="/magic/" children=<Spells showInfo={this.showInfo} all={this.state}/>/>
       <Route path="/" children=<CharWindow heal={this.heal} all={this.state}/>/>
       </Switch>
     </React.Fragment>

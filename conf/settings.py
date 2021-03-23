@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'frontend.apps.FrontendConfig',
     'accounts.apps.AccountsConfig',
     'posts.apps.PostsConfig',
+    'mobs.apps.MobsConfig',
 ]
 
 MIDDLEWARE = [
