@@ -28,6 +28,8 @@ import mobImage from './images/mob.jpg'
 import victory from './images/victory.png'
 import archWall from './images/archWall2.png'
 
+
+
 class App extends Component{
   constructor (props){
     super(props);
@@ -81,6 +83,10 @@ this.startMagicAttack = this.startMagicAttack.bind(this);
 this.handleSpellChange = this.handleSpellChange.bind(this);
 this.handleSpellSubmit = this.handleSpellSubmit.bind(this);
 this.sendTweet = this.sendTweet.bind(this);
+this.checkLevel = this.checkLevel.bind(this);
+this.levelUp = this.levelUp.bind(this);
+this.resetNow = this.resetNow.bind(this);
+
   }
 
   componentDidMount(){
@@ -192,17 +198,26 @@ randomMob(){
 
 }
 
-
-
-
+resetNow(){
+  this.setState({combat: false,
+  combatwindow: false,
+  charAttackMessage: "",
+  mobAttackMessage: "",
+  playerMessage: "",
+  magicAttack: false,
+  levelUp: false,
+})
+}
 
 resetWindow(){
-  setTimeout(() => {this.setState({combat: false})}, 4000);
-  setTimeout(() => {this.setState({combatwindow: false})}, 4000);
-  setTimeout(() => {this.setState({charAttackMessage: ""})}, 4000);
-  setTimeout(() => {this.setState({mobAttackMessage: ""})}, 4000);
-  setTimeout(() => {this.setState({playerMessage: ""})}, 4000);
-  setTimeout(() => {this.setState({magicAttack: false})}, 4000);
+  setTimeout(() => {this.setState({combat: false,
+  combatwindow: false,
+  charAttackMessage: "",
+  mobAttackMessage: "",
+  playerMessage: "",
+  magicAttack: false,
+  levelUp: false}
+)}, 4000);
 }
 
 meleeAttack(char, mob, charWeapon) {
@@ -268,7 +283,6 @@ magicAttack(char, mob, charWeapon){
     }
   }
 
-
   if (mob.hp <= 0) {
     this.charWins(char, mob)
   }
@@ -299,7 +313,7 @@ charWins(char, mob){
   // this.setState({tweetTitle: `${char.name} has defeated the ${mob.name}!`})
   // setTimeout(()=>{this.sendTweet()}, 500);
   this.setState({char});
-  this.resetWindow();
+  this.checkLevel(char);
 }
 
 runAway(){
@@ -339,9 +353,7 @@ startRandomFight(){
   this.setState({mob})
   this.setState({image: mob.image})
   setTimeout(() => {this.setState({playerMessage: `A bloodthirsty ${this.state.mob.name} emerges from the shadows! \n Will you fight or flee?`})}, 0);
-
 }
-
 
 timeHeal() {
   if(this.state.char){
@@ -361,6 +373,47 @@ timeHeal() {
 startMagicAttack(char, mob, charWeapon){
   this.setState({magicAttack: true});
 }
+
+checkLevel(char){
+const xp = char.xp
+const level = char.level
+if (xp >= 500 && level < 2){
+  this.levelUp(char, 2)
+  return;
+}
+if (xp >= 2000 && level < 3){
+  this.levelUp(char, 3)
+  return;
+}
+if (xp >= 8000 && level < 4) {
+  this.levelUp(char, 4)
+  return;
+}
+else {
+  this.resetWindow();
+}
+}
+
+async levelUp(char, level){
+  this.setState({charAttackMessage: "", mobAttackMessage: ""});
+  setTimeout(()=>{this.setState({playerMessage: `${char.name} raises to level ${level}!`})}, 5000);
+  const hpmax = char.hpmax + 7 + Math.ceil(char.con/4);
+  const spmax = char.spmax + 7 + Math.ceil(char.int/4);
+  const attack = char.attack + 1;
+  const ac = char.ac + 1;
+  this.state.char.hpmax = hpmax;
+  this.state.char.spmax = spmax;
+  this.state.char.attack = attack;
+  this.state.char.ac = ac;
+  this.state.char.hp = hpmax;
+  this.state.char.sp = spmax;
+  this.state.char.level = level;
+  setTimeout(()=>{this.setState({levelUp: true,
+    playerMessage: `${char.name} feels stronger! Hit Points: ${hpmax}. Spell Points: ${spmax}. Attack: ${attack}. Armor Class: ${ac}. Congrats! Don't forget to save ${char.name}.`})}, 7000);
+    this.setState({tweetTitle: `${char.name} has gained level ${level}! Join us at <url> to get in on old-school RPG fun!`})
+    setTimeout(()=>{this.sendTweet()}, 500);
+  }
+
 
 
 
@@ -382,10 +435,11 @@ heal(){
   this.state.char.sp = this.state.char.spmax;
   this.setState({char})
   this.setState({immWindow: ""})
-
 }
 
-
+slay(){
+  this.state.mob.hp = 0;
+}
 
 
 goto(arg){
@@ -496,6 +550,8 @@ sendTweet() {
   </section>));
 
 
+    const continueButton = <button className="saveButton" onClick={this.resetNow}>Continue</button>
+
 
   return (
     <div className="App">
@@ -515,6 +571,7 @@ sendTweet() {
         {this.state.combatwindow == false ? <Rooms all={this.state} travel={this.travel} goto={this.goto} currentRoom={this.state.currentRoom} changeRoomImage={this.changeRoomImage}/>
         : <p className="combatButtons">{meleeAttackButton}{magicAttackButton}{runAwayButton}</p>}
         {this.state.magicAttack === true ? spellChoice : null}
+        {this.state.levelUp === true ? continueButton : null}
         </div>
     </div>
 

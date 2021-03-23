@@ -1,10 +1,11 @@
 import mobImage from './images/mob.png'
 import spider from './images/spider.png'
+import giantRat from './images/giantRat.png'
 const moblist = [
 
       {
         mobId: 1,
-        name: "Bob the Dummy",
+        name: "fire slug",
         desc: "",
         damage: 1,
         attack: 7,
@@ -83,7 +84,7 @@ const moblist = [
         weapon: "teeth",
         damMessage: "gouge",
         xp: 10,
-        image: mobImage,
+        image: giantRat,
       },
       {
         mobId: 6,
