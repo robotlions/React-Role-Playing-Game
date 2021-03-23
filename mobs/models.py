@@ -6,6 +6,7 @@ class Mob(models.Model):
 
 
     NONE = 'None'
+    ELECTRICITY = 'Electricity'
     FIRE = 'Fire'
     WATER = 'Water'
     EARTH = 'Earth'
@@ -16,6 +17,7 @@ class Mob(models.Model):
 
     WEAKNESS_CHOICES = [
         (NONE, 'None'),
+        (ELECTRICITY, 'Electricity'),
         (FIRE, 'Fire'),
         (WATER, 'Water'),
         (EARTH, 'Earth'),

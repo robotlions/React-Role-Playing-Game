@@ -154,7 +154,7 @@ margin-left: 18%;
   letter-spacing: 5px;
   font-weight: bold;
   position: absolute;
-  bottom: 80px;
+  bottom: 20px;
   right: 0px;
   cursor: pointer;
 }
@@ -208,8 +208,8 @@ transition: opacity 0 1s;
   padding-top: 20%;
 }
 .directionBox{
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
   font-size: x-Large;
 }
 .directionBox img{
@@ -239,6 +239,17 @@ transition: opacity 0 1s;
   left: 0px;
   top: 50%;
   transform: translateY(-50%);
+}
+
+#uButton{
+  position: absolute;
+  top: 0%;
+}
+
+#dButton{
+  position: absolute;
+  left: 0%;
+  bottom: 0%;
 }
 
 #charSaveButton{

@@ -17,7 +17,7 @@ import Splash from './Components/Splash';
 import Account from './Components/Account';
 import Oauth from 'oauth';
 import Spells from './Components/Spells';
-import rooms from './roomlist';
+// import rooms from './roomlist';
 import spells from './spellList';
 import dungeonWalk from './images/dungeonWalk.gif';
 import dungeonStatic from './images/dungeonStatic.jpg';
@@ -47,7 +47,7 @@ class App extends Component{
       image: "",
       defaultChar: {},
       playerMessage: "",
-      currentRoom: rooms[9],
+      currentRoom: [],
       immWindow: "",
       arg: "",
       builderInput: false,
@@ -56,7 +56,7 @@ class App extends Component{
       combatClass : "",
       spells: [],
       magicAttack: false,
-      tweetTitle: 'This is the second default tweet',
+      tweetTitle: 'Here Be Dragons is a fun, retro RPG!',
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -87,23 +87,11 @@ this.checkLevel = this.checkLevel.bind(this);
 this.levelUp = this.levelUp.bind(this);
 this.resetNow = this.resetNow.bind(this);
 this.showInfo = this.showInfo.bind(this);
+this.mobAttack = this.mobAttack.bind(this);
 
   }
 
   componentDidMount(){
-    const defaultChar = {
-            charId: 1,
-            name: "Please log in to load your character",
-            lvl: null,
-            ac: null,
-            hpmax: null,
-            hp: null,
-            spmax: null,
-            sp: null,
-            class: null,
-            weapon: null,
-            xp: null,
-          }
 
     const charWeapon = {
             weaponId: 1,
@@ -121,10 +109,8 @@ this.showInfo = this.showInfo.bind(this);
             spCost: 4,
             damMessage: "slams"
     }
-          // this.setState({char: defaultChar})
-          this.setState({defaultChar});
+
           this.setState({charWeapon});
-          this.setState({charSpell});
           this.setState({spells});
 
 
@@ -136,6 +122,11 @@ this.showInfo = this.showInfo.bind(this);
       fetch("/mobs/")
     .then(response => response.json())
     .then(response => this.setState({mobList: response}))
+
+    fetch("/rooms/")
+  .then(response => response.json())
+  .then(response => this.setState({roomList: response}))
+  const roomList = this.state.roomList
 
       document.addEventListener('keydown', this.logKey);
 
@@ -162,12 +153,14 @@ logKey(e) {
 
 }
 startGame(){
+  const rooms = this.state.roomList
   this.setState({currentRoom: rooms[9]})
   this.setState({image: arch})
   this.setState({startGame: true});
 }
 
 gameOn(){
+  const rooms = this.state.roomList
   this.setState({currentRoom: rooms[9]})
   this.setState({image: this.state.currentRoom.static})
   this.setState({gameOn: true});
@@ -196,8 +189,8 @@ rando(min, max) {
 
 randomMob(){
   const mobList = this.state.mobList
-  // const rand = Math.floor(Math.random() * (mobList.length - 1) ) + 1;
-  const mob = mobList[0]
+  const rand = Math.floor(Math.random() * (mobList.length - 1) ) + 1;
+  const mob = mobList[rand]
   this.setState({mob})
   setTimeout(() => {this.setState({playerMessage: `A ${this.state.mob.name} has entered the fight!`})}, 0);
   setTimeout(() => {this.setState({playerMessage: ""})}, 2000);
@@ -212,6 +205,7 @@ resetNow(){
   playerMessage: "",
   magicAttack: false,
   levelUp: false,
+  mob: {},
 })
 }
 
@@ -222,6 +216,7 @@ resetWindow(){
   mobAttackMessage: "",
   playerMessage: "",
   magicAttack: false,
+  mob: {},
   levelUp: false}
 )}, 4000);
 }
@@ -245,17 +240,10 @@ meleeAttack(char, mob, charWeapon) {
     this.setState({charAttackMessage: `${char.name} misses the ${mob.name}!`})
   }
   if (mob.hp <= 0) {
-    this.charWins(char, mob)
+    this.charWins(char, mob);
   }
   else{
-    setTimeout(() => {this.setState({mobAttackMessage: `The ${mob.name} hits ${char.name} for ${mob.damage} points of damage!`})}, 2000);
-    char.hp = (char.hp - mob.damage)
-    this.setState({char});
-    if (char.hp <= 0){
-      setTimeout(() => {this.charDeath(char)}, 2000);
-    }
-    setTimeout(() => {this.setState({charAttackMessage: ""})}, 3000);
-    setTimeout(() => {this.setState({mobAttackMessage: ""})}, 3000);
+    this.mobAttack(char, mob);
   }
 }
 
@@ -266,6 +254,7 @@ magicAttack(char, mob, charWeapon){
     setTimeout(()=>{this.setState({playerMessage: ""})}, 1200);
     return;
   }
+
   else {
     this.setState({magicAttack: false})
     this.setState({playerMessage: ""})
@@ -277,8 +266,14 @@ magicAttack(char, mob, charWeapon){
       char.sp = char.sp - charSpell.spCost
       let charDamage = this.rando(charSpell.damageLow, charSpell.damageHigh)
       setTimeout(() => {this.setState({charAttackMessage: `${char.name}'s ${charSpell.name} ${charSpell.damMessage} into the ${mob.name}, doing ${charDamage} damage!`})}, 100);
-      setTimeout(() => {mob.hp = mob.hp - charDamage}, 500);
+      mob.hp = mob.hp - charDamage
       this.setState({charSpell: null})
+      if (mob.hp <= 0) {
+        this.charWins(char, mob)
+      }
+      else{
+        this.mobAttack(char, mob);
+      }
     }
     else {
       if (char.sp < charSpell.spCost){
@@ -288,18 +283,18 @@ magicAttack(char, mob, charWeapon){
       }
     }
   }
+}
 
-  if (mob.hp <= 0) {
-    this.charWins(char, mob)
-  }
-  else{
+mobAttack(char, mob){
     let mobAttack = this.rando(1, 20) + mob.attack
     let charEvade = this.rando(1, 20) + char.ac
     if (mobAttack > charEvade){
       char.hp = (char.hp - mob.damage)
       this.setState({char});
       setTimeout(() => {this.setState({mobAttackMessage: `The ${mob.name} hits ${char.name} for ${mob.damage} points of damage!`})}, 1500);
-
+      if (char.hp <= 0){
+        setTimeout(() => {this.charDeath(char)}, 2000);
+      }
     }
     else{
       setTimeout(()=>{this.setState({mobAttackMessage: `The ${mob.name} misses ${char.name}!`})}, 1000);
@@ -307,7 +302,12 @@ magicAttack(char, mob, charWeapon){
     setTimeout(() => {this.setState({charAttackMessage: ""})}, 2500);
     setTimeout(() => {this.setState({mobAttackMessage: ""})}, 2500);
   }
-}
+
+
+
+
+
+
 
 charWins(char, mob){
   setTimeout(() => {this.setState({playerMessage: `${char.name} has defeated the ${mob.name}! The fight is over.`})}, 1000);
@@ -329,6 +329,7 @@ runAway(){
 }
 
 charDeath(char){
+  const rooms = this.state.roomList
   this.resetWindow();
   this.setState({playerMessage: "You have been killed. You materialize in the home room."});
   this.state.char.hp = this.state.char.hpmax;
@@ -355,8 +356,8 @@ startRandomFight(){
   this.setState({combat: true});
   this.setState({combatwindow: true});
   const mobList = this.state.mobList;
-  // const rand = Math.floor(Math.random() * (mobList.length - 1) ) + 1;
-  const mob = mobList[0]
+  const rand = Math.floor(Math.random() * (mobList.length - 1) ) + 1;
+  const mob = mobList[rand]
   this.setState({mob})
   this.setState({image: mob.image})
   setTimeout(() => {this.setState({playerMessage: `A bloodthirsty ${this.state.mob.name} emerges from the shadows! \n Will you fight or flee?`})}, 0);
@@ -450,6 +451,7 @@ slay(){
 
 
 goto(arg){
+  const rooms = this.state.roomList
   let dest = rooms.filter(room => room.id == arg)
   dest = dest[0]
   console.log(dest)

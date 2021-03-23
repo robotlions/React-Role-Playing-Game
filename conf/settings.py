@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'posts.apps.PostsConfig',
     'mobs.apps.MobsConfig',
+    'rooms.apps.RoomsConfig',
 ]
 
 MIDDLEWARE = [

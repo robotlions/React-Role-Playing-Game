@@ -33,14 +33,14 @@ if (dir == "east"){
   dest = rooms.filter(room => room.id == this.props.currentRoom.east)}
 if (dir == "west"){
   dest = rooms.filter(room => room.id == this.props.currentRoom.west)}
+if (dir == "up"){
+  dest = rooms.filter(room => room.id == this.props.currentRoom.up)}
+if (dir == "down"){
+  dest = rooms.filter(room => room.id == this.props.currentRoom.down)}
 dest = dest[0]
 if (dest) {
-  // this.props.changeRoomImage(this.props.currentRoom.walk, this.props.currentRoom.static)
-  // this.setState({moveMsg: `You walk to the ${dir}.`})
   this.setState({name: "", desc: ""});
-  // setTimeout(() => {this.setState({moveMsg: ""})}, 1000);
   this.props.travel(dest)
-  // setTimeout(() => {this.setState({currentRoom: dest})}, 1000);
 }
 else {
   this.setState({moveMsg: "There's no exit in that direction!"})
@@ -58,6 +58,8 @@ else {
     {this.props.currentRoom.south ? <div id="sButton" title="south" onClick={this.move}><img title="south" src={sButton}/></div> : null}
     {this.props.currentRoom.east ? <div id="eButton" title="east" onClick={this.move}><img title="east" src={eButton}/></div> : null}
     {this.props.currentRoom.west ? <div id="wButton" title="west" onClick={this.move}><img title="west" src={wButton}/></div> : null}
+    {this.props.currentRoom.up ? <div id="uButton" title="up" onClick={this.move}>UP</div> : null}
+    {this.props.currentRoom.down ? <div id="dButton" title="down" onClick={this.move}>DOWN</div> : null}
     </div>
 
     let moveMsg = this.state.moveMsg
