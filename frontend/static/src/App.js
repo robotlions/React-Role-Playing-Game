@@ -17,7 +17,6 @@ import Splash from './Components/Splash';
 import Account from './Components/Account';
 import Oauth from 'oauth';
 import Spells from './Components/Spells';
-import spells from './spellList';
 import dungeonWalk from './images/dungeonWalk.gif';
 import dungeonStatic from './images/dungeonStatic.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -110,22 +109,27 @@ this.mobAttack = this.mobAttack.bind(this);
     }
 
           this.setState({charWeapon});
-          this.setState({spells});
+          // this.setState({spells});
 
 
-        fetch("/characters/")
-      .then(response => response.json())
-      .then(response => response[0])
-      .then(response => this.setState({char: response}))
+      fetch("/characters/")
+    .then(response => response.json())
+    .then(response => response[0])
+    .then(response => this.setState({char: response}))
 
       fetch("/mobs/")
     .then(response => response.json())
     .then(response => this.setState({mobList: response}))
 
-    fetch("/rooms/")
-  .then(response => response.json())
-  .then(response => this.setState({roomList: response}))
-  const roomList = this.state.roomList
+      fetch("/rooms/")
+    .then(response => response.json())
+    .then(response => this.setState({roomList: response}))
+    const roomList = this.state.roomList
+
+      fetch("/spells/")
+    .then(response => response.json())
+    .then(response => this.setState({spells: response}))
+    const spells = this.state.spells
 
       document.addEventListener('keydown', this.logKey);
 
@@ -175,6 +179,7 @@ else {
 }
 
 handleSpellChange(event) {
+  const spells = this.state.spells
   this.setState({charSpell: spells[event.target.value]});
 }
 handleSpellSubmit(event) {
@@ -417,7 +422,7 @@ async levelUp(char, level){
   this.state.char.sp = spmax;
   this.state.char.level = level;
   setTimeout(()=>{this.setState({levelUp: true,
-    playerMessage: `${char.name} feels stronger! Hit Points: ${hpmax}. Spell Points: ${spmax}. Attack: ${attack}. Armor Class: ${ac}. Congrats! Don't forget to save ${char.name}.`})}, 7000);
+    playerMessage: `${char.name} gains power! Hit Points: ${hpmax}. Spell Points: ${spmax}. Attack: ${attack}. Armor Class: ${ac}. Congrats! Don't forget to save ${char.name}.`})}, 7000);
     this.setState({tweetTitle: `${char.name} has gained level ${level}! Join us at <url> to get in on old-school RPG fun!`})
     setTimeout(()=>{this.sendTweet()}, 500);
   }
@@ -515,21 +520,27 @@ showInfo(){
       this.state.image = this.state.mob.image
     }
 
-
-    const char = this.state.char
-    const mob = this.state.mob
-    const charWeapon = this.state.charWeapon
-    const spellChoice = <form className="spell-dropdown" value={this.state.charSpell} onSubmit={this.handleSpellSubmit}>
+    const char = this.state.char ? this.state.char : {name: "filler", level: 5};
+    const mob = this.state.mob;
+    const charWeapon = this.state.charWeapon;
+    const spells = this.state.spells;
+    const spellChoice =
+      <form className="spell-dropdown" value={this.state.charSpell} onSubmit={this.handleSpellSubmit}>
       <label>
         Pick your spell:
         <select onChange={this.handleSpellChange}>
         <option value={null}>Choose</option>
-        {this.state.spells.map((spell, index) => (
+        {spells
+          .filter(spell => spell.combat === true)
+          .filter(spell => spell.level <= char.level)
+          .map((spell, index) => (
           <option key={spell.id} value={index}>{spell.name}-{spell.spCost}sp</option>))}
         </select>
       </label>
       <input className="saveButton" type="submit" onClick={()=>this.magicAttack(char, mob, charWeapon)} value="Cast!" />
     </form>
+
+
 
     // console.log(this.state.mobList)
     const switchViewsButton = <button onClick={this.changeToCombatWindow}>Switch View</button>;

@@ -58,7 +58,7 @@ reset(){
 
 
   async handleLogin(e, obj){
-    // e.preventDefault();
+    e.preventDefault();
     const options = {
         method: 'POST',
         headers: {
@@ -74,7 +74,7 @@ reset(){
     Cookies.set('Authorization', `Token ${data.key}`);
     }
 
-    this.props.history.push("/characters/");
+    this.props.history.push("/");
     this.reset();
 
   }

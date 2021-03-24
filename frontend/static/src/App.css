@@ -55,6 +55,7 @@ height: 100vh;
 
 .peaceClass {
   border-image-source: url("./images/texturegreen.png");
+  animation: fadeIn 1s;
 }
 
 .combatClass {
@@ -65,6 +66,7 @@ height: 100vh;
   background-color: lightgray;
   box-shadow: inset 7px 7px 7px 7px darkgray;
 }
+
 
 .effectsWindow{
   box-shadow: inset 7px 7px 7px 7px darkgray;
@@ -198,6 +200,10 @@ transition: opacity 0 1s;
   object-fit: fill;
 }
 
+img{
+  min-width: 100%
+}
+
 .charSubmit{
   margin-left: 20px;
 }
@@ -290,4 +296,147 @@ transition: opacity 0 1s;
 .startButtonColumn{
   height: 100vh;
 }
+
+
+
+
+
 /* Mobile formatting below */
+
+
+@media only screen and (max-width: 700px) {
+
+
+.peaceClass {
+  border-image-source: url("./images/texturegreen.png");
+}
+
+.combatClass {
+  border-image-source: url("./images/texturered.png");
+}
+
+.box{
+  border: 8px solid transparent;
+  /* border-image-source: url("./images/texturegreen.png"); */
+  border-image-slice: 60 60 60 60;
+  border-image-repeat: 20 round;
+  border-image-outset: .15;
+}
+
+.textWindow{
+  font-size: small;
+  text-align: center;
+  padding-top: 10px;
+  font-size: small;
+  background-image: linear-gradient(lightgray, lightslategray);
+  box-shadow: inset 7px 7px 7px 7px darkgray;
+  font-family: fantasy;
+  color: black;
+}
+
+.textWindow h2{
+  font-size: medium;
+}
+
+.charWindow{
+  font-size: small;
+}
+
+.splashPage{
+  object-fit:cover;
+
+}
+
+.startButton{
+  right: 20px;
+  font-size: xx-large;
+}
+
+.logButton{
+margin-top: 20px;
+right: 20px;
+  font-size: x-large;
+  bottom: 0px;
+}
+
+
+.directionBox{
+  position:absolute;
+  top: 0px;
+  right: 0%;
+  height: 100px;
+  width: 100px;
+  transform: translateY(-300px);
+  }
+
+  .charWindow a {
+    font-size: small;
+    }
+}
+
+
+
+
+
+/*landscape mobile below*/
+
+@media screen and (max-width: 800px) and (orientation:landscape) {
+.container{
+  margin: none;
+  padding: none;
+}
+
+.graphicsWindow{
+  max-width: 45vw;
+}
+
+
+.textWindow{
+  max-width: 55%;
+  font-size: small;
+
+}
+.textWindow p{
+  line-height: 10px;
+}
+.topRow{
+  min-width: 100%;
+}
+.charWindow{
+  font-size: small;
+}
+
+/* .splashPage{
+  max-height: 100%;
+  max-width: 100%;
+} */
+/* .splashPage img{
+  position: absolute;
+} */
+
+
+
+.directionBox{
+  height: 100px;
+  width: 100px;
+  font-size: large;
+  }
+  .directionBox img{
+    height: 40px;
+  }
+  .box{
+    border: 8px solid transparent;
+    /* border-image-source: url("./images/texturegreen.png"); */
+    border-image-slice: 60 60 60 60;
+    border-image-repeat: 20 round;
+    border-image-outset: .15;
+  }
+
+  .peaceClass {
+    border-image-source: url("./images/texturegreen.png");
+  }
+
+  .combatClass {
+    border-image-source: url("./images/texturered.png");
+  }
+}

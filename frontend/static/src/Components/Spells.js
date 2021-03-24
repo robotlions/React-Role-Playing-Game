@@ -26,7 +26,10 @@ handleSubmit(event) {
 
 
         render(){
-          const spellMenu = this.props.all.spells.map((spell) =>(
+          const char = this.props.all.char
+          const spellMenu = this.props.all.spells
+          .filter(spell => spell.level <= char.level)
+          .map((spell) =>(
             <section onClick={this.props.showInfo} className="spellMenu" key={spell.id}>
           <h5>Name: {spell.name}</h5>
           <p>Element: {spell.element}</p>

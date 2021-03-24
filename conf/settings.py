@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'posts.apps.PostsConfig',
     'mobs.apps.MobsConfig',
     'rooms.apps.RoomsConfig',
+    'spells.apps.SpellsConfig',
 ]
 
 MIDDLEWARE = [

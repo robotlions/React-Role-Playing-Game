@@ -9,6 +9,7 @@ from .serializers import CharacterSerializer
 # Create your views here.
 class CharacterListView(generics.ListAPIView):
     # queryset = Character.objects.all()
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = CharacterSerializer
     def get_queryset(self):
         queryset = Character.objects.all()

@@ -41,4 +41,4 @@ const spells = [
     },
 ]
 
-export default spells
+// export default spells

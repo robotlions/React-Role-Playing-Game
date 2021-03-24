@@ -36,7 +36,8 @@ handleSubmit(event) {
           //
           // const spellChoice = <div><button onClick={this.chooseSpell}>SpellChoice</button></div>
           //
-          const spellMenu = this.props.all.spells.map((spell) =>(
+          const spellMenu = this.props.all.spells
+          .map((spell) =>(
             <section key={spell.id}>
           <h4>Name: {spell.name}</h4>
           <p>Element: {spell.element}</p>
@@ -47,7 +48,8 @@ handleSubmit(event) {
         <label>
           Pick your spell:
           <select value={this.state.value} onChange={this.handleChange}>
-          {this.props.all.spells.map((spell) => (
+          {this.props.all.spells
+            .map((spell) => (
             <option value={spell.name}>{spell.name}</option>))}
           </select>
         </label>
