@@ -17,7 +17,6 @@ import Splash from './Components/Splash';
 import Account from './Components/Account';
 import Oauth from 'oauth';
 import Spells from './Components/Spells';
-// import rooms from './roomlist';
 import spells from './spellList';
 import dungeonWalk from './images/dungeonWalk.gif';
 import dungeonStatic from './images/dungeonStatic.jpg';
@@ -343,7 +342,8 @@ handleInput(event){
 
 travel(dest) {
   this.setState({currentRoom: dest});
-  this.setState({image: this.state.currentRoom.walk})
+  if(this.state.currentRoom.walk){
+    this.setState({image: this.state.currentRoom.walk})}
   setTimeout(() => {this.setState({image: this.state.currentRoom.static})}, 600);
   if(this.rando(1, 5) === 1 && this.state.currentRoom.danger === true){
     setTimeout(()=>{this.startRandomFight()}, 601)
@@ -469,8 +469,7 @@ peace(){
   this.setState({image: this.state.currentRoom.static})
   this.setState({mob: null});
   this.setState({combatWindow: false});
-  this.resetWindow();
-  alert('Combat stopped.')
+  this.resetNow();
 }
 
 

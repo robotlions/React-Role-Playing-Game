@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import '../App.css';
-import rooms from '../roomlist';
 import nButton from '../images/nButton.png'
 import sButton from '../images/sButton.png'
 import eButton from '../images/eButton.png'
@@ -12,7 +11,6 @@ class Rooms extends Component{
     super(props);
     this.state = {
       moveMsg: "",
-      currentroom: rooms[0],
       dir: {},
             }
 
@@ -23,6 +21,7 @@ this.move = this.move.bind(this);
 
 
 move(e){
+const rooms = this.props.all.roomList
 let dir = e.target.title
 let dest;
 if (dir == "north"){
@@ -53,13 +52,16 @@ else {
   render(){
     const roomname = this.props.currentRoom.name;
     const desc = this.props.currentRoom.desc;
-    const nsew = <div className="directionBox">
+    const nsew = <div><div className="directionBox">
     {this.props.currentRoom.north ? <div id="nButton" title="north" onClick={this.move}><img title="north" src={nButton}/></div> : null}
     {this.props.currentRoom.south ? <div id="sButton" title="south" onClick={this.move}><img title="south" src={sButton}/></div> : null}
     {this.props.currentRoom.east ? <div id="eButton" title="east" onClick={this.move}><img title="east" src={eButton}/></div> : null}
     {this.props.currentRoom.west ? <div id="wButton" title="west" onClick={this.move}><img title="west" src={wButton}/></div> : null}
+    </div>
+    <div className="upDownBox">
     {this.props.currentRoom.up ? <div id="uButton" title="up" onClick={this.move}>UP</div> : null}
     {this.props.currentRoom.down ? <div id="dButton" title="down" onClick={this.move}>DOWN</div> : null}
+    </div>
     </div>
 
     let moveMsg = this.state.moveMsg

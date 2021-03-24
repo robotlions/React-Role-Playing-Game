@@ -15,8 +15,8 @@ class Room(models.Model):
     lit = models.BooleanField(null=True)
     area = models.CharField(max_length=255, null=True)
     danger = models.BooleanField(null=True)
-    static = models.ImageField(upload_to='rooms/', null=True)
-    walk = models.ImageField(upload_to='rooms/', null=True)
+    static = models.ImageField(upload_to='rooms/', null=True, blank=True)
+    walk = models.ImageField(upload_to='rooms/', null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return (self.id, self.name)
