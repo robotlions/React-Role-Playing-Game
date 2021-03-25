@@ -1,7 +1,13 @@
 .App {
-background-image: linear-gradient(whitesmoke, black);
+background-image: url("./images/texturebw.png");
 height: 100vh;
 }
+
+.AppCombat{
+  background-image: url("./images/texturered.png");
+  height: 100vh;
+}
+
 .centerNav {
   font-size: x-large;
   font-weight: bold;
@@ -13,7 +19,9 @@ height: 100vh;
 .centerNav a:link{
   text-decoration: none;
   text-shadow: 2px 2px 2px darkgray;
+  font-size: xx-large;
 }
+
 
 .centerNav a:hover{
   text-decoration: none;
@@ -22,6 +30,19 @@ height: 100vh;
 .container{
   font-size: large;
   font-family: fantasy;
+}
+
+.box{
+border: 20px inset darkslateblue;
+}
+
+.fireGif{
+  transform: translateY(300px);
+  height: 100px;
+}
+
+.fireCol{
+  height: 40vh;
 }
 
 .container-fluid{
@@ -44,50 +65,21 @@ height: 100vh;
   line-height: 12px;
 }
 
-.box{
-  border: 40px solid transparent;
-  /* border-image-source: url("./images/texturegreen.png"); */
-  border-image-slice: 60 60 60 60;
-  border-image-repeat: 20 round;
-  border-image-outset: .15;
-
-}
-
-.peaceClass {
-  border-image-source: url("./images/texturegreen.png");
-  animation: fadeIn 1s;
-}
-
-.combatClass {
-  border-image-source: url("./images/texturered.png");
-}
 
 .graphicsWindow{
-  background-color: lightgray;
-  box-shadow: inset 7px 7px 7px 7px darkgray;
+  box-shadow: 10px 10px 10px black;
 }
 
-
-.effectsWindow{
-  box-shadow: inset 7px 7px 7px 7px darkgray;
-  padding-top: 20px;
-  background-image: linear-gradient(lightgray, lightslategray);
-  border-top: 40px solid transparent;
-  border-bottom: 40px solid transparent;
-  border-image-source: url("./images/texturegreen.png");
-  border-image-slice: 30%;
-  border-image-repeat: 20 repeat;
-}
 
 .textWindow{
+
   text-align: center;
   padding-top: 10px;
   font-size: x-large;
-  /* background-image: linear-gradient(lightgray, lightslategray);
-  box-shadow: inset 7px 7px 7px 7px darkgray; */
   background-color: black;
   color: limegreen;
   font-family: 'Lucida Console', monospace;
+  box-shadow: 7px 7px 7px 7px black;
 }
 
 .textWindow button{
@@ -101,18 +93,22 @@ height: 100vh;
 
 
 .charWindow{
-  border-top: 0;
-  background-image: linear-gradient(lightgray, lightslategray);
-  box-shadow: inset 7px 7px 7px 7px darkgray;
-  /* min-height:38vh; */
+  background-image: linear-gradient(lightgray, steelblue);
+  box-shadow: 5px 5px 5px 5px black;
+  font-size: x-large;
 }
 
-.toprow{
-  height: 50%;
+.topRow{
+  height: 60vh;
 }
+
+.divider{
+  height: 65px;
+}
+
 
 .bottomRow{
-  height: 30%;
+  height: 19vh;
 }
 
 .loginForm{
@@ -307,26 +303,10 @@ img{
 @media only screen and (max-width: 700px) {
 
 
-.peaceClass {
-  border-image-source: url("./images/texturegreen.png");
-}
-
-.combatClass {
-  border-image-source: url("./images/texturered.png");
-}
-
-.box{
-  border: 8px solid transparent;
-  /* border-image-source: url("./images/texturegreen.png"); */
-  border-image-slice: 60 60 60 60;
-  border-image-repeat: 20 round;
-  border-image-outset: .15;
-}
-
 .textWindow{
+  max-height: 30vh;
   font-size: small;
   text-align: center;
-  padding-top: 10px;
   font-size: small;
   background-image: linear-gradient(lightgray, lightslategray);
   box-shadow: inset 7px 7px 7px 7px darkgray;
@@ -338,7 +318,11 @@ img{
   font-size: medium;
 }
 
+
+
+
 .charWindow{
+  max-height: 20vh;
   font-size: small;
 }
 
@@ -385,58 +369,4 @@ right: 20px;
   margin: none;
   padding: none;
 }
-
-.graphicsWindow{
-  max-width: 45vw;
-}
-
-
-.textWindow{
-  max-width: 55%;
-  font-size: small;
-
-}
-.textWindow p{
-  line-height: 10px;
-}
-.topRow{
-  min-width: 100%;
-}
-.charWindow{
-  font-size: small;
-}
-
-/* .splashPage{
-  max-height: 100%;
-  max-width: 100%;
-} */
-/* .splashPage img{
-  position: absolute;
-} */
-
-
-
-.directionBox{
-  height: 100px;
-  width: 100px;
-  font-size: large;
-  }
-  .directionBox img{
-    height: 40px;
-  }
-  .box{
-    border: 8px solid transparent;
-    /* border-image-source: url("./images/texturegreen.png"); */
-    border-image-slice: 60 60 60 60;
-    border-image-repeat: 20 round;
-    border-image-outset: .15;
-  }
-
-  .peaceClass {
-    border-image-source: url("./images/texturegreen.png");
-  }
-
-  .combatClass {
-    border-image-source: url("./images/texturered.png");
-  }
 }

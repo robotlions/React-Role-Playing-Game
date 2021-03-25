@@ -24,6 +24,7 @@ import arch from './images/arch.jpg';
 import './App.css';
 import victory from './images/victory.png'
 import archWall from './images/archWall2.png'
+import flame from './images/flame.gif'
 
 
 
@@ -508,9 +509,9 @@ showInfo(){
 
   render(){
     if(this.state.combat == true){
-      this.state.combatClass = "combatClass"}
+      this.state.combatClass = "AppCombat"}
     else {
-      this.state.combatClass = "peaceClass"
+      this.state.combatClass = "App"
     }
 
     if(this.state.isLoggedIn == true && this.state.char){
@@ -575,16 +576,16 @@ showInfo(){
 
 
   return (
-    <div className="App">
+    <div className={`${combatStatus}`}>
    {this.state.startGame == false ? <Splash gameOn={this.gameOn} all={this.state} startGame={this.startGame}/> :
-      <div className="container-fluid no-padding">
-        <div className="row toprow">
+      <div className="container-fluid">
+        <div className="row topRow">
 
-          <div className={`col-md-5 box ${combatStatus} graphicsWindow`} style={{padding: "0px"}}>
+          <div className={`col-md-4 box graphicsWindow`} style={{padding: "0px"}}>
           <GraphicsWindow all={this.state}/>
           </div>
-
-        <div className={`col-md-7 box ${combatStatus} textWindow`}>
+<div className="col-md-1 fireCol"><img className="fireGif" src={flame} alt="fire"/></div>
+        <div className={`col-md-7 box textWindow`}>
         {this.state.combat == true ? combatTitle : null}
         <p>{charAttackMessage}</p>
         <p>{mobAttackMessage}</p>
@@ -595,10 +596,10 @@ showInfo(){
         {this.state.levelUp === true ? continueButton : null}
         </div>
     </div>
-
+    <div className="row divider"></div>
       <div className="row bottomRow">
 
-        <div className={`col-sm-12 box ${combatStatus} charWindow`}>
+        <div className={`col-sm-12 box charWindow`}>
         <div className="centerNav"><Nav all={this.state}/></div>
         <React.Fragment>
     <Switch>
