@@ -19,22 +19,17 @@ class Nav extends Component {
 
 
   return(
-    <nav className="navbar navbar-expand-lg">
-    <div className="container-fluid">
-    {this.props.all.gameOn == true ? <div className="navBox"><NavLink to="/">Play Game</NavLink></div> : null}
+    <div>
+    {this.props.all.gameOn == true ? <NavLink to="/">Play Game</NavLink> : null}
 
-    {!this.props.all.char && this.props.all.isLoggedIn === true ? <div className="navBox"><NavLink to="/character/create/">Create Character</NavLink></div> : null}
-    {this.props.all.gameOn ? <div className="navBox"><NavLink to="/character/">Character</NavLink></div> : null}
-    {this.props.all.gameOn ? <div className="navBox"><NavLink to="/magic/">Magic</NavLink></div> : null}
-    <div className="navBox"><NavLink to="/account/">{this.props.all.isLoggedIn ? `Account` : `Log In/Register`}</NavLink></div>
-    <div className="navBox"><NavLink to="/build/">Builder</NavLink></div>
+    {!this.props.all.char && this.props.all.isLoggedIn === true ? <NavLink to="/character/create/">Create Character</NavLink> : null}
+    {this.props.all.gameOn ? <NavLink to="/character/">Character</NavLink> : null}
+    {this.props.all.gameOn ? <NavLink to="/magic/">Magic</NavLink> : null}
+    <NavLink to="/account/">{this.props.all.isLoggedIn ? `Account` : `Log In/Register`}</NavLink>
+    <NavLink to="/build/">Builder</NavLink>
     </div>
-    </nav>
 
   );
 }
 }
 export default Nav;
-
-
-// <div className="navBox"><NavLink to="/inventory/">Inventory</NavLink></div>

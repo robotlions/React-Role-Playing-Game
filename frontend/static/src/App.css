@@ -9,6 +9,7 @@ height: 100vh;
 }
 
 .centerNav {
+  text-align: center;
   font-size: x-large;
   font-weight: bold;
 }
@@ -308,9 +309,29 @@ img{
 
 @media only screen and (max-width: 700px) {
 
+.container-fluid{
+}
+.fireCol{
+  display: none;
+}
+
+.box{
+  border: none;
+}
+
+.divider{
+  display: none;
+}
+
+ .centerNav{
+   font-size: small;
+ }
+ .centerNav a:link{
+   font-size: small;
+ }
 
 .textWindow{
-  max-height: 30vh;
+  min-height: 30vh;
   font-size: small;
   text-align: center;
   font-size: small;
@@ -323,9 +344,6 @@ img{
 .textWindow h2{
   font-size: medium;
 }
-
-
-
 
 .charWindow{
   max-height: 20vh;
@@ -362,6 +380,9 @@ right: 20px;
   .charWindow a {
     font-size: small;
     }
+
+
+
 }
 
 

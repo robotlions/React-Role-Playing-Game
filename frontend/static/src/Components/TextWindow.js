@@ -76,7 +76,6 @@ function goto(player, room){
 const player1 = new Player("player1", 1);
 const room1 = new Room(2);
 
-// n(player1, room1);
 
 
 export default TextWindow;

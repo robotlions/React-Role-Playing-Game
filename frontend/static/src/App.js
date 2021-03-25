@@ -585,7 +585,7 @@ showInfo(){
           <div className={`col-md-4 box graphicsWindow`} style={{padding: "0px"}}>
           <GraphicsWindow all={this.state}/>
           </div>
-<div className="col-md-1 fireCol"><img className="fireGif" src={flame} alt="fire"/></div>
+<div className="col-1 fireCol"><img className="fireGif" src={flame} alt="fire"/></div>
         <div className={`col-md-7 box textWindow`}>
         {this.state.combat == true ? combatTitle : null}
         <p>{charAttackMessage}</p>
@@ -595,6 +595,7 @@ showInfo(){
         : <p className="combatButtons">{meleeAttackButton}{magicAttackButton}{runAwayButton}</p>}
         {this.state.magicAttack === true ? spellChoice : null}
         {this.state.levelUp === true ? continueButton : null}
+
         </div>
     </div>
     <div className="row divider"></div>
@@ -602,9 +603,8 @@ showInfo(){
 
         <div className={`col-sm-12 box charWindow`}>
         <div className="centerNav"><Nav all={this.state}/></div>
-        <React.Fragment>
-    <Switch>
-
+      <React.Fragment>
+      <Switch>
       <Route path="/account/" children=<Account gameOn={this.gameOn} all={this.state}/>/>
       <Route path="/character/create/" children=<CharCreate all={this.state} gameOn={this.gameOn}/>/>
       <Route path="/character/" children=<Character all={this.state}/>/>
@@ -612,7 +612,6 @@ showInfo(){
       <Route path="/magic/" children=<Spells showInfo={this.showInfo} all={this.state}/>/>
       <Route path="/build/" children=<Builder all={this.state}/>/>
       <Route path="/" children=<CharWindow heal={this.heal} all={this.state}/>/>
-
       </Switch>
     </React.Fragment>
     {this.state.builderInput === true ? immWindow : null}
