@@ -27,6 +27,7 @@ class Nav extends Component {
     {this.props.all.gameOn ? <div className="navBox"><NavLink to="/character/">Character</NavLink></div> : null}
     {this.props.all.gameOn ? <div className="navBox"><NavLink to="/magic/">Magic</NavLink></div> : null}
     <div className="navBox"><NavLink to="/account/">{this.props.all.isLoggedIn ? `Account` : `Log In/Register`}</NavLink></div>
+    <div className="navBox"><NavLink to="/build/">Builder</NavLink></div>
     </div>
     </nav>
 

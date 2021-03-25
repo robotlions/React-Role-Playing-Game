@@ -108,7 +108,13 @@ border: 20px inset darkslateblue;
 
 
 .bottomRow{
-  height: 19vh;
+  min-height: 19vh;
+}
+
+.infoWindow{
+  position: absolute;
+  right: 30%;
+  top: 20%
 }
 
 .loginForm{

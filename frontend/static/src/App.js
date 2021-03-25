@@ -17,6 +17,7 @@ import Splash from './Components/Splash';
 import Account from './Components/Account';
 import Oauth from 'oauth';
 import Spells from './Components/Spells';
+import Builder from './Components/Builder';
 import dungeonWalk from './images/dungeonWalk.gif';
 import dungeonStatic from './images/dungeonStatic.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -609,7 +610,9 @@ showInfo(){
       <Route path="/character/" children=<Character all={this.state}/>/>
       <Route path="/inventory/" component={Inventory}/>
       <Route path="/magic/" children=<Spells showInfo={this.showInfo} all={this.state}/>/>
+      <Route path="/build/" children=<Builder all={this.state}/>/>
       <Route path="/" children=<CharWindow heal={this.heal} all={this.state}/>/>
+
       </Switch>
     </React.Fragment>
     {this.state.builderInput === true ? immWindow : null}
