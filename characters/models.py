@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 
+from weapons.models import Weapon
+
 
 
 # Create your models here.
@@ -28,6 +30,7 @@ class Character(models.Model):
     spmax = models.IntegerField(null=True)
     xp = models.IntegerField(null=True)
     lastRoom = models.IntegerField(null=True, blank=True)
+    equippedWeapon = models.ForeignKey(Weapon, on_delete=models.CASCADE, null=True)
     job = models.CharField(
         max_length=15,
         choices=JOB_CHOICES,

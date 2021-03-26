@@ -91,17 +91,19 @@ this.showInfo = this.showInfo.bind(this);
 this.mobAttack = this.mobAttack.bind(this);
 this.light = this.light.bind(this);
 this.checkLight = this.checkLight.bind(this);
+this.checkFight = this.checkFight.bind(this);
   }
 
   componentDidMount(){
 
-    const charWeapon = {
-            weaponId: 1,
-            name: "longsword",
-            damageLow: 2,
-            damageHigh: 5,
-            damMessage: "slashes",
-          }
+    // const charWeapon = {
+    //         weaponId: 1,
+    //         name: "longsword",
+    //         damageLow: 2,
+    //         damageHigh: 5,
+    //         damMessage: "slashes",
+    //       }
+
 
     const charSpell = {
             spellId: 1,
@@ -121,7 +123,7 @@ this.checkLight = this.checkLight.bind(this);
           danger: false,
     }
 
-          this.setState({charWeapon});
+          // this.setState({charWeapon})
           this.setState({currentRoom: startRoom});
           // this.setState({spells});
 
@@ -338,6 +340,12 @@ charWins(char, mob){
   // this.setState({tweetTitle: `${char.name} has defeated the ${mob.name}!`})
   // setTimeout(()=>{this.sendTweet()}, 500);
   this.setState({char});
+  if(this.state.currentRoom.lit == true || this.state.lightSpell == true) {
+    this.setState({image: this.state.currentRoom.static})
+  }
+  else{
+    this.setState({image: ""})
+  }
   this.checkLevel(char);
 }
 
@@ -370,12 +378,9 @@ travel(dest, dir) {
   this.setState({currentRoom: dest});
   this.setState({playerMessage: ""})
   this.checkLight();
-
-  this.goto(dest.id)
+  this.checkFight();
 }, 700);
-// if(this.rando(1, 5) === 1 && this.state.currentRoom.danger === true){
-//   setTimeout(()=>{this.startRandomFight()}, 601)
-// }
+
 }
 
 checkLight(){
@@ -387,9 +392,15 @@ checkLight(){
     }
     else{
       this.setState({image: ""})
-
     }
 }
+
+checkFight(){
+  if(this.rando(1, 5) === 1 && this.state.currentRoom.danger === true){
+    setTimeout(()=>{this.startRandomFight()}, 1200);
+  }
+}
+
 
 
 startRandomFight(){
@@ -475,7 +486,7 @@ light(){
   setTimeout(()=>{this.checkLight();}, 100);
   setTimeout(()=>{this.setState({playerMessage: ""})}, 3000);
 
-  setTimeout(()=>{this.setState({lightSpell: false})}, 30000)
+  setTimeout(()=>{this.setState({lightSpell: false})}, 300000)
 }
 
 set(arg, arg2){
@@ -573,7 +584,7 @@ showInfo(){
 
     const char = this.state.char ? this.state.char : {name: "filler", level: 5};
     const mob = this.state.mob;
-    const charWeapon = this.state.charWeapon;
+    const charWeapon = char.equippedWeapon;
     const spells = this.state.spells;
     const spellChoice =
       <div className="spell-dropdown" value={this.state.charSpell}>

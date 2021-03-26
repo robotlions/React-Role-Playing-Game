@@ -53,7 +53,7 @@ saveChar(char){
     <p className="col-1 hp1">{char.hp}/{char.hpmax}</p>
     <p className="col-1 sp1">{char.sp != null ? `${char.sp}/${char.spmax}` : 'N/A'}</p>
     <p className="col-1 xp1">{char.xp}</p>
-    <p className="col-1 weapon">{charWeapon.name}</p>
+    <p className="col-1 weapon">{char.equippedWeapon.name}</p>
     </div></div>
 
   return (
