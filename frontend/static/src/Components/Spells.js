@@ -30,9 +30,10 @@ handleSubmit(event) {
           const spellMenu = this.props.all.spells
           .filter(spell => spell.level <= char.level)
           .map((spell) =>(
-            <section onClick={this.props.showInfo} className="spellMenu" key={spell.id}>
-          <h5>Name: {spell.name}</h5>
-          <p>Element: {spell.element}</p>
+            <section className="spellMenu" key={spell.id}>
+          <h4 className="spellName" onClick={this.props.showInfo} >Name: {spell.name.toUpperCase()}</h4>
+          <span>{`Element: ${spell.element} - Level: ${spell.level}`} </span>
+          {spell.combat === false ? <button onClick={()=>this.props.[spell.name]()}>Cast!</button> : <span>-Combat Only-</span>}
           </section>));
 
 

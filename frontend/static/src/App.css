@@ -18,6 +18,10 @@ height: 100vh;
   padding: 40px;
 }
 
+img{
+  min-width: 100%
+}
+
 .navComponent{
   margin-top: 10px;
 }
@@ -29,6 +33,9 @@ height: 100vh;
   font-size: xx-large;
 }
 
+.profPic img{
+  max-width: 200px;
+}
 
 .centerNav a:hover{
   text-decoration: none;
@@ -78,6 +85,7 @@ border: 20px inset darkslateblue;
 
 .graphicsWindow{
   box-shadow: 10px 10px 10px black;
+  background-color: black;
 }
 
 
@@ -218,9 +226,7 @@ transition: opacity 0 1s;
   object-fit: fill;
 }
 
-img{
-  min-width: 100%
-}
+
 
 .charSubmit{
   margin-left: 20px;
@@ -315,8 +321,20 @@ img{
   height: 100vh;
 }
 
-
-
+.spellMenu{
+  font-size: smaller;
+  line-height: 8px;
+  margin-top: 5px;
+}
+.spellMenu button{
+  line-height: normal;
+}
+.spellMenu h4{
+  font-weight: bold;
+}
+.spellName:hover{
+  cursor: pointer;
+}
 
 
 /* Mobile formatting below */

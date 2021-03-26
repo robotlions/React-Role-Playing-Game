@@ -57,6 +57,7 @@ class App extends Component{
       spells: [],
       magicAttack: false,
       tweetTitle: 'Here Be Dragons is a fun, retro RPG!',
+      lightSpell: false,
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -88,7 +89,8 @@ this.levelUp = this.levelUp.bind(this);
 this.resetNow = this.resetNow.bind(this);
 this.showInfo = this.showInfo.bind(this);
 this.mobAttack = this.mobAttack.bind(this);
-
+this.light = this.light.bind(this);
+this.checkLight = this.checkLight.bind(this);
   }
 
   componentDidMount(){
@@ -359,17 +361,35 @@ handleInput(event){
 }
 
 travel(dest, dir) {
-  this.setState({currentRoom: ""});
+  this.setState({travelling: true});
+  this.setState({currentRoom: ""})
+  // this.setState({currentRoom: dest});
   this.setState({playerMessage: `You walk to the ${dir}.`})
-  setTimeout(()=>{this.setState({currentRoom: dest});
-  this.setState({playerMessage: ""})}, 900);
-  if(this.state.currentRoom.walk){
-    this.setState({image: this.state.currentRoom.walk})}
-  setTimeout(() => {this.setState({image: this.state.currentRoom.static})}, 901);
-  if(this.rando(1, 5) === 1 && this.state.currentRoom.danger === true){
-    setTimeout(()=>{this.startRandomFight()}, 601)
-  }
-  }
+  setTimeout(()=>{
+  this.setState({travelling: false});
+  this.setState({currentRoom: dest});
+  this.setState({playerMessage: ""})
+  this.checkLight();
+
+  this.goto(dest.id)
+}, 700);
+// if(this.rando(1, 5) === 1 && this.state.currentRoom.danger === true){
+//   setTimeout(()=>{this.startRandomFight()}, 601)
+// }
+}
+
+checkLight(){
+    if(this.state.currentRoom.lit == true || this.state.lightSpell == true) {
+      // if(this.state.currentRoom.walk){
+      //   this.setState({image: this.state.currentRoom.walk})
+      // }
+      this.setState({image: this.state.currentRoom.static})
+    }
+    else{
+      this.setState({image: ""})
+
+    }
+}
 
 
 startRandomFight(){
@@ -448,6 +468,15 @@ async levelUp(char, level){
 
 //builder commands below
 
+light(){
+  let char = this.state.char
+  this.setState({lightSpell: true})
+  this.setState({playerMessage: `${char.name} casts Light! A hovering flame appears in the air, illuminating the area.`})
+  setTimeout(()=>{this.checkLight();}, 100);
+  setTimeout(()=>{this.setState({playerMessage: ""})}, 3000);
+
+  setTimeout(()=>{this.setState({lightSpell: false})}, 30000)
+}
 
 set(arg, arg2){
   this.setState({arg: arg2})
@@ -605,7 +634,7 @@ showInfo(){
           <div className={`col-md-4 box graphicsWindow`} style={{padding: "0px"}}>
           <GraphicsWindow all={this.state}/>
           </div>
-<div className="col-1 fireCol"><img className="fireGif" src={flame} alt="fire"/></div>
+<div className="col-1 fireCol">{this.state.lightSpell === true ? <img className="fireGif" src={flame} alt="fire"/> : null} </div>
         <div className={`col-md-7 box textWindow`}>
         {this.state.combat == true ? combatTitle : null}
         <p>{charAttackMessage}</p>
@@ -629,7 +658,7 @@ showInfo(){
       <Route path="/character/create/" children=<CharCreate all={this.state} gameOn={this.gameOn}/>/>
       <Route path="/character/" children=<Character all={this.state}/>/>
       <Route path="/inventory/" component={Inventory}/>
-      <Route path="/magic/" children=<Spells showInfo={this.showInfo} all={this.state}/>/>
+      <Route path="/magic/" children=<Spells light={this.light} showInfo={this.showInfo} all={this.state}/>/>
       <Route path="/build/" children=<Builder goto={this.goto} all={this.state}/>/>
       <Route path="/" children=<CharWindow heal={this.heal} all={this.state}/>/>
       </Switch>

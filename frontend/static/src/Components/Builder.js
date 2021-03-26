@@ -194,19 +194,12 @@ const roomCreateForm = <form id="roomForm" onSubmit={this.handleSubmit}>
 
 <input className="builderField" type="text" placeholder="Room Name" name="name" value={this.state.name || ""} onChange={this.handleInput}/><br/>
 <textarea className="builderField" type="text" placeholder="Description" name="desc" value={this.state.desc || ""} onChange={this.handleInput}/><br/>
-
 <input className="builderField" type="text" placeholder="North" name="north" value={this.state.north || ""} onChange={this.handleInput}/><br/>
-
 <input className="builderField" type="text" placeholder="South" name="south" value={this.state.south || ""} onChange={this.handleInput}/><br/>
-
 <input className="builderField" type="text" placeholder="East" name="east" value={this.state.east || ""} onChange={this.handleInput}/><br/>
-
 <input className="builderField" type="text" placeholder="West" name="west" value={this.state.west || ""} onChange={this.handleInput}/><br/>
-
 <input className="builderField" type="text" placeholder="Up" name="up" value={this.state.up || ""} onChange={this.handleInput}/><br/>
-
 <input className="builderField" type="text" placeholder="Down" name="down" value={this.state.down || ""} onChange={this.handleInput}/><br/>
-
 <input className="builderField" type="text" placeholder="Area Name" name="area" value={this.state.area || ""} onChange={this.handleInput}/><br/>
 <label htmlFor="lit">Lit?</label>
 <input type="checkbox" name="lit" title="Lit?" value="true" onChange={this.handleInput}/>

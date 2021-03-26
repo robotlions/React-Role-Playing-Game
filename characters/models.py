@@ -1,8 +1,6 @@
 from django.db import models
 from django.conf import settings
 
-class Weapon(models.Model):
-    pass
 
 
 # Create your models here.

@@ -50,8 +50,8 @@ else {
 
 
   render(){
-    const roomname = this.props.currentRoom.name;
-    const desc = this.props.currentRoom.desc;
+    const roomname = this.props.currentRoom.lit === true || this.props.all.lightSpell === true ? this.props.currentRoom.name : "DARKNESS";
+    const desc = this.props.currentRoom.lit === true || this.props.all.lightSpell === true ? this.props.currentRoom.desc : null;
     const nsew = <div><div className="directionBox">
     {this.props.currentRoom.north ? <div id="nButton" title="north" onClick={this.move}><img title="north" src={nButton}/></div> : null}
     {this.props.currentRoom.south ? <div id="sButton" title="south" onClick={this.move}><img title="south" src={sButton}/></div> : null}
@@ -71,7 +71,7 @@ else {
 
   return (
     <div>
-    {this.props.all.gameOn === true ? <h1>{roomname}</h1> : welcomeTitle}
+    {this.props.all.travelling === false ? <h1>{roomname}</h1> : null}
     <p id="moveMsg">{moveMsg}</p>
     {this.props.all.gameOn === true ? <p>{desc}</p> : null}
     {this.props.all.gameOn === true ? <section id="nsew">{nsew}</section> : null}
