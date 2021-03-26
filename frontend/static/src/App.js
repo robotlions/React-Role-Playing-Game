@@ -47,7 +47,7 @@ class App extends Component{
       image: "",
       defaultChar: {},
       playerMessage: "",
-      currentRoom: [],
+      currentRoom: {},
       immWindow: "",
       arg: "",
       builderInput: false,
@@ -110,7 +110,17 @@ this.mobAttack = this.mobAttack.bind(this);
             damMessage: "slams"
     }
 
+    const startRoom = {
+          name: "Launch Room",
+          static: arch,
+          desc: "The default room on load",
+          north: 11,
+          lit: true,
+          danger: false,
+    }
+
           this.setState({charWeapon});
+          this.setState({currentRoom: startRoom});
           // this.setState({spells});
 
 
@@ -527,7 +537,7 @@ showInfo(){
     const charWeapon = this.state.charWeapon;
     const spells = this.state.spells;
     const spellChoice =
-      <form className="spell-dropdown" value={this.state.charSpell} onSubmit={this.handleSpellSubmit}>
+      <div className="spell-dropdown" value={this.state.charSpell}>
       <label>
         Pick your spell:
         <select onChange={this.handleSpellChange}>
@@ -540,7 +550,7 @@ showInfo(){
         </select>
       </label>
       <input className="saveButton" type="submit" onClick={()=>this.magicAttack(char, mob, charWeapon)} value="Cast!" />
-    </form>
+    </div>
 
 
 
@@ -599,10 +609,10 @@ showInfo(){
         </div>
     </div>
     <div className="row divider"></div>
+    <div className="centerNav"><Nav all={this.state}/></div>
       <div className="row bottomRow">
 
         <div className={`col-sm-12 box charWindow`}>
-        <div className="centerNav"><Nav all={this.state}/></div>
       <React.Fragment>
       <Switch>
       <Route path="/account/" children=<Account gameOn={this.gameOn} all={this.state}/>/>

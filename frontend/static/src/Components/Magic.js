@@ -44,17 +44,8 @@ handleSubmit(event) {
           </section>));
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Pick your spell:
-          <select value={this.state.value} onChange={this.handleChange}>
-          {this.props.all.spells
-            .map((spell) => (
-            <option value={spell.name}>{spell.name}</option>))}
-          </select>
-        </label>
-        <input type="submit" value="Cast!" />
-      </form>
+      <div>
+      </div>
   );
 }
 }

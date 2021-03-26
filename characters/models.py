@@ -29,6 +29,7 @@ class Character(models.Model):
     sp = models.IntegerField(null=True)
     spmax = models.IntegerField(null=True)
     xp = models.IntegerField(null=True)
+    lastRoom = models.IntegerField(null=True, blank=True)
     job = models.CharField(
         max_length=15,
         choices=JOB_CHOICES,

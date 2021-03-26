@@ -14,12 +14,18 @@ height: 100vh;
   font-weight: bold;
 }
 .centerNav a{
-  color: black;
+  color: dodgerblue;
+  padding: 40px;
 }
+
+.navComponent{
+  margin-top: 10px;
+}
+
 
 .centerNav a:link{
   text-decoration: none;
-  text-shadow: 2px 2px 2px darkgray;
+  text-shadow: 2px 2px 2px black;
   font-size: xx-large;
 }
 
@@ -66,6 +72,9 @@ border: 20px inset darkslateblue;
   line-height: 12px;
 }
 
+.builderField{
+  width: 40%;
+}
 
 .graphicsWindow{
   box-shadow: 10px 10px 10px black;
@@ -115,8 +124,14 @@ border: 20px inset darkslateblue;
 .infoWindow{
   position: absolute;
   right: 30%;
-  top: 20%
+  top: 5%
 }
+
+.builderWindow{
+  font-size: smaller;
+}
+
+
 
 .loginForm{
   color: white;
@@ -310,6 +325,7 @@ img{
 @media only screen and (max-width: 700px) {
 
 .container-fluid{
+  height: 100vh;
 }
 .fireCol{
   display: none;
@@ -341,8 +357,9 @@ img{
   color: black;
 }
 
-.textWindow h2{
-  font-size: medium;
+.textWindow h1{
+  font-size: large;
+  font-weight: bold;
 }
 
 .charWindow{
@@ -376,6 +393,10 @@ right: 20px;
   width: 100px;
   transform: translateY(-300px);
   }
+
+.bottomRow{
+  margin-top: 10vh;
+}
 
   .charWindow a {
     font-size: small;

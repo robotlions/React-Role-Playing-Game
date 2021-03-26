@@ -8,3 +8,7 @@ from .serializers import RoomSerializer
 class RoomListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = RoomSerializer
     queryset = Room.objects.all()
+
+class RoomRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = RoomSerializer
+    queryset = Room.objects.all()

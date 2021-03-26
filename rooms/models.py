@@ -4,8 +4,8 @@ from django.conf import settings
 # Create your models here.
 class Room(models.Model):
 
-    name = models.CharField(max_length=255, null=True)
-    desc = models.TextField(null=True)
+    name = models.CharField(max_length=255, null=True, blank=True, default="New Room")
+    desc = models.TextField(null=True, blank=True)
     north = models.IntegerField(null=True, blank=True)
     south = models.IntegerField(null=True, blank=True)
     east = models.IntegerField(null=True, blank=True)
@@ -13,7 +13,7 @@ class Room(models.Model):
     up = models.IntegerField(null=True, blank=True)
     down = models.IntegerField(null=True, blank=True)
     lit = models.BooleanField(null=True)
-    area = models.CharField(max_length=255, null=True)
+    area = models.CharField(max_length=255, null=True, blank=True)
     danger = models.BooleanField(null=True)
     static = models.ImageField(upload_to='rooms/', null=True, blank=True)
     walk = models.ImageField(upload_to='rooms/', null=True, blank=True)
