@@ -39,7 +39,7 @@ if (dir == "down"){
 dest = dest[0]
 if (dest) {
   this.setState({name: "", desc: ""});
-  this.props.travel(dest)
+  this.props.travel(dest, dir)
 }
 else {
   this.setState({moveMsg: "There's no exit in that direction!"})

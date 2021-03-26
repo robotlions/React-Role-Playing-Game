@@ -251,11 +251,11 @@ const charInfo = this.state.hasAccount === true && this.state.charData !== null 
 const photoSubmit = <form className="photoSubmit" onSubmit={this.submitPhoto}>
 <p>Submit a profile photo</p>
   <input type="file" name="profile_picture" onChange={this.handleImage}/>
-{this.state.profile_picture && <img width="200" src={this.state.preview} alt="preview" />}
+{this.state.profile_picture && <img width="100" src={this.state.preview} alt="preview" />}
 <button className="saveButton" type="submit">Save</button>
 </form>
 const profTest = {...this.state.accountData.profile}
-const profPicture = <img className="profPic" src={profTest.profile_picture}/>
+const profPicture = <img className="profPic" width="200" src={profTest.profile_picture}/>
 
       return(
         <div className="loginPage">

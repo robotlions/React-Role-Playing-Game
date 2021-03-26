@@ -169,7 +169,8 @@ logKey(e) {
 }
 startGame(){
   const rooms = this.state.roomList
-  this.setState({currentRoom: rooms[9]})
+  this.goto(27)
+  // this.setState({currentRoom: rooms[9]})
   this.setState({image: arch})
   this.setState({startGame: true});
 }
@@ -357,11 +358,14 @@ handleInput(event){
   this.setState({[event.target.name]: event.target.value});
 }
 
-travel(dest) {
-  this.setState({currentRoom: dest});
+travel(dest, dir) {
+  this.setState({currentRoom: ""});
+  this.setState({playerMessage: `You walk to the ${dir}.`})
+  setTimeout(()=>{this.setState({currentRoom: dest});
+  this.setState({playerMessage: ""})}, 900);
   if(this.state.currentRoom.walk){
     this.setState({image: this.state.currentRoom.walk})}
-  setTimeout(() => {this.setState({image: this.state.currentRoom.static})}, 600);
+  setTimeout(() => {this.setState({image: this.state.currentRoom.static})}, 901);
   if(this.rando(1, 5) === 1 && this.state.currentRoom.danger === true){
     setTimeout(()=>{this.startRandomFight()}, 601)
   }
@@ -377,7 +381,7 @@ startRandomFight(){
   const mob = mobList[rand]
   this.setState({mob})
   this.setState({image: mob.image})
-  setTimeout(() => {this.setState({playerMessage: `A bloodthirsty ${this.state.mob.name} emerges from the shadows! \n Will you fight or flee?`})}, 0);
+  setTimeout(() => {this.setState({playerMessage: `A bloodthirsty ${this.state.mob.name} emerges from the shadows! \n Will you fight or flee?`})}, 500);
 }
 
 timeHeal() {
@@ -468,18 +472,24 @@ slay(){
 
 
 goto(arg){
-  const rooms = this.state.roomList
-  let dest = rooms.filter(room => room.id == arg)
-  dest = dest[0]
-  console.log(dest)
+  fetch("/rooms/")
+  .then(response => response.json())
+  .then(response => this.setState({roomList: response}))
+
+setTimeout(()=>{
+  const rooms = this.state.roomList;
+  let dest = rooms.filter(room => room.id == arg);
+  dest = dest[0];
+  console.log(dest);
   if (dest){
   this.setState({currentRoom: dest, immWindow: "", arg: ""});
   this.resetWindow();
 }
 else {
   alert("That's not a real room.")
+}}, 100);
 }
-}
+
 
 peace(){
   this.setState({combat: false})
@@ -620,7 +630,7 @@ showInfo(){
       <Route path="/character/" children=<Character all={this.state}/>/>
       <Route path="/inventory/" component={Inventory}/>
       <Route path="/magic/" children=<Spells showInfo={this.showInfo} all={this.state}/>/>
-      <Route path="/build/" children=<Builder all={this.state}/>/>
+      <Route path="/build/" children=<Builder goto={this.goto} all={this.state}/>/>
       <Route path="/" children=<CharWindow heal={this.heal} all={this.state}/>/>
       </Switch>
     </React.Fragment>

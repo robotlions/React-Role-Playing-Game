@@ -73,7 +73,12 @@ class Builder extends Component {
     const data = await response.json().catch(handleError);
     if (response.ok) {
       alert('Room updated!');
+      for (const prop in obj){
+        this.setState({[prop]: ""})
+      }
+      this.props.goto(this.props.all.currentRoom.id)
     }
+
   }
 
 async dig(dir){
@@ -132,7 +137,7 @@ async dig(dir){
     const exitData = await exitResponse.json().catch(exitHandleError);
     if (exitResponse.ok) {
       alert('Exit added!');
-
+      this.props.goto(this.props.all.currentRoom.id)
     }
 }
 
@@ -150,8 +155,14 @@ const options = {
   },
   body: formData,
 }
-
-await fetch(`/rooms/${this.props.all.currentRoom.id}/`, options);
+let handleError = (err) => console.warn(err);
+let response = await fetch(`/rooms/${this.props.all.currentRoom.id}/`, options);
+const data = await response.json().catch(handleError);
+if(response.ok){
+  alert('Image added!')
+  this.setState({static: ""})
+  setTimeout(()=>{this.props.goto(this.props.all.currentRoom.id)}, 1000);
+}
 }
 
 
