@@ -28,19 +28,20 @@ class Mob(models.Model):
     ]
 
     name = models.CharField(max_length=255, null=True)
-    desc = models.CharField(max_length=255, null=True)
-    damage = models.IntegerField(null=True)
-    attack = models.IntegerField(null=True)
+    desc = models.CharField(max_length=255, null=True, blank=True)
+    damage = models.IntegerField(null=True, blank=True)
+    attack = models.IntegerField(null=True, blank=True)
     hp = models.IntegerField(null=True)
     hpmax = models.IntegerField(null=True)
-    sp = models.IntegerField(null=True)
-    spmax = models.IntegerField(null=True)
-    ac = models.IntegerField(null=True)
-    weapon = models.CharField(max_length=255, null=True)
-    damMessage = models.CharField(max_length=255, null=True)
-    xp = models.IntegerField(null=True)
-    image = models.ImageField(upload_to='mobs/', null=True)
-    inventory = models.JSONField(null=True, default=dict)
+    sp = models.IntegerField(null=True, blank=True)
+    spmax = models.IntegerField(null=True, blank=True)
+    ac = models.IntegerField(null=True, blank=True)
+    weapon = models.CharField(max_length=255, null=True, blank=True)
+    damMessage = models.CharField(max_length=255, null=True, blank=True)
+    xp = models.IntegerField(null=True, blank=True)
+    image = models.ImageField(upload_to='mobs/', null=True, blank=True)
+    inventory = models.JSONField(null=True, default=dict, blank=True)
+    isShopkeeper = models.BooleanField(null=True, default=False)
     weakness = models.CharField(
         max_length=15,
         choices=WEAKNESS_CHOICES,
@@ -50,4 +51,4 @@ class Mob(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return "# " + str(self.id) + " - " + self.name

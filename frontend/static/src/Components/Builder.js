@@ -15,6 +15,7 @@ class Builder extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      roomEdit: false,
     }
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -55,6 +56,7 @@ class Builder extends Component {
     delete obj.dir
     delete obj.id
     delete obj.static
+    delete obj.roomEdit
 
     for (const prop in obj) {
       formData.append(prop, obj[prop]);
@@ -169,6 +171,9 @@ if(response.ok){
 
 
 roomEdit(){
+  this.setState(prevState => ({
+  roomEdit: !prevState.roomEdit
+}));
   for( const prop in this.props.all.currentRoom){
     this.state.[prop] = this.props.all.currentRoom.[prop]
 }
@@ -220,15 +225,15 @@ const digForm = <div className="digForm">
 <input type="txt" placeholder="Direction to dig new exit" name="dir" value={this.state.dir} onChange={this.handleInput}/>
 <button onClick={()=>this.dig(dir)}>Dig</button>
 </div>
-const editButton = <button className="btn btn-success" onClick={this.roomEdit}>Edit This Room</button>
-
-
+const roomEditButton = <button className="buildButton btn btn-success" onClick={this.roomEdit}>Room Builder</button>
+const mobEditButton = <button className="buildButton btn btn-success" onClick={this.mobEdit}>Mob Builder</button>
+const itemEditButton = <button className="buildButton btn btn-success" onClick={this.itemEdit}>Item Builder</button>
         return(
-
+        <>
+        {this.state.roomEdit === true ?
         <div className="builderWindow row">
         <div className="digWindow col-4">
         {digForm}
-        {editButton}
         {infoWindow}
         </div>
         <div className="digWindow col-4">
@@ -237,8 +242,9 @@ const editButton = <button className="btn btn-success" onClick={this.roomEdit}>E
         <div className="digWindow col-4">
         {imageForm}
         </div>
-        </div>
-
+        </div> : null}
+        {roomEditButton}{mobEditButton}{itemEditButton}
+        </>
 
         );
       }

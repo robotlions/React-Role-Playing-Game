@@ -63,6 +63,7 @@ class Item(models.Model):
         range = models.IntegerField(null=True, blank=True)
         damMessage = models.CharField(max_length=255, null=True)
         bonus = models.IntegerField(null=True, blank=True, default=0)
+        isUsable = models.BooleanField(null=True, blank=True, default=False)
         material = models.CharField(
             max_length=15,
             choices=MATERIAL_CHOICES,
@@ -74,4 +75,4 @@ class Item(models.Model):
             default=KNIFE, null=True, blank=True)
 
         def __str__(self):
-            return (self.name)
+            return "# " + str(self.id) + " - " + self.name

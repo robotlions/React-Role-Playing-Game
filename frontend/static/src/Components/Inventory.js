@@ -15,23 +15,25 @@ const inv = this.props.all.char.inventory
 const inventoryEquippedWeapon = <div>
 <h4>Equipped Weapon</h4>
 <p>Name: {currentWeapon.material} {currentWeapon.name}</p>
-<p>Damage: {currentWeapon.damageLow} - {currentWeapon.damageHigh}</p>
-</div>
+<p>Damage: {currentWeapon.damageLow} - {currentWeapon.damageHigh}
+{this.props.all.char.equippedWeapon ? <button className="saveButton" onClick={this.props.unequip}>Unequip</button> : null}
+</p></div>
 
 const inventoryList = inv.filter(item => item.isWeapon == false)
 .map((item) => (
-  <div>
+  <div key={item.id}>
   <p>- {item.name}</p>
 </div>));
 
 const weaponList = inv.filter(item => item.isWeapon == true)
 .map((item) => (
-  <div>
-  <p>- {item.name}</p>
+  <div key={item.id}>
+  {item.material} {item.name}
+  <button className="saveButton" onClick={()=>this.props.equip(item.id)}>Equip</button><button className="saveButton" onClick={()=>this.props.drop(item.id)}>Drop</button>
   </div>
 ));
 
-
+const silver = this.props.all.char.silver
 
 
 
@@ -42,6 +44,7 @@ const weaponList = inv.filter(item => item.isWeapon == true)
 
     <div className="row inventoryWindow">
     <div className="col-4">
+    <h4>Silver: {silver}</h4>
     {inventoryEquippedWeapon}
     </div>
     <div className="col-4">

@@ -70,4 +70,4 @@ class Weapon(models.Model):
         default=KNIFE, null=True, blank=True)
 
     def __str__(self):
-        return (self.name)
+        return "# " + str(self.id) + " - " + self.name

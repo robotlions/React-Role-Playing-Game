@@ -49,9 +49,28 @@ else {
 
 
 
+
+
+
+
+
+
+
   render(){
+    const mobInRoom = {...this.props.all.mobInRoom[0]}
     const roomname = this.props.currentRoom.lit === true || this.props.all.lightSpell === true ? this.props.currentRoom.name : "DARKNESS";
     const desc = this.props.currentRoom.lit === true || this.props.all.lightSpell === true ? this.props.currentRoom.desc : null;
+
+    const mobInRoomMessage = <div>
+    {this.props.all.mobInRoom.length > 0 ? <p>{mobInRoom.name} is here.</p> : null}</div>
+
+    const mobShopMessage = <div> {this.props.all.mobInRoom.length > 0 ?
+    mobInRoom.inventory.map((item) => (
+      <p key={item.id}>- {item.material.toUpperCase()} {item.name.toUpperCase()} - Price: ${item.value} <button className="saveButton" onClick={()=>this.props.buy(item.id)}>BUY</button></p>
+    )) : null }</div>
+
+
+
     const nsew = <div><div className="directionBox">
     {this.props.currentRoom.north ? <div id="nButton" title="north" onClick={this.move}><img title="north" src={nButton}/></div> : null}
     {this.props.currentRoom.south ? <div id="sButton" title="south" onClick={this.move}><img title="south" src={sButton}/></div> : null}
@@ -71,9 +90,11 @@ else {
 
   return (
     <div>
-    {this.props.all.travelling === false ? <h1>{roomname}</h1> : null}
+    {this.props.all.travelling != true ? <h1>{roomname}</h1> : null}
     <p id="moveMsg">{moveMsg}</p>
     {this.props.all.gameOn === true ? <p>{desc}</p> : null}
+    {this.props.all.gameOn === true ? mobInRoomMessage : null}
+    {mobShopMessage}
     {this.props.all.gameOn === true ? <section id="nsew">{nsew}</section> : null}
     </div>
   );

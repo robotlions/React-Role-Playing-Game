@@ -38,6 +38,7 @@ class App extends Component{
       char : null,
       charWeapon: {},
       mob: {},
+      mobInRoom: {},
       charSpell: {},
       charAttackMessage: "",
       mobAttackMessage: "",
@@ -94,6 +95,10 @@ this.checkLight = this.checkLight.bind(this);
 this.checkFight = this.checkFight.bind(this);
 this.conjure = this.conjure.bind(this);
 this.drop = this.drop.bind(this);
+this.equip = this.equip.bind(this);
+this.unequip = this.unequip.bind(this);
+this.checkMob = this.checkMob.bind(this);
+this.buy = this.buy.bind(this);
   }
 
   componentDidMount(){
@@ -387,6 +392,7 @@ travel(dest, dir) {
   this.setState({playerMessage: ""})
   this.checkLight();
   this.checkFight();
+  this.checkMob();
 }, 700);
 
 }
@@ -409,6 +415,13 @@ checkFight(){
   }
 }
 
+checkMob(){
+  let mobList = this.state.mobList
+  let mobId = this.state.currentRoom.mobInRoom
+  let mobInRoom = mobList.filter(mob => mob.id == mobId)
+  this.setState({mobInRoom})
+
+}
 
 
 startRandomFight(){
@@ -568,6 +581,23 @@ showInfo(){
   alert('this will show spell, weapon and mob info when you click on them')
 }
 
+buy(id){
+  const shop = {...this.state.mobInRoom}
+  const char = {...this.state.char}
+  let item = shop[0].inventory.filter(i => i.id == id)
+  item = item[0]
+  const price = item.value
+  const wallet = char.silver
+  if (wallet > price){
+    this.conjure(id)
+    char.silver = char.silver - price
+    this.setState({char})
+  }
+  else{
+    alert(`You don't have the silver for the ${item.name}.`)
+  }
+}
+
 conjure(id){
   const char = {...this.state.char}
   const itemList = this.state.itemList
@@ -630,7 +660,6 @@ unequip(){
     if(this.state.combat == true){
       this.state.image = this.state.mob.image
     }
-
     const char = this.state.char ? this.state.char : {name: "filler", level: 5};
     const mob = this.state.mob;
     const charWeapon = char.equippedWeapon;
@@ -700,7 +729,7 @@ unequip(){
         <p>{charAttackMessage}</p>
         <p>{mobAttackMessage}</p>
         <p>{playerMessage}</p>
-        {this.state.combatwindow == false ? <Rooms all={this.state} travel={this.travel} goto={this.goto} currentRoom={this.state.currentRoom} changeRoomImage={this.changeRoomImage}/>
+        {this.state.combatwindow == false ? <Rooms all={this.state} buy={this.buy} travel={this.travel} goto={this.goto} currentRoom={this.state.currentRoom} changeRoomImage={this.changeRoomImage}/>
         : <p className="combatButtons">{meleeAttackButton}{magicAttackButton}{runAwayButton}</p>}
         {this.state.magicAttack === true ? spellChoice : null}
         {this.state.levelUp === true ? continueButton : null}
@@ -717,7 +746,7 @@ unequip(){
       <Route path="/account/" children=<Account gameOn={this.gameOn} all={this.state}/>/>
       <Route path="/character/create/" children=<CharCreate all={this.state} gameOn={this.gameOn}/>/>
       <Route path="/character/" children=<Character all={this.state}/>/>
-      <Route path="/inventory/" children=<Inventory all={this.state}/>/>
+      <Route path="/inventory/" children=<Inventory drop={this.drop} equip={this.equip} unequip={this.unequip} all={this.state}/>/>
       <Route path="/magic/" children=<Spells light={this.light} showInfo={this.showInfo} all={this.state}/>/>
       <Route path="/build/" children=<Builder goto={this.goto} all={this.state}/>/>
       <Route path="/" children=<CharWindow heal={this.heal} all={this.state}/>/>
