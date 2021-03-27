@@ -40,6 +40,7 @@ class Mob(models.Model):
     damMessage = models.CharField(max_length=255, null=True)
     xp = models.IntegerField(null=True)
     image = models.ImageField(upload_to='mobs/', null=True)
+    inventory = models.JSONField(null=True, default=dict)
     weakness = models.CharField(
         max_length=15,
         choices=WEAKNESS_CHOICES,

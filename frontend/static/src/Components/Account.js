@@ -258,13 +258,22 @@ const profTest = {...this.state.accountData.profile}
 const profPicture = <img className="profPic" width="200" src={profTest.profile_picture}/>
 
       return(
-        <div className="loginPage">
+        <div className="loginPage row">
+        <div className="col-4">
         {logOutForm}
+        <div className="profPicContainer">
+        {profPicture}
+        </div>
         {this.state.isLoggedIn === false ? registerForm : null}
+        </div>
+        <div className="col-4">
         {accountName}
         {charInfo}
-        {profPicture}
+        </div>
+        <div className="col-4">
+
         {this.state.isLoggedIn === true ? photoSubmit : null}
+        </div>
         </div>
       );
     }

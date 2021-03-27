@@ -1,3 +1,7 @@
+img{
+  min-width: 100%
+}
+
 .App {
 background-image: url("./images/texturebw.png");
 height: 100vh;
@@ -6,6 +10,54 @@ height: 100vh;
 .AppCombat{
   background-image: url("./images/texturered.png");
   height: 100vh;
+}
+
+.accountSheet{
+  line-height: 12px;
+}
+
+.builderField{
+  width: 100%;
+}
+
+.bottomRow{
+  min-height: 18vh;
+}
+
+.box{
+border: 20px inset darkslateblue;
+}
+
+.builderWindow{
+  font-size: smaller;
+}
+
+.charbanner{
+  font-weight: bold;
+}
+
+.charSheet{
+  font-weight: bold;
+}
+
+.charSpace{
+  height: 20px;
+}
+
+.charSubmit{
+  margin-left: 20px;
+}
+
+.charWindow{
+  background-image: linear-gradient(lightgray, steelblue);
+  box-shadow: 5px 5px 5px 5px black;
+  font-size: x-large;
+  line-height: 14px;
+  padding-top: 20px;
+}
+
+.charWindow button {
+  line-height: normal;
 }
 
 .centerNav {
@@ -17,135 +69,14 @@ height: 100vh;
   color: dodgerblue;
   padding: 40px;
 }
-
-img{
-  min-width: 100%
-}
-
-.navComponent{
-  margin-top: 10px;
-}
-
-
 .centerNav a:link{
   text-decoration: none;
   text-shadow: 2px 2px 2px black;
   font-size: xx-large;
 }
 
-.profPic img{
-  max-width: 200px;
-}
-
 .centerNav a:hover{
   text-decoration: none;
-}
-
-.container{
-  font-size: large;
-  font-family: fantasy;
-}
-
-.box{
-border: 20px inset darkslateblue;
-}
-
-.fireGif{
-  transform: translateY(300px);
-  height: 100px;
-}
-
-.fireCol{
-  height: 40vh;
-}
-
-.container-fluid{
-  font-size: large;
-  font-family: fantasy;
-}
-
-.charSpace{
-  height: 20px;
-}
-
-.charbanner{
-  font-weight: bold;
-}
-.charSheet{
-  font-weight: bold;
-}
-
-.accountSheet{
-  line-height: 12px;
-}
-
-.builderField{
-  width: 100%;
-}
-
-.graphicsWindow{
-  box-shadow: 10px 10px 10px black;
-  background-color: black;
-}
-
-
-.textWindow{
-
-  text-align: center;
-  padding-top: 10px;
-  font-size: x-large;
-  background-color: black;
-  color: limegreen;
-  font-family: 'Lucida Console', monospace;
-  box-shadow: 7px 7px 7px 7px black;
-}
-
-.textWindow button{
-  font-family: fantasy;
-}
-
-
-.textWindow h2{
-  text-align: center;
-}
-
-
-.charWindow{
-  background-image: linear-gradient(lightgray, steelblue);
-  box-shadow: 5px 5px 5px 5px black;
-  font-size: x-large;
-}
-
-.topRow{
-  height: 60vh;
-}
-
-.divider{
-  height: 65px;
-}
-
-
-.bottomRow{
-  min-height: 19vh;
-}
-
-.infoWindow{
-  position: absolute;
-  right: 30%;
-  top: 5%
-}
-
-.builderWindow{
-  font-size: smaller;
-}
-
-
-
-.loginForm{
-  color: white;
-  font-weight: bold;
-  font-size: large;
-  width: 50%;
 }
 
 .combatButtons {
@@ -159,15 +90,70 @@ margin-left: 18%;
   border-radius: 4px;
 }
 
-.switchViewsButton{
-  left: 20px;
-  bottom: 90px;
-  position: absolute;
+.container{
+  font-size: large;
+  font-family: fantasy;
 }
 
-.saveButton{
-  border-radius: 4px;
-  background-image: linear-gradient(whitesmoke, steelblue);
+.container-fluid{
+  font-size: large;
+  font-family: fantasy;
+}
+
+.createField{
+  width: 50px;
+}
+
+.directionBox{
+  height: 100px;
+  width: 100px;
+  font-size: large;
+}
+.directionBox img{
+  height: 40px;
+}
+
+.divider{
+  height: 65px;
+}
+
+.dropdown-toggle{
+  margin-left: 10px;
+}
+
+.fireCol{
+  height: 40vh;
+}
+
+.fireGif{
+  transform: translateY(300px);
+  height: 100px;
+}
+
+.graphicsFill {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: fill;
+}
+
+.graphicsWindow{
+  box-shadow: 10px 10px 10px black;
+  background-color: black;
+}
+
+.infoWindow{
+  position: absolute;
+  right: 30%;
+  top: 5%
+}
+
+.inventoryWindow{
+  font-size: smaller;
+  line-height: 8px;
+}
+
+.inventoryWindow h4{
+  font-weight: bold;
 }
 
 .logButton{
@@ -176,6 +162,125 @@ margin-left: 18%;
   font-weight: bold;
   text-shadow: 2px 2px 2px darkgray;
   background-image: linear-gradient(whitesmoke, steelblue);
+}
+
+.loginForm{
+  color: white;
+  font-weight: bold;
+  font-size: large;
+  width: 50%;
+}
+.loginPage{
+  font-size: smaller;
+}
+
+.loginPage input{
+  line-height: 25px;
+}
+
+.navBox{
+  text-align: center;
+  margin-left: 65px;
+}
+
+.navComponent{
+  margin-top: 10px;
+}
+
+.photoSubmit{
+  float: right;
+}
+
+
+.profPic img{
+}
+
+.profPicContainer{
+  width: 125px;
+}
+
+.textWindow{
+  text-align: center;
+  padding-top: 10px;
+  font-size: x-large;
+  background-color: black;
+  color: limegreen;
+  font-family: 'Lucida Console', monospace;
+  box-shadow: 7px 7px 7px 7px black;
+}
+
+.textWindow button{
+  font-family: fantasy;
+}
+
+.textWindow h2{
+  text-align: center;
+}
+
+.topRow{
+  height: 58vh;
+}
+
+.routeIn{
+  animation: fadeIn 2s;
+}
+
+.saveButton{
+  border-radius: 4px;
+  background-image: linear-gradient(whitesmoke, steelblue);
+}
+
+.spellMenu{
+  font-size: smaller;
+  line-height: 8px;
+  margin-top: 5px;
+}
+.spellMenu button{
+  line-height: normal;
+}
+.spellMenu h4{
+  font-weight: bold;
+}
+.spellName:hover{
+  cursor: pointer;
+}
+
+.splashPage{
+  position: absolute;
+  max-height: 100vh;
+  min-width: 100%;
+}
+
+.startButton{
+  bottom: 50px;
+  position: absolute;
+  text-shadow: 2px 2px 2px gray;
+  font-size: xxx-large;
+  font-weight: bold;
+  color: green;
+  border-radius: 5px;
+  background-image: linear-gradient(whitesmoke, lightgreen);
+}
+
+.startButtonColumn{
+  height: 100vh;
+}
+
+.switchViewsButton{
+  left: 20px;
+  bottom: 90px;
+  position: absolute;
+}
+
+.welcomeTitle{
+  font-weight: bold;
+  text-align: center;
+  padding-top: 20%;
+}
+
+
+#moveMsg{
+transition: opacity 0 1s;
 }
 
 #nsew{
@@ -187,64 +292,6 @@ margin-left: 18%;
   cursor: pointer;
 }
 
-#moveMsg{
-  /* animation: fadeOut 1s;
-  animation-delay: 3s; */
-transition: opacity 0 1s;
-
-}
-
-.routeIn{
-  animation: fadeIn 2s;
-}
-
-@keyframes fadeOut {
-   0% {opacity: 1;}
-   100% {opacity: 0;}
-}
-
-@keyframes fadeIn {
-   0% {opacity: 0;}
-   100% {opacity: 1;}
-}
-.dropdown-toggle{
-  margin-left: 10px;
-}
-
-.createField{
-  width: 50px;
-}
-
-.navBox{
-  text-align: center;
-  margin-left: 65px;
-}
-
-.graphicsFill {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: fill;
-}
-
-
-
-.charSubmit{
-  margin-left: 20px;
-}
-
-.welcomeTitle{
-  font-weight: bold;
-  text-align: center;
-  padding-top: 20%;
-}
-.directionBox{
-  height: 100px;
-  width: 100px;
-  font-size: large;
-}
-.directionBox img{
-  height: 40px;
-}
 #nButton{
   position: absolute;
   top: 0px;
@@ -290,51 +337,18 @@ transition: opacity 0 1s;
   transform: translateX(-80px);
 }
 
-#charSaveButton{
-  float: right;
-}
-.photoSubmit{
-  float: right;
-}
-.profPic{
-  max-width: 150px;
-}
-.splashPage{
-  position: absolute;
-  max-height: 100vh;
-  min-width: 100%;
+
+@keyframes fadeOut {
+   0% {opacity: 1;}
+   100% {opacity: 0;}
 }
 
-.startButton{
-  bottom: 50px;
-  position: absolute;
-  text-shadow: 2px 2px 2px gray;
-  font-size: xxx-large;
-  font-weight: bold;
-  color: green;
-  border-radius: 5px;
-  background-image: linear-gradient(whitesmoke, lightgreen);
-
+@keyframes fadeIn {
+   0% {opacity: 0;}
+   100% {opacity: 1;}
 }
 
-.startButtonColumn{
-  height: 100vh;
-}
 
-.spellMenu{
-  font-size: smaller;
-  line-height: 8px;
-  margin-top: 5px;
-}
-.spellMenu button{
-  line-height: normal;
-}
-.spellMenu h4{
-  font-weight: bold;
-}
-.spellName:hover{
-  cursor: pointer;
-}
 
 
 /* Mobile formatting below */
@@ -342,27 +356,58 @@ transition: opacity 0 1s;
 
 @media only screen and (max-width: 700px) {
 
-.container-fluid{
-  height: 100vh;
-}
-.fireCol{
-  display: none;
+.bottomRow{
+  margin-top: 10vh;
 }
 
 .box{
-  border: none;
+    border: none;
 }
+
+.centerNav{
+  font-size: small;
+}
+
+.centerNav a:link{
+  font-size: small;
+}
+
+.charWindow{
+  max-height: 20vh;
+  font-size: small;
+}
+
+.charWindow a {
+  font-size: small;
+  }
+
+.container-fluid{
+  height: 100vh;
+}
+
+.directionBox{
+  position:absolute;
+  top: 0px;
+  right: 0%;
+  height: 100px;
+  width: 100px;
+  transform: translateY(-300px);
+  }
 
 .divider{
   display: none;
 }
 
- .centerNav{
-   font-size: small;
- }
- .centerNav a:link{
-   font-size: small;
- }
+.fireCol{
+  display: none;
+}
+
+.logButton{
+margin-top: 20px;
+right: 20px;
+  font-size: x-large;
+  bottom: 0px;
+}
 
 .textWindow{
   min-height: 30vh;
@@ -375,19 +420,8 @@ transition: opacity 0 1s;
   color: black;
 }
 
-.textWindow h1{
-  font-size: large;
-  font-weight: bold;
-}
-
-.charWindow{
-  max-height: 20vh;
-  font-size: small;
-}
-
 .splashPage{
   object-fit:cover;
-
 }
 
 .startButton{
@@ -395,32 +429,10 @@ transition: opacity 0 1s;
   font-size: xx-large;
 }
 
-.logButton{
-margin-top: 20px;
-right: 20px;
-  font-size: x-large;
-  bottom: 0px;
+.textWindow h1{
+  font-size: large;
+  font-weight: bold;
 }
-
-
-.directionBox{
-  position:absolute;
-  top: 0px;
-  right: 0%;
-  height: 100px;
-  width: 100px;
-  transform: translateY(-300px);
-  }
-
-.bottomRow{
-  margin-top: 10vh;
-}
-
-  .charWindow a {
-    font-size: small;
-    }
-
-
 
 }
 

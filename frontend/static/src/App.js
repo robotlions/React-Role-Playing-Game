@@ -92,6 +92,8 @@ this.mobAttack = this.mobAttack.bind(this);
 this.light = this.light.bind(this);
 this.checkLight = this.checkLight.bind(this);
 this.checkFight = this.checkFight.bind(this);
+this.conjure = this.conjure.bind(this);
+this.conjureWeapon = this.conjureWeapon.bind(this);
   }
 
   componentDidMount(){
@@ -147,7 +149,13 @@ this.checkFight = this.checkFight.bind(this);
     .then(response => this.setState({spells: response}))
     const spells = this.state.spells
 
+    fetch("/items/")
+  .then(response => response.json())
+  .then(response => this.setState({itemList: response}))
+  const itemList = this.state.itemList
+
       document.addEventListener('keydown', this.logKey);
+
 
 
 
@@ -255,7 +263,7 @@ meleeAttack(char, mob, charWeapon) {
   if (charAttack > mobEvade){
     const damage = this.rando(charWeapon.damageLow, charWeapon.damageHigh)
     mob.hp = mob.hp - damage
-    this.setState({charAttackMessage: `${char.name} ${charWeapon.damMessage} the ${mob.name} for ${damage} points of damage!`});
+    this.setState({charAttackMessage: `${char.name}'s ${charWeapon.material} ${charWeapon.name} ${charWeapon.damMessage} the ${mob.name} for ${damage} points of damage!`});
   }
   else {
     this.setState({charAttackMessage: `${char.name} misses the ${mob.name}!`})
@@ -560,11 +568,30 @@ showInfo(){
   alert('this will show spell, weapon and mob info when you click on them')
 }
 
+conjure(id){
+  const char = {...this.state.char}
+  const itemList = this.state.itemList
+  let i = itemList.filter(item => item.id == id)
+  i = i[0]
+  char.inventory.push(i);
+  this.setState({char})
+}
 
+conjureWeapon(id){
+  const char = this.state.char
+  const weaponList = [...this.state.weaponList]
+  let i = weaponList.filter(item => item.id == id)
+  i = i[0]
+  const inv = char.weaponInventory;
+  inv.push(i)
+}
 
-
-
-
+drop(id){
+const char = {...this.state.char}
+let i = char.inventory.findIndex(item => item.id == id)
+char.inventory.splice(i, 1)
+this.setState({char})
+}
 
 
 
@@ -668,7 +695,7 @@ showInfo(){
       <Route path="/account/" children=<Account gameOn={this.gameOn} all={this.state}/>/>
       <Route path="/character/create/" children=<CharCreate all={this.state} gameOn={this.gameOn}/>/>
       <Route path="/character/" children=<Character all={this.state}/>/>
-      <Route path="/inventory/" component={Inventory}/>
+      <Route path="/inventory/" children=<Inventory all={this.state}/>/>
       <Route path="/magic/" children=<Spells light={this.light} showInfo={this.showInfo} all={this.state}/>/>
       <Route path="/build/" children=<Builder goto={this.goto} all={this.state}/>/>
       <Route path="/" children=<CharWindow heal={this.heal} all={this.state}/>/>

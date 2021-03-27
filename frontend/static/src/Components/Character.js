@@ -18,10 +18,10 @@ const charSheet1 = <div className="charSheet">
 <p>Level: {char.level}</p>
 </div>
 const charSheet2 = <div className="charSheet">
-<p>Strength: {char.str}</p>
-<p>Intelligence: {char.int}</p>
-<p>Dexterity: {char.dex}</p>
-<p>Constitution: {char.con}</p>
+<p>Strength: {char.str} (+{char.strBonus})</p>
+<p>Intelligence: {char.int} (+{char.intBonus})</p>
+<p>Dexterity: {char.dex} (+{char.dexBonus})</p>
+<p>Constitution: {char.con} (+{char.conBonus})</p>
 </div>
 const charSheet3 = <div className="charSheet">
 <p>Armor: {char.ac}</p>
