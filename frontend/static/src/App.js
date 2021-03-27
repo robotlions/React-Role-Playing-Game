@@ -99,6 +99,7 @@ this.equip = this.equip.bind(this);
 this.unequip = this.unequip.bind(this);
 this.checkMob = this.checkMob.bind(this);
 this.buy = this.buy.bind(this);
+this.summon = this.summon.bind(this);
   }
 
   componentDidMount(){
@@ -605,8 +606,19 @@ conjure(id){
   i = i[0]
   char.inventory.push(i);
   this.setState({char})
+  this.setState({currentItem: i})
 }
 
+
+summon(id){
+  const char = {...this.state.char}
+  const mobList = this.state.mobList
+  let mob = mobList.filter(mob => mob.id == id)
+  mob = mob[0]
+  alert(`A ${mob.name} appears!`)
+  this.setState({mob})
+  this.setState({mobInRoom: mob})
+}
 
 drop(id){
 const char = {...this.state.char}

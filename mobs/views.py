@@ -8,3 +8,7 @@ from .serializers import MobSerializer
 class MobListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = MobSerializer
     queryset = Mob.objects.all()
+
+class MobRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = MobSerializer
+    queryset = Mob.objects.all()
