@@ -93,7 +93,7 @@ this.light = this.light.bind(this);
 this.checkLight = this.checkLight.bind(this);
 this.checkFight = this.checkFight.bind(this);
 this.conjure = this.conjure.bind(this);
-this.conjureWeapon = this.conjureWeapon.bind(this);
+this.drop = this.drop.bind(this);
   }
 
   componentDidMount(){
@@ -577,14 +577,6 @@ conjure(id){
   this.setState({char})
 }
 
-conjureWeapon(id){
-  const char = this.state.char
-  const weaponList = [...this.state.weaponList]
-  let i = weaponList.filter(item => item.id == id)
-  i = i[0]
-  const inv = char.weaponInventory;
-  inv.push(i)
-}
 
 drop(id){
 const char = {...this.state.char}
@@ -594,6 +586,36 @@ this.setState({char})
 }
 
 
+equip(id){
+  const char = {...this.state.char}
+  const inv = char.inventory
+  if(char.equippedWeapon != null){
+    this.unequip()
+  }
+  let i = inv.findIndex(item => item.id == id)
+  let weapon = inv.filter(item => item.id == id)
+  weapon = weapon[0]
+  if(weapon.isWeapon == true){
+    char.inventory.splice(i, 1)
+    char.equippedWeapon = weapon
+    this.setState({char})}
+    else {
+      alert(`That's not a weapon.`)
+    }
+  }
+
+
+
+unequip(){
+  const char = {...this.state.char}
+  const itemList = this.state.itemList
+  let i = char.equippedWeapon.id
+  let weapon = itemList.filter(item => item.id == i)
+  weapon = weapon[0]
+  char.equippedWeapon = null;
+  char.inventory.push(weapon);
+  this.setState({char});
+}
 
   render(){
     if(this.state.combat == true){

@@ -10,11 +10,11 @@ class Inventory extends Component {
         }
       }
         render(){
-const currentWeapon = this.props.all.char.equippedWeapon
+const currentWeapon = this.props.all.char.equippedWeapon ? this.props.all.char.equippedWeapon : "none"
 const inv = this.props.all.char.inventory
 const inventoryEquippedWeapon = <div>
 <h4>Equipped Weapon</h4>
-<p>{`Name: ${currentWeapon.material} ${currentWeapon.name}`}</p>
+<p>Name: {currentWeapon.material} {currentWeapon.name}</p>
 <p>Damage: {currentWeapon.damageLow} - {currentWeapon.damageHigh}</p>
 </div>
 
@@ -32,15 +32,6 @@ const weaponList = inv.filter(item => item.isWeapon == true)
 ));
 
 
-// const coinTest = inv.filter(item => item.id == 1)
-
-// const coinList = inv.filter(item => item.id == 1)
-// .map((item) =>(
-//   <div>
-//   <p>{coinTest.length} {item.name}</p>
-//   </div>
-// ))
-
 
 
 
@@ -56,7 +47,7 @@ const weaponList = inv.filter(item => item.isWeapon == true)
     <div className="col-4">
     <h4>Inventory</h4>
     {inventoryList}
-  
+
     </div>
     <div className="col-4">
     <h4>Weapons</h4>

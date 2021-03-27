@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 
 from weapons.models import Weapon
+from items.models import Item
 
 
 
@@ -36,7 +37,8 @@ class Character(models.Model):
     lastRoom = models.IntegerField(null=True, blank=True)
     inventory = models.JSONField(null=True, blank=True, default=dict)
     weaponInventory = models.JSONField(null=True, blank=True)
-    equippedWeapon = models.ForeignKey(Weapon, on_delete=models.CASCADE, null=True)
+    equippedWeapon = models.JSONField(null=True, blank=True, default=dict)
+    silver = models.IntegerField(null=True, blank=True, default=200)
     job = models.CharField(
         max_length=15,
         choices=JOB_CHOICES,
@@ -44,3 +46,6 @@ class Character(models.Model):
 
     def __str__(self):
         return self.name
+
+
+        # models.ForeignKey(Item, on_delete=models.CASCADE, null=True, blank=True, default=dict)
