@@ -1,15 +1,15 @@
 img{
-  min-width: 100%
+  min-width: 100%;
 }
 
 .App {
 background-image: url("./images/texturebw.png");
-height: 100vh;
+min-height: 100vh;
 }
 
 .AppCombat{
   background-image: url("./images/texturered.png");
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .accountSheet{
@@ -369,6 +369,8 @@ transition: opacity 0 1s;
 
 .box{
     border: none;
+    box-shadow: none;
+
 }
 
 .centerNav{
@@ -387,11 +389,17 @@ transition: opacity 0 1s;
   line-height: 10px;
 }
 
+.charSpace{
+  display: block;
+}
+
 .charWindow{
-  margin-top:10vh;
-  font-size: small;
-  min-height: 25vh;
-  overflow: scroll;
+  min-height: 20vh;
+  font-size: x-small;
+  overflow-y: scroll;
+  padding-top: 5px;
+  position: absolute;
+  margin-top: 20vh;
 }
 
 .charWindow a {
@@ -400,19 +408,21 @@ transition: opacity 0 1s;
 
 .container-fluid{
   max-width: 100vw;
+  box-shadow: none;
 }
 
 .directionBox{
-  position:absolute;
-  top: 0px;
+  position: fixed;
+  bottom: 50%;
   right: 0%;
   height: 100px;
   width: 100px;
-  transform: translateY(-300px);
+
   }
 
 .divider{
   display: none;
+  height: 0;
 }
 
 .fireCol{
@@ -420,8 +430,11 @@ transition: opacity 0 1s;
 }
 
 .graphicsWindow{
-  min-height: 45vh;
-  max-height: 40vh;
+  box-shadow: none;
+}
+
+.graphicsFill{
+  position: fixed;
 }
 
 .inventoryWindow{
@@ -442,7 +455,6 @@ transition: opacity 0 1s;
 
 
 .textWindow{
-  min-height: 25vh;
   max-width: 100%;
   font-size: small;
   text-align: center;
@@ -450,9 +462,13 @@ transition: opacity 0 1s;
   background-image: linear-gradient(lightgray, lightslategray);
   font-family: fantasy;
   color: black;
-  overflow-y: scroll;
-}
+  overflow: auto;
+  box-shadow: none;
+  position: absolute;
+  min-height: 30vh;
+  margin-top: 50vh;
 
+}
 
 .spellMenu{
   font-size: small;
@@ -481,24 +497,30 @@ transition: opacity 0 1s;
 .textWindow h1{
   font-size: large;
   font-weight: bold;
+  box-shadow: none;
+}
+
+.upDownBox{
+  position: fixed;
+  left: 0px;
+}
+
+#uButton{
+  position: fixed;
+  transform: translateY(-40vh);
+  left: 50vw;
+}
+
+#dButton{
+  position: fixed;
+  transform: translateY(-30vh);
+  left: 50vw;
 }
 
 #nsew{
-  position: relative;
   letter-spacing: 5px;
   font-weight: bold;
-  right: 0px;
   cursor: pointer;
-}
-.upDownBox{
-  transform: translateY(-200px);
-}
-  #uButton{
-    transform: none;
-
-  }
-#dButton{
-  transform: none;
 }
 
 
@@ -514,8 +536,25 @@ transition: opacity 0 1s;
 
 .container-fluid{
   height: 100vh;
+  box-shadow: none;
 }
 .box{
   border: none;
+  box-shadow: none;
+
 }
+.charWindow{
+  margin-top: 0;
+  min-height: 45vh;
+  box-shadow: none;
+
+}
+.divider{
+  display: none;
+  height: 0px;
+}
+.fireCol{
+  display:flex;
+}
+
 }

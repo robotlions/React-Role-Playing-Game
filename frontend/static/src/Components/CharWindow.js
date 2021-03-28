@@ -35,7 +35,7 @@ saveChar(char){
     const saveChar = <button className="saveButton" id="charSaveButton" onClick={()=>this.saveChar(char)}>Save Character</button>
     const charWindow = <div>
     <div className="row charbanner">
-    <div className="col-3 char">Name</div>
+    <div className="col-2 char">Name</div>
     <div className="col-2 class">Class</div>
     <div className="col-1 lvl">Lvl</div>
     <div className="col-1 ac">AC</div>
@@ -44,9 +44,8 @@ saveChar(char){
     <div className="col-1 xp">XP</div>
     <div className="col-1 weapon">Weapon</div>
     </div>
-    <div className="row charSpace"></div>
     <div className="row char1row">
-    <p className="col-3 char1">{char.name}</p>
+    <p className="col-2 char1">{char.name}</p>
     <p className="col-2 cl1">{char.job}</p>
     <p className="col-1 lvl1">{char.level}</p>
     <p className="col-1 ac1">{char.ac}</p>
@@ -57,7 +56,7 @@ saveChar(char){
     </div></div>
 
   return (
-<div>
+<div className="saveRow">
     {this.props.all.char ? charWindow : <p>Welcome! Click "CREATE CHARACTER" above.</p>}
     {this.props.all.char && this.props.all.gameOn === true ? saveChar : null}
     </div>

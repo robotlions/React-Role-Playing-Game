@@ -775,7 +775,7 @@ unequip(){
           <div className={`col-sm-4 box graphicsWindow`} style={{padding: "0px"}}>
           <GraphicsWindow all={this.state}/>
           </div>
-<div className="col-1 fireCol">{this.state.lightSpell === true ? <img className="fireGif" src={flame} alt="fire"/> : null} </div>
+<div className="col-sm-1 fireCol">{this.state.lightSpell === true ? <img className="fireGif" src={flame} alt="fire"/> : null} </div>
         <div className={`col-sm-7 box textWindow`}>
         {this.state.combat == true ? combatTitle : null}
         <p>{charAttackMessage}</p>

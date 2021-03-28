@@ -94,7 +94,7 @@ else {
     {this.props.all.gameOn === true ? <p>{desc}</p> : welcomeTitle}
     {this.props.all.gameOn === true ? mobInRoomMessage : null}
     {mobShopMessage}
-    {this.props.all.gameOn === true ? <section id="nsew">{nsew}</section> : null}
+    <div id="nsew">{nsew}</div>
     </div>
   );
 }
