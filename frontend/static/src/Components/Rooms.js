@@ -90,9 +90,9 @@ else {
 
   return (
     <div>
-    {this.props.all.travelling != true ? <h1>{roomname}</h1> : null}
+    {this.props.all.travelling != true && this.props.all.gameOn === true ? <h1>{roomname}</h1> : null}
     <p id="moveMsg">{moveMsg}</p>
-    {this.props.all.gameOn === true ? <p>{desc}</p> : null}
+    {this.props.all.gameOn === true ? <p>{desc}</p> : welcomeTitle}
     {this.props.all.gameOn === true ? mobInRoomMessage : null}
     {mobShopMessage}
     {this.props.all.gameOn === true ? <section id="nsew">{nsew}</section> : null}

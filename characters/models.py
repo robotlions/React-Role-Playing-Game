@@ -35,9 +35,9 @@ class Character(models.Model):
     spmax = models.IntegerField(null=True)
     xp = models.IntegerField(null=True)
     lastRoom = models.IntegerField(null=True, blank=True)
-    inventory = models.JSONField(null=True, blank=True, default=dict)
+    inventory = models.JSONField(null=True, blank=True, default=[])
     weaponInventory = models.JSONField(null=True, blank=True)
-    equippedWeapon = models.JSONField(null=True, blank=True, default=dict)
+    equippedWeapon = models.ForeignKey(Item, on_delete=models.CASCADE, default=3, null=True)
     silver = models.IntegerField(null=True, blank=True, default=200)
     job = models.CharField(
         max_length=15,

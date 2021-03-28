@@ -100,6 +100,8 @@ this.unequip = this.unequip.bind(this);
 this.checkMob = this.checkMob.bind(this);
 this.buy = this.buy.bind(this);
 this.summon = this.summon.bind(this);
+this.newChar = this.newChar.bind(this);
+this.useItem = this.useItem.bind(this);
   }
 
   componentDidMount(){
@@ -177,6 +179,15 @@ this.summon = this.summon.bind(this);
 
 }
 
+newChar(){
+  fetch("/characters/")
+.then(response => response.json())
+.then(response => response[0])
+.then(response => this.setState({char: response}))
+setTimeout(()=>{this.conjure(4)}, 2000);
+}
+
+
 logKey(e) {
   if(e.code === 'MetaRight'){
     this.setState(prevState => ({
@@ -195,7 +206,8 @@ startGame(){
 
 gameOn(){
   const rooms = this.state.roomList
-  this.setState({currentRoom: rooms[9]})
+  this.goto(27)
+  // this.setState({currentRoom: rooms[9]})
   this.setState({image: this.state.currentRoom.static})
   this.setState({gameOn: true});
 }
@@ -496,7 +508,14 @@ async levelUp(char, level){
     setTimeout(()=>{this.sendTweet()}, 500);
   }
 
-
+useItem(id){
+  const char = this.state.char
+  if(id === 4){
+    setTimeout(()=>{this.setState({lightSpell: true, playerMessage: `${char.name} lights a torch.`})}, 500);
+    setTimeout(()=>{this.setState({playerMessage: ""})}, 4000);
+    setTimeout(()=>{this.setState({lightSpell: false})}, 300000)
+  }
+}
 
 
 //builder commands below
@@ -740,11 +759,12 @@ unequip(){
         {this.state.combat == true ? combatTitle : null}
         <p>{charAttackMessage}</p>
         <p>{mobAttackMessage}</p>
-        <p>{playerMessage}</p>
+
         {this.state.combatwindow == false ? <Rooms all={this.state} buy={this.buy} travel={this.travel} goto={this.goto} currentRoom={this.state.currentRoom} changeRoomImage={this.changeRoomImage}/>
         : <p className="combatButtons">{meleeAttackButton}{magicAttackButton}{runAwayButton}</p>}
         {this.state.magicAttack === true ? spellChoice : null}
         {this.state.levelUp === true ? continueButton : null}
+        <p>{playerMessage}</p>
 
         </div>
     </div>
@@ -756,9 +776,9 @@ unequip(){
       <React.Fragment>
       <Switch>
       <Route path="/account/" children=<Account gameOn={this.gameOn} all={this.state}/>/>
-      <Route path="/character/create/" children=<CharCreate all={this.state} gameOn={this.gameOn}/>/>
+      <Route path="/character/create/" children=<CharCreate all={this.state} conjure={this.conjure} newChar={this.newChar} gameOn={this.gameOn}/>/>
       <Route path="/character/" children=<Character all={this.state}/>/>
-      <Route path="/inventory/" children=<Inventory drop={this.drop} equip={this.equip} unequip={this.unequip} all={this.state}/>/>
+      <Route path="/inventory/" children=<Inventory useItem={this.useItem} drop={this.drop} equip={this.equip} unequip={this.unequip} all={this.state}/>/>
       <Route path="/magic/" children=<Spells light={this.light} showInfo={this.showInfo} all={this.state}/>/>
       <Route path="/build/" children=<Builder goto={this.goto} all={this.state}/>/>
       <Route path="/" children=<CharWindow heal={this.heal} all={this.state}/>/>

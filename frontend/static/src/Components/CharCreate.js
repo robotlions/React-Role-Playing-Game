@@ -77,6 +77,7 @@ this.statDown = this.statDown.bind(this);
       if(response.ok){
         this.setState({completed: `Character ${data.name}, a level ${data.level} ${data.job}, created!`, name: "", job: "Choose"});
         setTimeout(()=>{this.props.history.push("/character/")}, 1500);
+        this.props.newChar();
         this.props.gameOn();
 
 

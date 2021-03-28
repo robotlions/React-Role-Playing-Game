@@ -33,7 +33,7 @@ handleSubmit(event) {
             <section className="spellMenu" key={spell.id}>
           <h4 className="spellName" onClick={this.props.showInfo} >Name: {spell.name.toUpperCase()}</h4>
           <span>{`Element: ${spell.element} - Level: ${spell.level}`} </span>
-          {spell.combat === false ? <button onClick={()=>this.props.[spell.name]()}>Cast!</button> : <span>-Combat Only-</span>}
+          {spell.combat === false ? <button className="saveButton" onClick={()=>this.props.[spell.name]()}>Cast!</button> : <span>-Combat Only-</span>}
           </section>));
 
 
