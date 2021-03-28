@@ -391,6 +391,7 @@ transition: opacity 0 1s;
   margin-top:10vh;
   font-size: small;
   min-height: 25vh;
+  overflow: scroll;
 }
 
 .charWindow a {
@@ -449,6 +450,7 @@ transition: opacity 0 1s;
   background-image: linear-gradient(lightgray, lightslategray);
   font-family: fantasy;
   color: black;
+  overflow-y: scroll;
 }
 
 
