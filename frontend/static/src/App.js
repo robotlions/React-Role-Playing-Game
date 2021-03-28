@@ -102,6 +102,7 @@ this.buy = this.buy.bind(this);
 this.summon = this.summon.bind(this);
 this.newChar = this.newChar.bind(this);
 this.useItem = this.useItem.bind(this);
+this.useTorch = this.useTorch.bind(this);
   }
 
   componentDidMount(){
@@ -444,10 +445,16 @@ startRandomFight(){
   const mobList = this.state.mobList;
   const rand = Math.floor(Math.random() * (mobList.length - 1) ) + 1;
   const mob = mobList[rand]
-  this.setState({mob})
-  this.setState({image: mob.image})
-  setTimeout(() => {this.setState({playerMessage: `A bloodthirsty ${this.state.mob.name} emerges from the shadows! \n Will you fight or flee?`})}, 500);
+  if(mob.isShopkeeper != true){
+    this.setState({mob})
+    this.setState({image: mob.image})
+    setTimeout(() => {this.setState({playerMessage: `A bloodthirsty ${this.state.mob.name} emerges from the shadows! \n Will you fight or flee?`})}, 500);
+  }
+  else{
+    this.startRandomFight()
+  }
 }
+
 
 timeHeal() {
   if(this.state.char){
@@ -509,12 +516,16 @@ async levelUp(char, level){
   }
 
 useItem(id){
-  const char = this.state.char
-  if(id === 4){
-    setTimeout(()=>{this.setState({lightSpell: true, playerMessage: `${char.name} lights a torch.`})}, 500);
-    setTimeout(()=>{this.setState({playerMessage: ""})}, 4000);
-    setTimeout(()=>{this.setState({lightSpell: false})}, 300000)
+  alert('future use item function')
+
   }
+
+useTorch(){
+  const char = this.state.char
+  setTimeout(()=>{this.setState({lightSpell: true, playerMessage: `${char.name} lights a torch.`})}, 500);
+  setTimeout(()=>{this.setState({playerMessage: ""})}, 4000);
+  setTimeout(()=>{this.setState({lightSpell: false})}, 300000);
+  this.drop(4);
 }
 
 
@@ -561,7 +572,6 @@ setTimeout(()=>{
   const rooms = this.state.roomList;
   let dest = rooms.filter(room => room.id == arg);
   dest = dest[0];
-  console.log(dest);
   if (dest){
   this.setState({currentRoom: dest, immWindow: "", arg: ""});
   this.resetWindow();
@@ -778,7 +788,7 @@ unequip(){
       <Route path="/account/" children=<Account gameOn={this.gameOn} all={this.state}/>/>
       <Route path="/character/create/" children=<CharCreate all={this.state} conjure={this.conjure} newChar={this.newChar} gameOn={this.gameOn}/>/>
       <Route path="/character/" children=<Character all={this.state}/>/>
-      <Route path="/inventory/" children=<Inventory useItem={this.useItem} drop={this.drop} equip={this.equip} unequip={this.unequip} all={this.state}/>/>
+      <Route path="/inventory/" children=<Inventory useTorch={this.useTorch} useItem={this.useItem} drop={this.drop} equip={this.equip} unequip={this.unequip} all={this.state}/>/>
       <Route path="/magic/" children=<Spells light={this.light} showInfo={this.showInfo} all={this.state}/>/>
       <Route path="/build/" children=<Builder goto={this.goto} all={this.state}/>/>
       <Route path="/" children=<CharWindow heal={this.heal} all={this.state}/>/>

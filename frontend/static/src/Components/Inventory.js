@@ -6,12 +6,14 @@ class Inventory extends Component {
   constructor (props){
         super(props);
         this.state = {
-
+        count: []
         }
+        this.listCount = this.listCount.bind(this);
       }
 
-
-
+listCount(array){
+   array.forEach(item => {let i = item.id; this.state.i++; this.setState({i})})
+ }
 
         render(){
 const currentWeapon = this.props.all.char.equippedWeapon ? this.props.all.char.equippedWeapon : "none"
@@ -34,19 +36,16 @@ const inventoryEquippedWeapon = <div>
 
 //The above bit works at listing the items and amounts. It's not what I'm looking for, but learn from it.
 
-// const testList = inv.filter(item => item.isWeapon == false)
-// .reduce((a, item) => [item.name = item.name + 1])
-// .map((item) => (
-//   <div key={item.id}>
-//   <p>- {item.name} {item.isUsable == true ? <button onClick={()=>this.props.useItem(item.id)} className="saveButton">Use</button> : null}</p>
-// </div>));
-// console.log(testList)
+const torches = inv.filter(item => item.name == 'torch').length
 
+const torchList = <div>
+<p>{torches} - Torches <button onClick={this.props.useTorch} className="saveButton">Use</button></p>
+</div>
 
 const inventoryList = inv.filter(item => item.isWeapon == false)
 .map((item, index) => (
   <div key={index}>
-  <p>- {item.name} {item.isUsable == true ? <button onClick={()=>this.props.useItem(item.id)} className="saveButton">Use</button> : null}</p>
+  <p>-{item.name} {item.isUsable == true ? <button onClick={()=>this.props.useItem(item.id)} className="saveButton">Use</button> : null}</p>
 </div>));
 
 const weaponList = inv.filter(item => item.isWeapon == true)
@@ -62,8 +61,6 @@ const silver = this.props.all.char.silver
 
 
 
-
-
   return(
 
     <div className="row inventoryWindow">
@@ -73,7 +70,7 @@ const silver = this.props.all.char.silver
     </div>
     <div className="col-4">
     <h4>Inventory</h4>
-    {inventoryList}
+    {torchList}
     </div>
     <div className="col-4">
     <h4>Weapons</h4>
