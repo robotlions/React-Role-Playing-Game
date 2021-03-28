@@ -276,6 +276,10 @@ margin-left: 18%;
   position: absolute;
 }
 
+.upDownBox{
+  transform: translateX(-350%);
+}
+
 .welcomeTitle{
   font-weight: bold;
   text-align: center;
@@ -327,8 +331,7 @@ transition: opacity 0 1s;
   color: dodgerblue;
   position: absolute;
   top: 0%;
-  transform: translateY(-20px);
-  transform: translateX(-80px);
+  transform: translateY(-100%);
 }
 
 #dButton{
@@ -337,8 +340,6 @@ transition: opacity 0 1s;
   position: absolute;
   left: 0%;
   bottom: 0%;
-  transform:translateY(30px);
-  transform: translateX(-80px);
 }
 
 
@@ -360,8 +361,10 @@ transition: opacity 0 1s;
 
 @media only screen and (max-width: 700px) {
 
-.bottomRow{
+
+ .bottomRow{
   margin-top: 10vh;
+  min-height: 20vh;
 }
 
 .box{
@@ -370,14 +373,21 @@ transition: opacity 0 1s;
 
 .centerNav{
   font-size: small;
+  position: absolute;
+  top: 0%;
 }
 
 .centerNav a:link{
   font-size: small;
+  padding: 5px;
+}
+
+.charSheet{
+  font-size: small;
+  line-height: 10px;
 }
 
 .charWindow{
-  max-height: 20vh;
   font-size: small;
 }
 
@@ -386,7 +396,7 @@ transition: opacity 0 1s;
   }
 
 .container-fluid{
-  height: 100vh;
+  max-width: 100vw;
 }
 
 .directionBox{
@@ -406,22 +416,46 @@ transition: opacity 0 1s;
   display: none;
 }
 
+.graphicsWindow{
+  min-height: 45vh;
+  max-height: 40vh;
+}
+
+.inventoryWindow{
+  font-size: small;
+}
+.inventoryWindow h4{
+  font-size: 10px;
+}
+
 .logButton{
 margin-top: 20px;
 right: 20px;
   font-size: x-large;
-  bottom: 0px;
+  bottom: 10px;
+  width: 120px;
+  position: absolute;
+
 }
 
 .textWindow{
-  min-height: 30vh;
+  min-height: 10vh;
+  max-height: 30vh;
+  max-width: 100%;
   font-size: small;
   text-align: center;
   font-size: small;
   background-image: linear-gradient(lightgray, lightslategray);
-  box-shadow: inset 7px 7px 7px 7px darkgray;
   font-family: fantasy;
   color: black;
+}
+
+.spellMenu{
+  font-size: small;
+}
+
+.spellMenu h4{
+  font-size: 10px;
 }
 
 .splashPage{
@@ -430,13 +464,34 @@ right: 20px;
 
 .startButton{
   right: 20px;
+  margin-bottom: 10px;
   font-size: xx-large;
+  width: 120px;
 }
 
 .textWindow h1{
   font-size: large;
   font-weight: bold;
 }
+
+#nsew{
+  position: relative;
+  letter-spacing: 5px;
+  font-weight: bold;
+  right: 0px;
+  cursor: pointer;
+}
+.upDownBox{
+  transform: translateY(-200px);
+}
+  #uButton{
+    transform: none;
+
+  }
+#dButton{
+  transform: none;
+}
+
 
 }
 
@@ -447,8 +502,11 @@ right: 20px;
 /*landscape mobile below*/
 
 @media screen and (max-width: 800px) and (orientation:landscape) {
-.container{
-  margin: none;
-  padding: none;
+
+.container-fluid{
+  height: 100vh;
+}
+.box{
+  border: none;
 }
 }

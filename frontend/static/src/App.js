@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { withRouter } from 'react-router';
 import {useState} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import CharWindow from './Components/CharWindow';
@@ -103,6 +104,7 @@ this.summon = this.summon.bind(this);
 this.newChar = this.newChar.bind(this);
 this.useItem = this.useItem.bind(this);
 this.useTorch = this.useTorch.bind(this);
+this.checkShop = this.checkShop.bind(this);
   }
 
   componentDidMount(){
@@ -398,7 +400,6 @@ handleInput(event){
 travel(dest, dir) {
   this.setState({travelling: true});
   this.setState({currentRoom: ""})
-  // this.setState({currentRoom: dest});
   this.setState({playerMessage: `You walk to the ${dir}.`})
   setTimeout(()=>{
   this.setState({travelling: false});
@@ -434,9 +435,18 @@ checkMob(){
   let mobId = this.state.currentRoom.mobInRoom
   let mobInRoom = mobList.filter(mob => mob.id == mobId)
   this.setState({mobInRoom})
-
+  this.checkShop()
 }
 
+  checkShop(){
+    if(this.state.mobInRoom.length > 0){
+    let char = this.state.char
+    let mob = this.state.mobInRoom
+    if(mob[0].isShopkeeper === true){
+      this.props.history.push("/inventory/")
+    }
+  }
+  }
 
 startRandomFight(){
   const char = this.state.char
@@ -523,6 +533,7 @@ useItem(id){
 useTorch(){
   const char = this.state.char
   setTimeout(()=>{this.setState({lightSpell: true, playerMessage: `${char.name} lights a torch.`})}, 500);
+  setTimeout(()=>{this.checkLight();}, 100);
   setTimeout(()=>{this.setState({playerMessage: ""})}, 4000);
   setTimeout(()=>{this.setState({lightSpell: false})}, 300000);
   this.drop(4);
@@ -761,11 +772,11 @@ unequip(){
       <div className="container-fluid">
         <div className="row topRow">
 
-          <div className={`col-md-4 box graphicsWindow`} style={{padding: "0px"}}>
+          <div className={`col-sm-4 box graphicsWindow`} style={{padding: "0px"}}>
           <GraphicsWindow all={this.state}/>
           </div>
 <div className="col-1 fireCol">{this.state.lightSpell === true ? <img className="fireGif" src={flame} alt="fire"/> : null} </div>
-        <div className={`col-md-7 box textWindow`}>
+        <div className={`col-sm-7 box textWindow`}>
         {this.state.combat == true ? combatTitle : null}
         <p>{charAttackMessage}</p>
         <p>{mobAttackMessage}</p>
@@ -802,4 +813,4 @@ unequip(){
   );
 }
 }
-export default App;
+export default withRouter(App);

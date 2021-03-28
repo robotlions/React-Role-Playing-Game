@@ -58,7 +58,7 @@ saveChar(char){
 
   return (
 <div>
-    {this.props.all.char ? charWindow : <p>Please log in to load your character or feel free to play our demo.</p>}
+    {this.props.all.char ? charWindow : <p>Welcome! Click "CREATE CHARACTER" above.</p>}
     {this.props.all.char && this.props.all.gameOn === true ? saveChar : null}
     </div>
   );

@@ -64,9 +64,9 @@ else {
     const mobInRoomMessage = <div>
     {this.props.all.mobInRoom.length > 0 ? <p>{mobInRoom.name} is here.</p> : null}</div>
 
-    const mobShopMessage = <div> {this.props.all.mobInRoom.length > 0 ?
+    const mobShopMessage = <div> {this.props.all.mobInRoom.length > 0 && this.props.all.mobInRoom[0].isShopkeeper == true ?
     mobInRoom.inventory.map((item) => (
-      <p key={item.id}>- {item.material.toUpperCase()} {item.name.toUpperCase()} - Price: ${item.value} <button className="saveButton" onClick={()=>this.props.buy(item.id)}>BUY</button></p>
+      <p key={item.id}>- {item.material.toUpperCase()} {item.name.toUpperCase()} - Price: {item.value} silver <button className="saveButton" onClick={()=>this.props.buy(item.id)}>BUY</button></p>
     )) : null }</div>
 
 
@@ -78,8 +78,8 @@ else {
     {this.props.currentRoom.west ? <div id="wButton" title="west" onClick={this.move}><img title="west" src={wButton}/></div> : null}
     </div>
     <div className="upDownBox">
-    {this.props.currentRoom.up ? <div id="uButton" title="up" onClick={this.move}>UP</div> : null}
-    {this.props.currentRoom.down ? <div id="dButton" title="down" onClick={this.move}>DOWN</div> : null}
+    {this.props.currentRoom.up ? <div id="uButton" title="up" onClick={this.move}>CLIMB UP</div> : null}
+    {this.props.currentRoom.down ? <div id="dButton" title="down" onClick={this.move}>CLIMB DOWN</div> : null}
     </div>
     </div>
 
@@ -89,9 +89,8 @@ else {
 
 
   return (
-    <div>
+    <div className="roomData">
     {this.props.all.travelling != true && this.props.all.gameOn === true ? <h1>{roomname}</h1> : null}
-    <p id="moveMsg">{moveMsg}</p>
     {this.props.all.gameOn === true ? <p>{desc}</p> : welcomeTitle}
     {this.props.all.gameOn === true ? mobInRoomMessage : null}
     {mobShopMessage}

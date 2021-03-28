@@ -259,20 +259,16 @@ const profPicture = <img className="profPic" width="200" src={profTest.profile_p
 
       return(
         <div className="loginPage row">
-        <div className="col-4">
+        <div className="col-auto">
         {logOutForm}
         <div className="profPicContainer">
         {profPicture}
         </div>
         {this.state.isLoggedIn === false ? registerForm : null}
         </div>
-        <div className="col-4">
+        <div className="col-auto">
         {accountName}
         {charInfo}
-        </div>
-        <div className="col-4">
-
-        {this.state.isLoggedIn === true ? photoSubmit : null}
         </div>
         </div>
       );
