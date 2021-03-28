@@ -172,7 +172,7 @@ margin-left: 18%;
   color: white;
   font-weight: bold;
   font-size: large;
-  width: 50%;
+  width: 25%;
 }
 .loginPage{
   font-size: smaller;
@@ -362,10 +362,10 @@ transition: opacity 0 1s;
 @media only screen and (max-width: 700px) {
 
 
- .bottomRow{
+ /* .bottomRow{
   margin-top: 10vh;
   min-height: 20vh;
-}
+} */
 
 .box{
     border: none;
@@ -388,7 +388,9 @@ transition: opacity 0 1s;
 }
 
 .charWindow{
+  margin-top:10vh;
   font-size: small;
+  min-height: 25vh;
 }
 
 .charWindow a {
@@ -429,18 +431,17 @@ transition: opacity 0 1s;
 }
 
 .logButton{
-margin-top: 20px;
-right: 20px;
   font-size: x-large;
-  bottom: 10px;
   width: 120px;
-  position: absolute;
-
+}
+.loginForm{
+  padding-top: 80%;
+  width: 100%;
 }
 
+
 .textWindow{
-  min-height: 10vh;
-  max-height: 30vh;
+  min-height: 25vh;
   max-width: 100%;
   font-size: small;
   text-align: center;
@@ -449,6 +450,7 @@ right: 20px;
   font-family: fantasy;
   color: black;
 }
+
 
 .spellMenu{
   font-size: small;
@@ -460,7 +462,12 @@ right: 20px;
 
 .splashPage{
   object-fit:cover;
+  max-width: 100%;
 }
+.startButtonColumn
+  {
+    text-align: center;
+  }
 
 .startButton{
   right: 20px;

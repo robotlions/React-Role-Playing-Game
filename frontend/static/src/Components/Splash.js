@@ -20,13 +20,9 @@ const startButton = <button onClick={this.props.startGame} className="startButto
   return (
     <>
     <img className="splashPage" src={archWall}/>
-    <div className="row">
-    <div className="col-4"></div>
-    <div className="col-4"></div>
-    <div className="col-4 startButtonColumn">
+    <div className="col-sm-auto startButtonColumn">
     <Login all={this.props} gameOn={this.props.gameOn}/>
     {this.state.isLoggedIn === true ? startButton : null}
-    </div>
     </div>
     </>
   );
