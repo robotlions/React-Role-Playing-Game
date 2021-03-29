@@ -236,9 +236,6 @@ img#largeSplash{
   margin-top: 50vh;
 }
 
-.textWindow{
-  background-color: white;
-}
 
 .textWindow h1{
   font-size: x-large;
@@ -295,6 +292,9 @@ img#largeSplash{
   border: 2px solid black;
   min-height: 100vh;
 }
+.bottomRow{
+  max-height: 20vw;
+}
 .container-fluid{
   height: 100vh;
   box-shadow: none;
@@ -305,12 +305,24 @@ img#largeSplash{
 }
 .charWindow{
   margin-top: 0;
-  min-height: 35vh;
-  max-height: 42vh;
+  min-height: 20vh;
+  max-height: 20vh;
   box-shadow: none;
-
 }
-.divider{
+
+.directionBox{
+  position: absolute;
+  right: 5vw;
+  top: -20vh;
+  height: 100px;
+  width: 100px;
+}
+.directionBox img{
+  height: 40px;
+  width: 40px;
+}
+.
+divider{
   display: none;
   height: 0px;
 }
@@ -320,6 +332,15 @@ img#largeSplash{
 .fireGif{
   transform: translateY(40vh);
   height: 50px;
+}
+
+.graphicsFill{
+  max-height: 200px;
+  min-width: 250px;
+}
+
+.graphicsWindow{
+  min-height: 200px;
 }
 
 .loginForm{
@@ -347,7 +368,15 @@ img#largeSplash{
   margin-top: 50vh;
 }
 
+.textWindow{
+  min-height: 20vh;
+  text-align: center;
+}
 
+.textWindow h1{
+  font-size: x-large;
+  font-weight: bold;
+}
 
 img#mobileSplash{
   display: none;
@@ -356,5 +385,32 @@ img#mobileSplash{
 #largeSplash{
     position: absolute;
   }
+
+  #nButton{
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #sButton{
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  #eButton{
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  #wButton{
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
 
 }
