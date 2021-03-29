@@ -22,7 +22,7 @@ const inventoryEquippedWeapon = <div>
 <h4>Equipped Weapon</h4>
 <p>Name: {currentWeapon.material} {currentWeapon.name}</p>
 <p>Damage: {currentWeapon.damageLow} - {currentWeapon.damageHigh}
-{this.props.all.char.equippedWeapon ? <button className="saveButton" onClick={this.props.unequip}>Unequip</button> : null}
+{this.props.all.char.equippedWeapon ? <button className="gameButton" onClick={this.props.unequip}>Unequip</button> : null}
 </p></div>
 
 // const listItems = inv.reduce((acc, it) => {
@@ -39,20 +39,20 @@ const inventoryEquippedWeapon = <div>
 const torches = inv.filter(item => item.name == 'torch').length
 
 const torchList = <div>
-<p>{torches} - Torches <button onClick={this.props.useTorch} className="saveButton">Use</button></p>
+<p>{torches} - Torches <button onClick={this.props.useTorch} className="gameButton">Use</button></p>
 </div>
 
 const inventoryList = inv.filter(item => item.isWeapon == false)
 .map((item, index) => (
   <div key={index}>
-  <p>-{item.name} {item.isUsable == true ? <button onClick={()=>this.props.useItem(item.id)} className="saveButton">Use</button> : null}</p>
+  <p>-{item.name} {item.isUsable == true ? <button onClick={()=>this.props.useItem(item.id)} className="gameButton">Use</button> : null}</p>
 </div>));
 
 const weaponList = inv.filter(item => item.isWeapon == true)
 .map((item, index) => (
   <div key={item.id}>
   {item.material} {item.name}
-  <button className="saveButton" onClick={()=>this.props.equip(item.id)}>Equip</button><button className="saveButton" onClick={()=>this.props.drop(item.id)}>Drop</button>
+  <button className="gameButton" onClick={()=>this.props.equip(item.id)}>Equip</button><button className="gameButton" onClick={()=>this.props.drop(item.id)}>Drop</button>
   </div>
 ));
 

@@ -1,15 +1,131 @@
+.combatButtons button{
+    border-radius: 2px;
+    background-image: linear-gradient(whitesmoke, lightblue);
+}
+
 .directionBox img{
   height: 40px;
   width: 40px;
 }
+.fireGif{
+  height: 50px;
+  width: 50px;
+}
+
+
+.gameButton{
+  border-radius: 2px;
+  background-image: linear-gradient(whitesmoke, lightblue);
+}
+
+.saveButton{
+  border-radius: 2px;
+  background-image: linear-gradient(whitesmoke, lightblue);
+}
+
+.upDownBox p{
+  color: steelblue;
+  text-shadow: 2px 2px 2px black;
+  width: 50px;
+}
+
+#nButton{
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#sButton{
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#eButton{
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#wButton{
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+
+
 @media only screen and (max-width: 700px) {
 
-.graphicsFill{
+.App{
+  font-family: fantasy;
+}
+
+
+.charbanner{
+  font-weight: bold;
+}
+
+.charWindow{
+  background-image: linear-gradient(whitesmoke, lightgray);
+  font-size: small;
+}
+.charWindow h4{
+  font-size: large;
+}
+
+.combatButtons button{
 
 }
+
+.container-fluid{
+  border: 3px solid black;
+}
+
 .directionBox{
-  position: absolute;
+  position: fixed;
   right: 5vw;
+  bottom: 45vh;
+  height: 100px;
+  width: 100px;
+}
+
+
+.graphicsFill{
+  max-height: 360px;
+}
+
+.graphicsWindow{
+  min-height: 360px;
+}
+
+.inventoryWindow h4{
+  font-size: large;
+}
+
+.navComponent{
+  text-shadow: 2px 2px 2px black;
+  position: absolute;
+  top: 5vh;
+  text-align: center;
+  font-size: small;
+  font-weight: bold;
+}
+.navComponent a{
+  margin-left: 5px;
+}
+
+.textWindow{
+  min-height: 35vh;
+  text-align: center;
+}
+
+.upDownBox{
+  position: absolute;
+  right: 40vw;
   bottom: 40vh;
 }
 
