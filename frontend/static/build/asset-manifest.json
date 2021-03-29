@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/static/css/main.dfa50219.chunk.css",
-    "main.js": "/static/js/main.eb7dd558.chunk.js",
-    "main.js.map": "/static/js/main.eb7dd558.chunk.js.map",
+    "main.js": "/static/js/main.47fabdb6.chunk.js",
+    "main.js.map": "/static/js/main.47fabdb6.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.dfd94eca.js",
     "runtime-main.js.map": "/static/js/runtime-main.dfd94eca.js.map",
     "static/css/2.150d169a.chunk.css": "/static/css/2.150d169a.chunk.css",
-    "static/js/2.1b7ea82e.chunk.js": "/static/js/2.1b7ea82e.chunk.js",
-    "static/js/2.1b7ea82e.chunk.js.map": "/static/js/2.1b7ea82e.chunk.js.map",
+    "static/js/2.28acfc5b.chunk.js": "/static/js/2.28acfc5b.chunk.js",
+    "static/js/2.28acfc5b.chunk.js.map": "/static/js/2.28acfc5b.chunk.js.map",
     "static/js/3.4f54a9bd.chunk.js": "/static/js/3.4f54a9bd.chunk.js",
     "static/js/3.4f54a9bd.chunk.js.map": "/static/js/3.4f54a9bd.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.150d169a.chunk.css.map": "/static/css/2.150d169a.chunk.css.map",
     "static/css/main.dfa50219.chunk.css.map": "/static/css/main.dfa50219.chunk.css.map",
-    "static/js/2.1b7ea82e.chunk.js.LICENSE.txt": "/static/js/2.1b7ea82e.chunk.js.LICENSE.txt",
+    "static/js/2.28acfc5b.chunk.js.LICENSE.txt": "/static/js/2.28acfc5b.chunk.js.LICENSE.txt",
     "static/media/arch.eca5c6a6.jpg": "/static/media/arch.eca5c6a6.jpg",
     "static/media/archWall2.5f74cc0e.png": "/static/media/archWall2.5f74cc0e.png",
     "static/media/App.css": "/static/media/texturered.b0f651fa.png",
-    "static/media/archfullbwtitle.f6e62dad.png": "/static/media/archfullbwtitle.f6e62dad.png",
+    "static/media/archwallcolor.75ec9abd.png": "/static/media/archwallcolor.75ec9abd.png",
     "static/media/dungeonStatic.015cc2eb.jpg": "/static/media/dungeonStatic.015cc2eb.jpg",
     "static/media/dungeonWalk.690d4cb0.gif": "/static/media/dungeonWalk.690d4cb0.gif",
     "static/media/flame.2e853c70.gif": "/static/media/flame.2e853c70.gif",
@@ -29,8 +29,8 @@
   "entrypoints": [
     "static/js/runtime-main.dfd94eca.js",
     "static/css/2.150d169a.chunk.css",
-    "static/js/2.1b7ea82e.chunk.js",
+    "static/js/2.28acfc5b.chunk.js",
     "static/css/main.dfa50219.chunk.css",
-    "static/js/main.eb7dd558.chunk.js"
+    "static/js/main.47fabdb6.chunk.js"
   ]
 }

@@ -3,9 +3,8 @@ import '../App.css';
 import Cookies from 'js-cookie'
 import dungeonWalk from '../images/dungeonWalk.gif'
 import dungeonStatic from '../images/dungeonStatic.jpg'
-import archWall from '../images/archWall2.png'
-import archWall2 from '../images/archfullbwtitle.png'
 import archWall3 from '../images/archbwinfo.png'
+import archWall4 from '../images/archwallcolor.png'
 import Login from './Login'
 
 class Splash extends Component{
@@ -22,7 +21,7 @@ const startButton = <button onClick={this.props.startGame} className="startButto
   return (
     <>
     <img id="mobileSplash" src={archWall3}/>
-    <img id="largeSplash" src={archWall2}/>
+    <img id="largeSplash" src={archWall4}/>
     <div className="col-sm-auto startButtonColumn">
     <Login id="logForms" all={this.props} gameOn={this.props.gameOn}/>
     {this.state.isLoggedIn === true ? startButton : null}
