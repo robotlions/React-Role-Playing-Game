@@ -261,16 +261,6 @@
     display: none;
   }
 
-  .startButton{
-    bottom: 50px;
-    text-shadow: 2px 2px 2px gray;
-    font-size: xxx-large;
-    font-weight: bold;
-    color: green;
-    border-radius: 5px;
-    background-image: linear-gradient(whitesmoke, lightgreen);
-
-  }
 
   .startButtonColumn{
     height: 100vh;
@@ -347,10 +337,7 @@
     bottom: 0%;
     cursor: pointer;
   }
-  @keyframes slidein {
-    from { transform: translateX(-300px); }
-    to   { transform: translateX(300px); }
-  }
+
 
 
 
@@ -400,6 +387,7 @@ img#mobileSplash{
   color: green;
   border-radius: 5px;
   background-image: linear-gradient(whitesmoke, lightgreen);
+  animation: slideinLarge 2s;
 
 }
 
@@ -554,6 +542,7 @@ img#largeSplash{
   border-radius: 5px;
   background-image: linear-gradient(whitesmoke, lightgreen);
   margin-top: 50vh;
+  animation: slidein 2s;
 }
 
 
@@ -717,6 +706,7 @@ img#largeSplash{
   border-radius: 5px;
   background-image: linear-gradient(whitesmoke, lightgreen);
   margin-top: 50vh;
+  animation: slidein 2s;
 }
 
 .textWindow{
@@ -775,4 +765,12 @@ h4.spellName {
   color: steelblue;
   text-shadow: 2px 2px 2px black;
 }
+}
+@keyframes slideinLarge {
+  from { transform: translateY(-500px); }
+  to   { transform: translateY(300px); }
+}
+@keyframes slidein {
+  from { transform: translateX(-300px); }
+  to   { transform: translateX(300px); }
 }
