@@ -16,7 +16,7 @@ class GraphicsWindow extends Component{
 
   return (
     <div>
-    {this.props.all.currentRoom.lit === true || this.props.all.lightSpell === true ? <img className="graphicsFill" src={this.props.all.image}/> : null}
+    {this.props.all.currentRoom.lit === true || this.props.all.lightSpell === true ? <img className="graphicsFill img-fluid" src={this.props.all.image}/> : null}
     </div>
     );
 }

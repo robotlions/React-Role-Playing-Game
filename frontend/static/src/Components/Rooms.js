@@ -71,16 +71,16 @@ else {
 
 
 
-    const nsew = <div><div className="directionBox">
-    {this.props.currentRoom.north ? <div id="nButton" title="north" onClick={this.move}><img title="north" src={nButton}/></div> : null}
-    {this.props.currentRoom.south ? <div id="sButton" title="south" onClick={this.move}><img title="south" src={sButton}/></div> : null}
-    {this.props.currentRoom.east ? <div id="eButton" title="east" onClick={this.move}><img title="east" src={eButton}/></div> : null}
-    {this.props.currentRoom.west ? <div id="wButton" title="west" onClick={this.move}><img title="west" src={wButton}/></div> : null}
+    const nsew = <div className="directionBox">
+    {this.props.currentRoom.north ? <img id="nButton" onClick={this.move} title="north" src={nButton}/> : null}
+    {this.props.currentRoom.south ? <img id="sButton" title="south" onClick={this.move} src={sButton}/> : null}
+    {this.props.currentRoom.east ? <img id="eButton" onClick={this.move} title="east" src={eButton}/> : null}
+    {this.props.currentRoom.west ? <img id="wButton" onClick={this.move} title="west" src={wButton}/> : null}
     </div>
-    <div className="upDownBox">
-    {this.props.currentRoom.up ? <div id="uButton" title="up" onClick={this.move}>CLIMB UP</div> : null}
-    {this.props.currentRoom.down ? <div id="dButton" title="down" onClick={this.move}>CLIMB DOWN</div> : null}
-    </div>
+
+    const upDown = <div className="upDownBox">
+    {this.props.currentRoom.up ? <p id="uButton" title="up" onClick={this.move}>CLIMB UP</p> : null}
+    {this.props.currentRoom.down ? <p id="dButton" title="down" onClick={this.move}>CLIMB DOWN</p> : null}
     </div>
 
     let moveMsg = this.state.moveMsg
@@ -95,6 +95,7 @@ else {
     {this.props.all.gameOn === true ? mobInRoomMessage : null}
     {mobShopMessage}
     {this.props.all.gameOn === true ? <div id="nsew">{nsew}</div> : null}
+    {this.props.all.gameOn === true ? <div id="upDown">{upDown}</div> : null}
     </div>
   );
 }
