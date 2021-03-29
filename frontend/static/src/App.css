@@ -169,6 +169,7 @@ margin-left: 18%;
 }
 
 .loginForm{
+  padding-top: 40vh;
   color: white;
   font-weight: bold;
   font-size: large;
@@ -255,19 +256,24 @@ margin-left: 18%;
   min-width: 100%;
 }
 
+.splashPage img{
+  display: none;
+}
+
 .startButton{
   bottom: 50px;
-  position: absolute;
   text-shadow: 2px 2px 2px gray;
   font-size: xxx-large;
   font-weight: bold;
   color: green;
   border-radius: 5px;
   background-image: linear-gradient(whitesmoke, lightgreen);
+
 }
 
 .startButtonColumn{
   height: 100vh;
+  text-align: -webkit-right;
 }
 
 .switchViewsButton{
@@ -341,6 +347,12 @@ transition: opacity 0 1s;
   left: 0%;
   bottom: 0%;
 }
+@keyframes slidein {
+  from { transform: translateX(-300px); }
+  to   { transform: translateX(300px); }
+}
+
+
 
 
 @keyframes fadeOut {
@@ -367,7 +379,7 @@ transition: opacity 0 1s;
   min-height: 20vh;
 } */
 .App{
-  background-image: url("./images/archbw.jpg");
+  background-image: url("./images/archbwinfo.png");
   background-position: center;
   background-size: cover;
   border: 5px solid black;
@@ -497,6 +509,9 @@ margin-right: 20%;
   max-width: 100%;
   display: none;
 }
+.splashPage img{
+  max-width: auto;
+}
 
 .startButtonColumn
   {
@@ -504,11 +519,13 @@ margin-right: 20%;
   }
 
 .startButton{
+  position: absolute;
   right: 50%;
   transform: translateX(50%);
   margin-bottom: 30vh;
   font-size: xx-large;
   width: 120px;
+  animation: slidein 3s;
 }
 
 .textWindow h1{
