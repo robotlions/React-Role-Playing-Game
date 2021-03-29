@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.78a8916d.chunk.css",
-    "main.js": "/static/js/main.9361b612.chunk.js",
-    "main.js.map": "/static/js/main.9361b612.chunk.js.map",
+    "main.css": "/static/css/main.0615f143.chunk.css",
+    "main.js": "/static/js/main.156465c0.chunk.js",
+    "main.js.map": "/static/js/main.156465c0.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.dfd94eca.js",
     "runtime-main.js.map": "/static/js/runtime-main.dfd94eca.js.map",
     "static/css/2.150d169a.chunk.css": "/static/css/2.150d169a.chunk.css",
@@ -12,10 +12,11 @@
     "static/js/3.4f54a9bd.chunk.js.map": "/static/js/3.4f54a9bd.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.150d169a.chunk.css.map": "/static/css/2.150d169a.chunk.css.map",
-    "static/css/main.78a8916d.chunk.css.map": "/static/css/main.78a8916d.chunk.css.map",
+    "static/css/main.0615f143.chunk.css.map": "/static/css/main.0615f143.chunk.css.map",
     "static/js/2.1b7ea82e.chunk.js.LICENSE.txt": "/static/js/2.1b7ea82e.chunk.js.LICENSE.txt",
     "static/media/arch.eca5c6a6.jpg": "/static/media/arch.eca5c6a6.jpg",
     "static/media/archWall2.5f74cc0e.png": "/static/media/archWall2.5f74cc0e.png",
+    "static/media/App.css": "/static/media/archbwinfo.f685b8b2.png",
     "static/media/archfullbwtitle.f6e62dad.png": "/static/media/archfullbwtitle.f6e62dad.png",
     "static/media/dungeonStatic.015cc2eb.jpg": "/static/media/dungeonStatic.015cc2eb.jpg",
     "static/media/dungeonWalk.690d4cb0.gif": "/static/media/dungeonWalk.690d4cb0.gif",
@@ -29,7 +30,7 @@
     "static/js/runtime-main.dfd94eca.js",
     "static/css/2.150d169a.chunk.css",
     "static/js/2.1b7ea82e.chunk.js",
-    "static/css/main.78a8916d.chunk.css",
-    "static/js/main.9361b612.chunk.js"
+    "static/css/main.0615f143.chunk.css",
+    "static/js/main.156465c0.chunk.js"
   ]
 }
