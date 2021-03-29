@@ -366,9 +366,16 @@ transition: opacity 0 1s;
   margin-top: 10vh;
   min-height: 20vh;
 } */
+.App{
+  background-image: url("./images/archbw.jpg");
+  background-position: center;
+  background-size: cover;
+  border: 5px solid black;
+}
+
 
 .box{
-    border: none;
+  border: none;
     box-shadow: none;
 
 }
@@ -411,6 +418,11 @@ transition: opacity 0 1s;
   box-shadow: none;
 }
 
+.combatButtons {
+position: relative;
+margin-right: 20%;
+}
+
 .directionBox{
   position: fixed;
   bottom: 50%;
@@ -430,11 +442,12 @@ transition: opacity 0 1s;
 }
 
 .graphicsWindow{
+  min-height: 55vh;
   box-shadow: none;
 }
 
 .graphicsFill{
-  position: fixed;
+  /* position: fixed; */
 }
 
 .inventoryWindow{
@@ -459,16 +472,17 @@ transition: opacity 0 1s;
   font-size: small;
   text-align: center;
   font-size: small;
-  background-image: linear-gradient(lightgray, lightslategray);
+  background-color: lightgray;
+  /* background-image: linear-gradient(lightgray, lightslategray); */
   font-family: fantasy;
   color: black;
-  overflow: auto;
+  overflow: scroll;
   box-shadow: none;
   position: absolute;
-  min-height: 30vh;
-  margin-top: 50vh;
+  min-height: 25vh;
 
 }
+
 
 .spellMenu{
   font-size: small;
@@ -481,15 +495,18 @@ transition: opacity 0 1s;
 .splashPage{
   object-fit:cover;
   max-width: 100%;
+  display: none;
 }
+
 .startButtonColumn
   {
     text-align: center;
   }
 
 .startButton{
-  right: 20px;
-  margin-bottom: 10px;
+  right: 50%;
+  transform: translateX(50%);
+  margin-bottom: 30vh;
   font-size: xx-large;
   width: 120px;
 }
@@ -534,18 +551,28 @@ transition: opacity 0 1s;
 
 @media screen and (max-width: 800px) and (orientation:landscape) {
 
+.App{
+  background-image: url("./images/texturebw.png");
+  border: 2px solid black;
+}
+
+.AppCombat{
+  background-image: url("./images/texturered.png");
+  border: 2px solid black;
+  min-height: 100vh;
+}
 .container-fluid{
   height: 100vh;
   box-shadow: none;
 }
 .box{
-  border: none;
   box-shadow: none;
 
 }
 .charWindow{
   margin-top: 0;
-  min-height: 45vh;
+  min-height: 35vh;
+  max-height: 42vh;
   box-shadow: none;
 
 }
@@ -556,5 +583,8 @@ transition: opacity 0 1s;
 .fireCol{
   display:flex;
 }
-
+.fireGif{
+  transform: translateY(40vh);
+  height: 50px;
+}
 }
