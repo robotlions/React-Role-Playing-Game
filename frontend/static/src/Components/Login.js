@@ -35,6 +35,7 @@ componentDidMount(){
           'X-CSRFToken': Cookies.get('csrftoken'),
         },
     };
+    if(this.state.isLoggedIn==true){
     fetch('/accounts/detail/', options)
     .then(response => {
       if(response.ok){
@@ -45,7 +46,7 @@ componentDidMount(){
     if (this.state.charData){
       this.props.gameOn()
     }
-
+}
   }
 
 

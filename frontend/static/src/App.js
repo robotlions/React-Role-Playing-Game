@@ -58,7 +58,7 @@ class App extends Component{
       combatClass : "",
       spells: [],
       magicAttack: false,
-      tweetTitle: 'Here Be Dragons is a fun, retro RPG!',
+      tweetTitle: 'Retro role playing games are fun!',
       lightSpell: false,
     }
 this.charDeath = this.charDeath.bind(this);
@@ -140,7 +140,7 @@ this.checkShop = this.checkShop.bind(this);
           this.setState({currentRoom: startRoom});
           // this.setState({spells});
 
-
+if( this.state.isLoggedIn === true ) {
       fetch("/characters/")
     .then(response => response.json())
     .then(response => response[0])
@@ -154,7 +154,7 @@ this.checkShop = this.checkShop.bind(this);
     .then(response => response.json())
     .then(response => this.setState({roomList: response}))
     const roomList = this.state.roomList
-
+}
       fetch("/spells/")
     .then(response => response.json())
     .then(response => this.setState({spells: response}))
@@ -575,6 +575,7 @@ slay(){
 
 
 goto(arg){
+  if(this.state.isLoggedIn==true){
   fetch("/rooms/")
   .then(response => response.json())
   .then(response => this.setState({roomList: response}))
@@ -590,6 +591,7 @@ setTimeout(()=>{
 else {
   alert("That's not a real room.")
 }}, 100);
+}
 }
 
 

@@ -27,7 +27,7 @@ urlpatterns = [
     path('', include('items.urls')),
     path('', include('weapons.urls')),
     path('', include('spells.urls')),
-    path('', include('mobs.urls')),
+    path('', include('mobs.urls', namespace='mobs')),
     path('', include('rooms.urls')),
     path('', include('characters.urls')),
     path('', include('accounts.urls')),
