@@ -750,7 +750,7 @@ unequip(){
     const combatTitle = <h2>COMBAT!</h2>
     const startButton = <button id="startButton" className="saveButton" Click={this.gameOn}>Start Game</button>
 
-    const immWindow = <div>
+    const immWindow = <div id="immWindow">
     <input className="immWindow" type="text" placeholder="input command" name="immWindow" value={this.state.immWindow} onChange={this.handleImmInput}/>
     <input type="text" placeholder="arg" name="arg" value={this.state.arg} onChange={this.handleImmInput}/>
     <button type="submit" onClick={()=>this.[command](arg)}>Go</button>

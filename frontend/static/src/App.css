@@ -296,13 +296,24 @@ img#largeSplash{
   max-height: 20vw;
 }
 .container-fluid{
-  height: 100vh;
+
+  min-height: 110vh;
   box-shadow: none;
 }
 .box{
-  box-shadow: none;
+  box-shadow: none;}
 
-}
+  .charbanner{
+    font-weight: bold;
+  }
+.charWindow{
+
+    font-size: small;
+  }
+  .charWindow h4{
+    font-size: large;
+  }
+
 .charWindow{
   margin-top: 0;
   min-height: 20vh;
@@ -313,7 +324,7 @@ img#largeSplash{
 .directionBox{
   position: absolute;
   right: 5vw;
-  top: -20vh;
+  top: 30vh;
   height: 100px;
   width: 100px;
 }
@@ -321,8 +332,7 @@ img#largeSplash{
   height: 40px;
   width: 40px;
 }
-.
-divider{
+.divider{
   display: none;
   height: 0px;
 }
@@ -336,13 +346,20 @@ divider{
 
 .graphicsFill{
   max-height: 200px;
-  min-width: 250px;
+  min-width: 235px;
 }
 
 .graphicsWindow{
   min-height: 200px;
 }
+#immWindow{
+  position: absolute;
+  bottom: -40px;
+}
 
+.inventoryWindow h4{
+  font-size: small;
+}
 .loginForm{
   position: absolute;
   top: 10vh;
@@ -353,6 +370,20 @@ divider{
   width: 120px;
 }
 
+.navComponent{
+  text-shadow: 2px 2px 2px black;
+
+  text-align: center;
+  font-size: smaller;
+  font-weight: bold;
+}
+.navComponent a{
+  margin-left: 10px;
+}
+
+.saveRow{
+  position: absolute;
+}
 
 
 .startButton{
@@ -371,11 +402,16 @@ divider{
 .textWindow{
   min-height: 20vh;
   text-align: center;
+  background-image: linear-gradient(whitesmoke, lightgray);
 }
 
 .textWindow h1{
   font-size: x-large;
   font-weight: bold;
+}
+
+#charSaveButton{
+  transform: translateY(-50px);
 }
 
 img#mobileSplash{
@@ -411,6 +447,12 @@ img#mobileSplash{
     top: 50%;
     transform: translateY(-50%);
   }
+h4.spellName {
+  font-size: small;
+}
 
-
+.upDownBox p{
+  color: steelblue;
+  text-shadow: 2px 2px 2px black;
+}
 }
