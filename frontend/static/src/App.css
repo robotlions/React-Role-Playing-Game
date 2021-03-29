@@ -86,17 +86,19 @@
 
 .App{
   font-family: fantasy, Tahoma, Helvetica, sans-serif;
-
+}
+.AppCombat{
+  font-family: fantasy, Tahoma, Helvetica, sans-serif;
 }
 
-button.logButton{
+/* button.logButton{
   position: absolute;
     font-size: x-large;
     width: 120px;
     border-radius: 5px;
     margin-top: 40vh;
     transform: translateX(-17vw);
-}
+} */
 
 .charbanner{
   font-weight: bold;
@@ -183,6 +185,18 @@ button.logButton{
 
 img#largeSplash{
   display: none;
+}
+
+
+.loginForm{
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+}
+
+.loginForm input{
+  width: 70%;
+  margin: 0 auto;
 }
 
 #mobileSplash{
