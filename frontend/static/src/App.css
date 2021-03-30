@@ -22,6 +22,8 @@
     line-height: 12px;
   }
 
+
+
   .buildButton{
     margin-left: 20px;
   }
@@ -418,6 +420,10 @@ img#mobileSplash{
     transform: translateX(-17vw);
 } */
 
+button.btn-success{
+  font-size: x-small;
+}
+
 .charbanner{
   font-weight: bold;
 }
@@ -428,6 +434,14 @@ img#mobileSplash{
 }
 .charWindow h4{
   font-size: large;
+}
+
+.col-1{
+  font-size: 8px;
+}
+
+.charWindow p{
+  font-size: 8px;
 }
 
 .combatButtons button{

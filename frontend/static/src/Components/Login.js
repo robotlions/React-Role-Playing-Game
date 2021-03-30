@@ -159,7 +159,6 @@ const profileCreate =
 
 // const loginForm = <form onSubmit={(e) => this.handleLogin(e, this.state)}>
 const loginForm = <div>
-      <p>Welcome! Please log in, or register to create your own character.</p>
       <input className="input-group form-control" type="text" placeholder="username" name="username" value={this.state.username} onChange={this.handleInput}/>
       <input className="input-group form-control" type="password" placeholder="password" name="password" value={this.state.password} onChange={this.handleInput}/>
       <button className="logButton" onClick={(e)=>this.handleLogin(e, this.state)} type="submit">Log In</button>
