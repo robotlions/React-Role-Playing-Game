@@ -798,10 +798,10 @@ unequip(){
         </div>
     </div>
     <div className="row divider"></div>
-    <div className="centerNav"><Nav all={this.state}/></div>
       <div className="row bottomRow">
 
         <div className={`col-md box charWindow`}>
+        <div className="centerNav"><Nav all={this.state}/></div>
       <React.Fragment>
       <Switch>
       <Route path="/account/" children=<Account gameOn={this.gameOn} all={this.state}/>/>

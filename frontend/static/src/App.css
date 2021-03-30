@@ -66,6 +66,7 @@
     font-size: x-large;
     line-height: 20px;
     padding-top: 20px;
+    position: relative;
   }
 
   .charWindow button {
@@ -73,6 +74,8 @@
   }
 
   .centerNav {
+    top: -60px;
+    position: absolute;
     text-align: center;
     font-size: x-large;
     font-weight: bold;
@@ -126,7 +129,7 @@
   }
 
   .divider{
-    height: 65px;
+    height: 100px;
   }
 
   .dropdown-toggle{
@@ -496,17 +499,25 @@ button.btn-success{
   font-weight: bold;
 }
 
-.navComponent{
+
+.centerNav{
+  position: absolute;
+  top: -50px;
+  text-shadow: 2px 2px 2px black;
+}
+
+
+/* .navComponent{
   text-shadow: 2px 2px 2px black;
   position: absolute;
   bottom: 10vh;
   text-align: center;
   font-size: small;
   font-weight: bold;
-}
+} */
 .navComponent a{
 margin-left: 8px;
-font-size: medium;
+font-size: small;
 }
 
 .startButtonColumn{
@@ -608,6 +619,9 @@ img#largeSplash{
   transform: translateY(-50%);
 }
 
+h4.spellName{
+  font-size: 14px;
+}
 
 }
 
