@@ -690,6 +690,8 @@ img#largeSplash{
 .inventoryWindow h4{
   font-size: small;
 }
+
+
 .loginForm{
   position: absolute;
   top: 10vh;
@@ -749,8 +751,12 @@ img#mobileSplash{
   display: none;
 }
 
-#largeSplash{
+
+  #largeSplash{
     position: absolute;
+    min-width: 100vw;
+    max-height: 100vh;
+    max-width: 100vh;
   }
 
   #nButton{
