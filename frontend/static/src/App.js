@@ -235,6 +235,7 @@ randomMob(){
   const rand = Math.floor(Math.random() * (mobList.length - 1) ) + 1;
   const mob = mobList[rand]
   this.setState({mob})
+  this.props.history.push("/main/");
   setTimeout(() => {this.setState({playerMessage: `A ${this.state.mob.name} has entered the fight!`})}, 0);
   setTimeout(() => {this.setState({playerMessage: ""})}, 2000);
 
@@ -457,6 +458,7 @@ startRandomFight(){
   const char = this.state.char
   this.setState({combat: true});
   this.setState({combatwindow: true});
+  this.props.history.push("/main/");
   const mobList = this.state.mobList;
   const rand = Math.floor(Math.random() * (mobList.length - 1) ) + 1;
   const mob = mobList[rand]
@@ -808,7 +810,7 @@ unequip(){
       <Route path="/inventory/" children=<Inventory useTorch={this.useTorch} useItem={this.useItem} drop={this.drop} equip={this.equip} unequip={this.unequip} all={this.state}/>/>
       <Route path="/magic/" children=<Spells light={this.light} showInfo={this.showInfo} all={this.state}/>/>
       <Route path="/build/" children=<Builder goto={this.goto} all={this.state}/>/>
-      <Route path="/" children=<CharWindow heal={this.heal} all={this.state}/>/>
+      <Route path="/main/" children=<CharWindow heal={this.heal} all={this.state}/>/>
 
       </Switch>
     </React.Fragment>
