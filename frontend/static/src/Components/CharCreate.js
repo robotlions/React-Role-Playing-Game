@@ -21,6 +21,8 @@ class CharCreate extends Component {
           dex: 10,
           con: 10,
           available: 15,
+          jobs: [],
+
 
         isLoggedIn: !!Cookies.get('Authorization'),
         completed: "",
@@ -30,9 +32,17 @@ this.handleDropdown = this.handleDropdown.bind(this);
 this.handleSubmit = this.handleSubmit.bind(this);
 this.statUp = this.statUp.bind(this);
 this.statDown = this.statDown.bind(this);
+this.handleJobChange = this.handleJobChange.bind(this);
+this.handleJobSubmit = this.handleJobSubmit.bind(this);
 
       }
-
+    handleJobChange(event) {
+      const jobs = this.state.jobs
+      this.setState({jobChoice: jobs[event.target.value]});
+    }
+    handleJobSubmit(event) {
+      event.preventDefault();
+    }
 
       handleInput(event){
     this.setState({[event.target.name]: event.target.value});
@@ -42,14 +52,29 @@ this.statDown = this.statDown.bind(this);
       this.setState({job: event.target.value});
     }
 
+    componentDidMount(){
 
+      fetch("/jobs/")
+    .then(response => response.json())
+    .then(response => this.setState({jobs: response}))
+    }
+
+
+    // <label>
+    //   Character Class:
+    //   <select value={this.state.job} onChange={this.handleDropdown}>
+    //     <option value="Choose">Choose</option>
+    //     <option value="Warrior">Warrior</option>
+    //     <option value="Magician">Magician</option>
+    //   </select>
+    // </label>
 
     async handleSubmit(e){
       e.preventDefault();
       const obj = {
         attack: this.state.attack,
         name: this.state.name,
-        job: this.state.job,
+        job: this.state.jobChoice.name,
         level: this.state.level,
         ac: this.state.armor,
         hp: this.state.health,
@@ -60,6 +85,18 @@ this.statDown = this.statDown.bind(this);
         int: this.state.int,
         dex: this.state.dex,
         con: this.state.con,
+        strBonus: this.state.strBonus,
+        intBonus: this.state.intBonus,
+        dexBonus: this.state.dexBonus,
+        conBonus: this.state.conBonus,
+        magicUser: this.state.jobChoice.magicUser,
+        attackBonus: this.state.jobChoice.attackBonus,
+        damageBonus: this.state.jobChoice.damageBonus,
+        evadeBonus: this.state.jobChoice.evadeBonus,
+        hpBonus: this.state.jobChoice.hpBonus,
+        spBonus: this.state.jobChoice.spBonus,
+        acBonus: this.state.jobChoice.acBonus,
+        tank: this.state.jobChoice.tank,
         xp: 0,
 
       }
@@ -103,6 +140,10 @@ statUp(stat){
   this.state.health = (10 + (this.state.con-10))
   this.state.magic = (10 + (this.state.int-10))
   this.state.armor = (10 + (this.state.dex-10))
+  this.state.strBonus = (this.state.str-10)
+  this.state.intBonus = (this.state.int-10)
+  this.state.dexBonus = (this.state.dex-10)
+  this.state.conBonus = (this.state.con-10)
 }
 
 statDown(stat){
@@ -122,23 +163,37 @@ this.state.attack = (10 + (this.state.str-10))
 this.state.health = (10 + (this.state.con-10))
 this.state.magic = (10 + (this.state.int-10))
 this.state.armor = (10 + (this.state.dex-10))
+this.state.strBonus = (this.state.str-10)
+this.state.intBonus = (this.state.int-10)
+this.state.dexBonus = (this.state.dex-10)
+this.state.conBonus = (this.state.con-10)
 }
 
 
 
         render(){
 
+          const jobs = this.state.jobs;
           const charCreateForm = <form onSubmit={this.handleSubmit} className="charCreateForm">
           <label>Character Name: </label>
           <input type="text" name="name" value={this.state.name} onChange={this.handleInput} /><br/>
+
+            <div className="spell-dropdown" value={this.state.jobs}>
             <label>
-              Character Class:
-              <select value={this.state.job} onChange={this.handleDropdown}>
-                <option value="Choose">Choose</option>
-                <option value="Warrior">Warrior</option>
-                <option value="Magician">Magician</option>
+              Pick Your Class:
+              <select onChange={this.handleJobChange}>
+              <option value={null}>Choose</option>
+              {jobs
+                .map((job, index) => (
+                <option key={job.id} value={index}>{job.name}</option>))}
               </select>
             </label>
+            <input className="saveButton" type="submit" value="Choose" />
+          </div>
+
+
+
+
           <label>Level: </label>
           <input className="createField" type="text" placeholder="Lvl 1" name="level" value={this.state.level} onChange={this.handleInput} readOnly/>
           <label>Armor: </label>

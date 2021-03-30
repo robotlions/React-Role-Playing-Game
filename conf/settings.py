@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'spells.apps.SpellsConfig',
     'weapons.apps.WeaponsConfig',
     'items.apps.ItemsConfig',
+    'jobs.apps.JobsConfig',
 ]
 
 MIDDLEWARE = [

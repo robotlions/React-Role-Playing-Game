@@ -84,7 +84,7 @@ else {
     </div>
 
     let moveMsg = this.state.moveMsg
-    const welcomeTitle = <div className="welcomeTitle"><h1>B.R.I.D.G.E.</h1><h4>Buildable, Retro-Inspired Database and Game Engine</h4></div>
+    const welcomeTitle = <div className="welcomeTitle"><h1>B.R.I.D.G.E.</h1><h4>Buildable, Retro-Inspired Digital Game Engine</h4></div>
 
 
 

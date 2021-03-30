@@ -110,14 +110,6 @@ this.awardTreasure = this.awardTreasure.bind(this);
 
   componentDidMount(){
 
-    // const charWeapon = {
-    //         weaponId: 1,
-    //         name: "longsword",
-    //         damageLow: 2,
-    //         damageHigh: 5,
-    //         damMessage: "slashes",
-    //       }
-
 
     const charSpell = {
             spellId: 1,
@@ -137,9 +129,9 @@ this.awardTreasure = this.awardTreasure.bind(this);
           danger: false,
     }
 
-          // this.setState({charWeapon})
+
           this.setState({currentRoom: startRoom});
-          // this.setState({spells});
+
 
 if(this.state.isLoggedIn==true){
       fetch("/characters/")
@@ -192,17 +184,19 @@ newChar(){
 
 
 logKey(e) {
-  if(e.code === 'MetaRight'){
+  if(this.state.char){
+  let char = this.state.char
+  if(e.code === 'MetaRight' && char.builder===true){
     this.setState(prevState => ({
       builderInput: !prevState.builderInput
     }));
   }
+}
 
 }
 startGame(){
   const rooms = this.state.roomList
   this.goto(27)
-  // this.setState({currentRoom: rooms[9]})
   this.setState({image: arch})
   this.setState({startGame: true});
 }
@@ -210,7 +204,6 @@ startGame(){
 gameOn(){
   const rooms = this.state.roomList
   this.goto(27)
-  // this.setState({currentRoom: rooms[9]})
   this.setState({image: this.state.currentRoom.static})
   this.setState({gameOn: true});
 }
@@ -285,7 +278,7 @@ meleeAttack(char, mob) {
   const charAttack = this.rando(1, 20) + char.attack
   const mobEvade = this.rando(1, 20) + mob.ac
   if (charAttack > mobEvade){
-    const damage = this.rando(charWeapon.damageLow, charWeapon.damageHigh)
+    const damage = this.rando(charWeapon.damageLow, charWeapon.damageHigh, char.strBonus)
     mob.hp = mob.hp - damage
     this.setState({charAttackMessage: `${char.name}'s ${charWeapon.material} ${charWeapon.name} ${charWeapon.damMessage} the ${mob.name} for ${damage} points of damage!`});
   }
@@ -749,11 +742,9 @@ unequip(){
 
 
 
-    // console.log(this.state.mobList)
     const switchViewsButton = <button onClick={this.changeToCombatWindow}>Switch View</button>;
     const getRandomMob = <button onClick={this.randomMob}>Generate Mob</button>;
     const meleeAttackButton = <button onClick={()=> {this.meleeAttack(char, mob, charWeapon)}}>Melee Attack</button>;
-    // const magicAttackButton = <button onClick={()=> {this.magicAttack(char, mob, charWeapon)}}>Cast Spell</button>
     const magicAttackButton = <button onClick={()=> {this.startMagicAttack(char, mob, charWeapon)}}>Cast Spell</button>
     const runAwayButton = <button onClick={this.runAway}>Run Away!</button>
     const charAttackMessage = this.state.charAttackMessage;
@@ -818,6 +809,7 @@ unequip(){
       <Route path="/magic/" children=<Spells light={this.light} showInfo={this.showInfo} all={this.state}/>/>
       <Route path="/build/" children=<Builder goto={this.goto} all={this.state}/>/>
       <Route path="/" children=<CharWindow heal={this.heal} all={this.state}/>/>
+
       </Switch>
     </React.Fragment>
     {this.state.builderInput === true ? immWindow : null}

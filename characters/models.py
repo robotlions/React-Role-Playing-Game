@@ -3,18 +3,12 @@ from django.conf import settings
 
 from weapons.models import Weapon
 from items.models import Item
-
+from jobs.models import Job
 
 
 # Create your models here.
 class Character(models.Model):
 
-    WARRIOR = 'Warrior'
-    MAGICIAN = 'Magician'
-    JOB_CHOICES = [
-        (WARRIOR, 'Warrior'),
-        (MAGICIAN, 'Magician'),
-    ]
 
     STARTWEAPON =[{
         "id": 2,
@@ -79,29 +73,36 @@ class Character(models.Model):
     name = models.CharField(max_length=255, null=True)
     str = models.IntegerField(null=True)
     strBonus = models.IntegerField(null=True, blank=True, default= 0)
+    attackBonus = models.IntegerField(null=True, blank=True, default= 0)
+    damageBonus = models.IntegerField(null=True, blank=True, default= 0)
     int = models.IntegerField(null=True)
     intBonus = models.IntegerField(null=True, blank=True, default= 0)
     dex = models.IntegerField(null=True)
     dexBonus = models.IntegerField(null=True, blank=True, default= 0)
+    evadeBonus = models.IntegerField(null=True, blank=True, default= 0)
     con = models.IntegerField(null=True)
     conBonus = models.IntegerField(null=True, blank=True, default= 0)
     attack = models.IntegerField(null=True)
     level = models.IntegerField(null=True)
     hp = models.IntegerField(null=True)
+    hpBonus = models.IntegerField(null=True, blank=True, default= 0)
     ac = models.IntegerField(null=True)
+    acBonus = models.IntegerField(null=True, blank=True, default= 0)
     hpmax = models.IntegerField(null=True)
     sp = models.IntegerField(null=True)
     spmax = models.IntegerField(null=True)
+    spBonus = models.IntegerField(null=True, blank=True, default= 0)
     xp = models.IntegerField(null=True)
     lastRoom = models.IntegerField(null=True, blank=True)
     inventory = models.JSONField(null=True, blank=True, default=STARTINVENTORY)
     weaponInventory = models.JSONField(null=True, blank=True)
     equippedWeapon = models.JSONField(null=True, blank=True, default=STARTWEAPON)
     silver = models.IntegerField(null=True, blank=True, default=200)
-    job = models.CharField(
-        max_length=15,
-        choices=JOB_CHOICES,
-        default=WARRIOR, null=True)
+    builder = models.BooleanField(null=True, blank=True, default=False)
+    magicUser = models.BooleanField(null=True, blank=True, default=False)
+    tank = models.BooleanField(null=True, blank=True, default=False)
+    job = models.CharField(max_length=255, null=True, default="Warrior")
+
 
     def __str__(self):
         return self.name

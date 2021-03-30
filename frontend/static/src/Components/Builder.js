@@ -30,6 +30,7 @@ class Builder extends Component {
     this.handleMobUpdate = this.handleMobUpdate.bind(this);
     this.handleItemSubmit = this.handleItemSubmit.bind(this);
     this.handleItemUpdate = this.handleItemUpdate.bind(this);
+    this.addData = this.addData.bind(this);
   }
 
 
@@ -335,6 +336,13 @@ roomEdit(){
 }
   }
 
+addData(){
+  for( const prop in this.props.all.currentRoom){
+    this.state.[prop] = this.props.all.currentRoom.[prop]
+}
+}
+
+
 itemEdit(){
 
   this.setState(prevState => ({
@@ -446,7 +454,7 @@ const digForm = <div className="digForm">
 const roomEditButton = <button className="buildButton btn btn-success" onClick={this.roomEdit}>Room Builder</button>
 const mobEditButton = <button className="buildButton btn btn-success" onClick={this.mobEdit}>Mob Builder</button>
 const itemEditButton = <button className="buildButton btn btn-success" onClick={this.itemEdit}>Item Builder</button>
-
+const addDataButton = <button className="buildButton btn btn-success" onClick={this.addData}>Edit Room</button>
 
 
 
@@ -498,7 +506,7 @@ const itemEditButton = <button className="buildButton btn btn-success" onClick={
         </div>
         </div> : null}
 
-        {roomEditButton}{mobEditButton}{itemEditButton}
+        {roomEditButton}{mobEditButton}{itemEditButton}{addDataButton}
         </>
 
         );
