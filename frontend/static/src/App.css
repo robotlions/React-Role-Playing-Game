@@ -691,11 +691,18 @@ img#largeSplash{
   font-size: small;
 }
 
+#largeSplash{
+  display: absolute;
+}
+
+img#largeSplash{
+  position: absolute;
+}
 
 .loginForm{
   position: absolute;
-  top: 10vh;
-  transform: translateX(200vw);
+  top: 50px;
+  right: -100px;
 }
 
 .logButton{
@@ -720,15 +727,14 @@ img#largeSplash{
 
 .startButton{
   position: absolute;
-  transform: translateX(200vw);
   font-size: xx-large;
   width: 120px;
-  animation: slidein 3s;
   font-weight: bold;
   color: green;
   border-radius: 5px;
+  right: -100px;
+  top: 100px;
   background-image: linear-gradient(whitesmoke, lightgreen);
-  margin-top: 50vh;
   animation: slidein 2s;
 }
 
@@ -752,12 +758,6 @@ img#mobileSplash{
 }
 
 
-  #largeSplash{
-    position: absolute;
-    min-width: 100vw;
-    max-height: 100vh;
-    max-width: 100vh;
-  }
 
   #nButton{
     position: absolute;
@@ -798,6 +798,6 @@ h4.spellName {
   to   { transform: translateY(300px); }
 }
 @keyframes slidein {
-  from { transform: translateX(-500px); }
-  to   { transform: translateX(50px); }
+  from { transform: translateX(-2000px); }
+  to   { transform: translateX(0px); }
 }
