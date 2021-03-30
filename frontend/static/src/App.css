@@ -398,9 +398,14 @@ img#mobileSplash{
   right: 10vw;
 
 }
-
-
 }
+form#imageForm{
+
+display: none;
+}
+
+
+
 
 
 
