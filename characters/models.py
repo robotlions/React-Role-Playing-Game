@@ -16,6 +16,65 @@ class Character(models.Model):
         (MAGICIAN, 'Magician'),
     ]
 
+    STARTWEAPON =[{
+        "id": 2,
+        "name": "letter opener",
+        "desc": "A crummy little letter opener",
+        "level": 1,
+        "makesLight": False,
+        "isMoney": False,
+        "isWeapon": True,
+        "value": 1,
+        "damageLow": 1,
+        "damageHigh": 2,
+        "range": "",
+        "damMessage": "annoys",
+        "bonus": 0,
+        "isUsable": False,
+        "material": "Bronze",
+        "type": "Knife",
+    }]
+
+    STARTINVENTORY = [{
+        "id": 4,
+        "name": "torch",
+        "desc": "A rag on a stick.",
+        "level": 1,
+        "makesLight": True,
+        "isMoney": False,
+        "isWeapon": False,
+        "value": 2,
+        "damageLow": None,
+        "damageHigh": None,
+        "range": None,
+        "damMessage": "singes",
+        "bonus": 0,
+        "isUsable": True,
+        "material": "Wood",
+        "type": "Misc"
+    },
+        {
+        "id": 3,
+        "name": "practice sword",
+        "desc": "A blunt wooden sword for children. Good luck saving the world, hero.",
+        "level": 1,
+        "makesLight": False,
+        "isMoney": False,
+        "isWeapon": True,
+        "value": 1,
+        "damageLow": 1,
+        "damageHigh": 2,
+        "range": None,
+        "damMessage": "bruises",
+        "bonus": 0,
+        "isUsable": False,
+        "material": "Wood",
+        "type": "Sword"
+    }
+
+    ]
+
+
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=255, null=True)
     str = models.IntegerField(null=True)
@@ -35,9 +94,9 @@ class Character(models.Model):
     spmax = models.IntegerField(null=True)
     xp = models.IntegerField(null=True)
     lastRoom = models.IntegerField(null=True, blank=True)
-    inventory = models.JSONField(null=True, blank=True, default=[])
+    inventory = models.JSONField(null=True, blank=True, default=STARTINVENTORY)
     weaponInventory = models.JSONField(null=True, blank=True)
-    equippedWeapon = models.ForeignKey(Item, on_delete=models.CASCADE, default=3, null=True)
+    equippedWeapon = models.JSONField(null=True, blank=True, default=STARTWEAPON)
     silver = models.IntegerField(null=True, blank=True, default=200)
     job = models.CharField(
         max_length=15,

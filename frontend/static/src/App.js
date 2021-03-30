@@ -105,6 +105,7 @@ this.newChar = this.newChar.bind(this);
 this.useItem = this.useItem.bind(this);
 this.useTorch = this.useTorch.bind(this);
 this.checkShop = this.checkShop.bind(this);
+this.awardTreasure = this.awardTreasure.bind(this);
   }
 
   componentDidMount(){
@@ -140,7 +141,7 @@ this.checkShop = this.checkShop.bind(this);
           this.setState({currentRoom: startRoom});
           // this.setState({spells});
 
-if( this.state.isLoggedIn === true ) {
+if(this.state.isLoggedIn==true){
       fetch("/characters/")
     .then(response => response.json())
     .then(response => response[0])
@@ -187,7 +188,6 @@ newChar(){
 .then(response => response.json())
 .then(response => response[0])
 .then(response => this.setState({char: response}))
-setTimeout(()=>{this.conjure(4)}, 2000);
 }
 
 
@@ -256,6 +256,7 @@ resetNow(){
   magicAttack: false,
   levelUp: false,
   mob: {},
+  image: this.state.currentRoom.static,
 })
 }
 
@@ -267,11 +268,13 @@ resetWindow(){
   playerMessage: "",
   magicAttack: false,
   mob: {},
-  levelUp: false}
-)}, 4000);
+  levelUp: false,
+  image: this.state.currentRoom.static,
+})}, 4000);
 }
 
-meleeAttack(char, mob, charWeapon) {
+meleeAttack(char, mob) {
+  const charWeapon = this.state.char.equippedWeapon[0]
   this.setState({playerMessage: ""});
   this.setState({magicAttack: false})
   if (this.state.combat == false){
@@ -375,8 +378,19 @@ charWins(char, mob){
   else{
     this.setState({image: ""})
   }
+  this.awardTreasure(char, mob)
   this.checkLevel(char);
 }
+
+awardTreasure(char, mob){
+  let treasure = this.rando(1, mob.silver)
+  setTimeout(()=>{this.setState({playerMessage: `The ${mob.name} was carrying ${treasure} silver! The money goes into ${char.name}'s stash.`})}, 1000)
+  char.silver = char.silver + treasure
+  this.setState({char})
+  this.resetWindow();
+}
+
+
 
 runAway(){
   this.setState({playerMessage: `You turn and run!`})
@@ -387,10 +401,11 @@ runAway(){
 charDeath(char){
   const rooms = this.state.roomList
   this.resetWindow();
-  this.setState({playerMessage: "You have been killed. You materialize in the home room."});
+  this.setState({playerMessage: `${char.name} has been killed. All is dark, then the world fades in again.`});
   this.state.char.hp = this.state.char.hpmax;
   this.state.char.sp = this.state.char.spmax;
-  <Rooms death={()=>this.setState({currentroom: rooms[9]})}/>
+  this.goto(27);
+  // <Rooms death={()=>this.setState({currentroom: rooms[9]})}/>
 }
 
 handleInput(event){
@@ -414,9 +429,6 @@ travel(dest, dir) {
 
 checkLight(){
     if(this.state.currentRoom.lit == true || this.state.lightSpell == true) {
-      // if(this.state.currentRoom.walk){
-      //   this.setState({image: this.state.currentRoom.walk})
-      // }
       this.setState({image: this.state.currentRoom.static})
     }
     else{
@@ -531,12 +543,13 @@ useItem(id){
   }
 
 useTorch(){
-  const char = this.state.char
-  setTimeout(()=>{this.setState({lightSpell: true, playerMessage: `${char.name} lights a torch.`})}, 500);
+  let char = this.state.char
+  this.drop(4);
+  this.setState({lightSpell: true, playerMessage: `${char.name} lights a torch.`})
   setTimeout(()=>{this.checkLight();}, 100);
   setTimeout(()=>{this.setState({playerMessage: ""})}, 4000);
   setTimeout(()=>{this.setState({lightSpell: false})}, 300000);
-  this.drop(4);
+
 }
 
 
@@ -652,6 +665,7 @@ conjure(id){
 }
 
 
+
 summon(id){
   const char = {...this.state.char}
   const mobList = this.state.mobList
@@ -673,30 +687,29 @@ this.setState({char})
 equip(id){
   const char = {...this.state.char}
   const inv = char.inventory
-  if(char.equippedWeapon != null){
-    this.unequip()
-  }
-  let i = inv.findIndex(item => item.id == id)
-  let weapon = inv.filter(item => item.id == id)
-  weapon = weapon[0]
-  if(weapon.isWeapon == true){
-    char.inventory.splice(i, 1)
-    char.equippedWeapon = weapon
-    this.setState({char})}
-    else {
-      alert(`That's not a weapon.`)
+    if(char.equippedWeapon[0] && char.equippedWeapon[0].name != "Bare hands"){
+      this.unequip()
     }
-  }
-
+    let i = inv.findIndex(item => item.id == id)
+    let weapon = inv.filter(item => item.id == id)
+    weapon = weapon[0]
+    if(weapon.isWeapon == true){
+      char.inventory.splice(i, 1)
+      char.equippedWeapon[0] = weapon
+      this.setState({char})}
+      else {
+        alert(`That's not a weapon.`)
+      }
+    }
 
 
 unequip(){
   const char = {...this.state.char}
   const itemList = this.state.itemList
-  let i = char.equippedWeapon.id
+  let i = char.equippedWeapon[0].id
   let weapon = itemList.filter(item => item.id == i)
   weapon = weapon[0]
-  char.equippedWeapon = null;
+  char.equippedWeapon = [{name: "Bare hands", id: "NA"}];
   char.inventory.push(weapon);
   this.setState({char});
 }

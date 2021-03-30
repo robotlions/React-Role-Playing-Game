@@ -16,7 +16,6 @@ this.saveChar = this.saveChar.bind(this);
 
 
 saveChar(char){
-
   fetch(`/characters/save/${char.id}/`, {
       method: 'PUT',
       headers: {
@@ -26,6 +25,9 @@ saveChar(char){
       body: JSON.stringify({...char}),
     })
 }
+
+
+
 
 
 
@@ -52,7 +54,7 @@ saveChar(char){
     <p className="col-1 hp1">{char.hp}/{char.hpmax}</p>
     <p className="col-1 sp1">{char.sp != null ? `${char.sp}/${char.spmax}` : 'N/A'}</p>
     <p className="col-1 xp1">{char.xp}</p>
-    <p className="col-1 weapon">{char.equippedWeapon ? `${char.equippedWeapon.material}  ${char.equippedWeapon.name}` : null}</p>
+    <p className="col-1 weapon">{char.equippedWeapon ? `${char.equippedWeapon[0].material}  ${char.equippedWeapon[0].name}` : null}</p>
     </div></div>
 
   return (

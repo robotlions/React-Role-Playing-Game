@@ -41,6 +41,7 @@ class Mob(models.Model):
     xp = models.IntegerField(null=True, blank=True)
     image = models.ImageField(upload_to='mobs/', null=True, blank=True)
     inventory = models.JSONField(null=True, default=dict, blank=True)
+    silver = models.IntegerField(null=True, blank=True)
     isShopkeeper = models.BooleanField(null=True, default=False)
     weakness = models.CharField(
         max_length=15,

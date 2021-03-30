@@ -75,4 +75,4 @@ class Item(models.Model):
             default=KNIFE, null=True, blank=True)
 
         def __str__(self):
-            return "# " + str(self.id) + " - " + self.name
+            return self.name
