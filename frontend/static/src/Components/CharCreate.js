@@ -188,7 +188,6 @@ this.state.conBonus = (this.state.con-10)
                 <option key={job.id} value={index}>{job.name}</option>))}
               </select>
             </label>
-            <input className="saveButton" type="submit" value="Choose" />
           </div>
 
 
@@ -231,8 +230,9 @@ const createMessage = `${this.state.completed}`
 
           return(
             <div>
-            {charCreateForm}
             {stats}
+            {charCreateForm}
+
             {createMessage}
             </div>
 

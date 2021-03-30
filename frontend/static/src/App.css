@@ -453,6 +453,9 @@ button.btn-success{
   border: 3px solid black;
 }
 
+.createField{
+  width: 15%;
+}
 .directionBox{
   position: absolute;
   right: 5vw;
@@ -496,13 +499,14 @@ button.btn-success{
 .navComponent{
   text-shadow: 2px 2px 2px black;
   position: absolute;
-  top: 5vh;
+  bottom: 10vh;
   text-align: center;
   font-size: small;
   font-weight: bold;
 }
 .navComponent a{
-  margin-left: 5px;
+margin-left: 8px;
+font-size: medium;
 }
 
 .startButtonColumn{
