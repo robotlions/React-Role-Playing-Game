@@ -393,10 +393,13 @@ runAway(){
 charDeath(char){
   const rooms = this.state.roomList
   this.resetWindow();
-  this.setState({playerMessage: `${char.name} has been killed. All is dark, then the world fades in again.`});
+  this.setState({playerMessage: `${char.name} has been killed.`});
   this.state.char.hp = this.state.char.hpmax;
   this.state.char.sp = this.state.char.spmax;
-  this.goto(27);
+  this.setState({tweetTitle: `${char.name} has been killed! Avenge this fallen hero's death at BRIDGE RPG.`})
+  setTimeout(()=>{this.sendTweet()}, 500);
+  this.goto(30);
+
   // <Rooms death={()=>this.setState({currentroom: rooms[9]})}/>
 }
 
@@ -453,7 +456,7 @@ checkMob(){
   }
 
 startRandomFight(){
-  // this.props.history.push("/main/");
+  this.props.history.push("/main/");
   let mobGen = [...this.state.mobList];
   let rand = this.rando(1, 4) - 1;
   let mob = mobGen[rand]
@@ -525,7 +528,7 @@ async levelUp(char, level){
   this.state.char.level = level;
   setTimeout(()=>{this.setState({levelUp: true,
     playerMessage: `${char.name} gains power! Hit Points: ${hpmax}. Spell Points: ${spmax}. Attack: ${attack}. Armor Class: ${ac}. Congrats! Don't forget to save ${char.name}.`})}, 7000);
-    this.setState({tweetTitle: `${char.name} has gained level ${level}! Join us at <url> to get in on old-school RPG fun!`})
+    this.setState({tweetTitle: `${char.name} has gained level ${level}! Join us at BRIDGE to get in on old-school RPG fun!`})
     setTimeout(()=>{this.sendTweet()}, 500);
   }
 
@@ -659,14 +662,14 @@ conjure(id){
 
 
 summon(id){
-  const char = {...this.state.char}
   const mobGen = [...this.state.mobList]
   let mob = mobGen.filter(mob => mob.id == id)
-  mob = mob[0];
-  // alert(`A ${mob.name} appears!`)
-  this.setState({mob})
-  this.setState({mobInRoom: mob})
+  mob=mob[0];
+  alert(`A ${mob.name} appears!`);
+  this.setState({mob});
+  this.setState({mobInRoom: mob});
 }
+
 
 drop(id){
 const char = {...this.state.char}
