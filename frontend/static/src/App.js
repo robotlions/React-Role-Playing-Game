@@ -104,6 +104,7 @@ this.useItem = this.useItem.bind(this);
 this.useTorch = this.useTorch.bind(this);
 this.checkShop = this.checkShop.bind(this);
 this.awardTreasure = this.awardTreasure.bind(this);
+this.saveChar = this.saveChar.bind(this);
   }
 
   componentDidMount(){
@@ -197,11 +198,13 @@ startGame(){
   this.goto(27)
   this.setState({image: arch})
   this.setState({startGame: true});
+  this.props.history.push("/main/");
 }
 
 gameOn(){
   const rooms = this.state.roomList
   this.goto(27)
+
   this.setState({image: this.state.currentRoom.static})
   this.setState({gameOn: true});
 }
@@ -277,7 +280,7 @@ meleeAttack(char, mob) {
   const charAttack = this.rando(1, 20) + char.attack
   const mobEvade = this.rando(1, 20) + mob.ac
   if (charAttack > mobEvade){
-    const damage = (this.rando(charWeapon.damageLow, charWeapon.damageHigh) + char.strBonus)
+    const damage = (this.rando(charWeapon.damageLow, charWeapon.damageHigh) + char.strBonus + char.damageBonus)
     mob.hp = mob.hp - damage
     this.setState({charAttackMessage: `${char.name}'s ${charWeapon.material} ${charWeapon.name} ${charWeapon.damMessage} the ${mob.name} for ${damage} points of damage!`});
   }
@@ -361,8 +364,8 @@ charWins(char, mob){
   this.setState({combat: false});
   setTimeout(() => {this.setState({image: victory})}, 1000);
   setTimeout(()=>{this.setState({image: this.state.currentRoom.static})}, 4000);
-  // this.setState({tweetTitle: `${char.name} has defeated the ${mob.name}!`})
-  // setTimeout(()=>{this.sendTweet()}, 500);
+  this.setState({tweetTitle: `${char.name} has defeated the ${mob.name}!`})
+  setTimeout(()=>{this.sendTweet()}, 500);
   this.setState({char});
   if(this.state.currentRoom.lit == true || this.state.lightSpell == true) {
     this.setState({image: this.state.currentRoom.static})
@@ -373,6 +376,7 @@ charWins(char, mob){
   fetch("/mobs/")
 .then(response => response.json())
 .then(response => this.setState({mobList: response}))
+  this.saveChar(char)
   this.awardTreasure(char, mob)
   this.checkLevel(char);
 }
@@ -385,6 +389,17 @@ awardTreasure(char, mob){
   this.resetWindow();
 }
 
+
+saveChar(char){
+  fetch(`/characters/save/${char.id}/`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+      body: JSON.stringify({...char}),
+    })
+}
 
 
 runAway(){
@@ -750,7 +765,7 @@ unequip(){
     const switchViewsButton = <button onClick={this.changeToCombatWindow}>Switch View</button>;
     const getRandomMob = <button onClick={this.randomMob}>Generate Mob</button>;
     const meleeAttackButton = <button onClick={()=> {this.meleeAttack(char, mob, charWeapon)}}>Melee Attack</button>;
-    const magicAttackButton = <button onClick={()=> {this.startMagicAttack(char, mob, charWeapon)}}>Cast Spell</button>
+    const magicAttackButton = char.magicUser ? <button onClick={()=> {this.startMagicAttack(char, mob, charWeapon)}}>Cast Spell</button> : null;
     const runAwayButton = <button onClick={this.runAway}>Run Away!</button>
     const charAttackMessage = this.state.charAttackMessage;
     const mobAttackMessage = this.state.mobAttackMessage;

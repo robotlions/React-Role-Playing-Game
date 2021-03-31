@@ -73,12 +73,15 @@
     line-height: normal;
   }
 
+
+
   .centerNav {
     top: -60px;
     position: absolute;
     text-align: center;
     font-size: x-large;
     font-weight: bold;
+    width: 100%;
   }
   .centerNav a{
     color: dodgerblue;
@@ -97,7 +100,8 @@
   .combatButtons {
   position: absolute;
   bottom: 20px;
-  margin-left: 18%;
+  text-align: center;
+  width: 100%
   }
 
   .combatButtons button{
