@@ -48,8 +48,8 @@ const torchList = <div>
 // </div>));
 
 const weaponList = inv.filter(item => item.isWeapon == true)
-.map((item) => (
-  <div key={item.id}>
+.map((item, index) => (
+  <div key={index}>
   {item.material} {item.name}
   <button className="gameButton" onClick={()=>this.props.equip(item.id)}>Equip</button><button className="gameButton" onClick={()=>this.props.drop(item.id)}>Drop</button>
   </div>
