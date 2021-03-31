@@ -5,7 +5,6 @@ import {Route, Switch} from 'react-router-dom';
 import CharWindow from './Components/CharWindow';
 import GraphicsWindow from './Components/GraphicsWindow';
 import Rooms from './Components/Rooms';
-import CombatWindow from './Components/CombatWindow';
 import Nav from './Components/Nav';
 import Inventory from './Components/Inventory';
 import Character from './Components/Character';
@@ -68,7 +67,6 @@ this.magicAttack = this.magicAttack.bind(this);
 this.runAway = this.runAway.bind(this);
 this.rando = this.rando.bind(this);
 this.resetWindow = this.resetWindow.bind(this);
-this.randomMob = this.randomMob.bind(this);
 this.heal = this.heal.bind(this);
 this.charWins = this.charWins.bind(this);
 this.handleInput = this.handleInput.bind(this);
@@ -133,7 +131,7 @@ this.awardTreasure = this.awardTreasure.bind(this);
           this.setState({currentRoom: startRoom});
 
 
-if(this.state.isLoggedIn==true){
+
       fetch("/characters/")
     .then(response => response.json())
     .then(response => response[0])
@@ -147,7 +145,7 @@ if(this.state.isLoggedIn==true){
     .then(response => response.json())
     .then(response => this.setState({roomList: response}))
     const roomList = this.state.roomList
-}
+
       fetch("/spells/")
     .then(response => response.json())
     .then(response => this.setState({spells: response}))
@@ -230,16 +228,16 @@ rando(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
 
-randomMob(){
-  const mobList = this.state.mobList
-  const rand = Math.floor(Math.random() * (mobList.length - 1) ) + 1;
-  const mob = mobList[rand]
-  this.setState({mob})
-  this.props.history.push("/main/");
-  setTimeout(() => {this.setState({playerMessage: `A ${this.state.mob.name} has entered the fight!`})}, 0);
-  setTimeout(() => {this.setState({playerMessage: ""})}, 2000);
-
-}
+// randomMob(){
+//   const mobList = [...this.state.mobList]
+//   const rand = Math.floor(Math.random() * (mobList.length - 1) ) + 1;
+//   const mob = mobList[rand]
+//   this.setState({mob})
+//   this.props.history.push("/main/");
+//   setTimeout(() => {this.setState({playerMessage: `A ${mob.name} has entered the fight!`})}, 0);
+//   setTimeout(() => {this.setState({playerMessage: ""})}, 2000);
+//
+// }
 
 resetNow(){
   this.setState({combat: false,
@@ -279,7 +277,7 @@ meleeAttack(char, mob) {
   const charAttack = this.rando(1, 20) + char.attack
   const mobEvade = this.rando(1, 20) + mob.ac
   if (charAttack > mobEvade){
-    const damage = this.rando(charWeapon.damageLow, charWeapon.damageHigh, char.strBonus)
+    const damage = (this.rando(charWeapon.damageLow, charWeapon.damageHigh) + char.strBonus)
     mob.hp = mob.hp - damage
     this.setState({charAttackMessage: `${char.name}'s ${charWeapon.material} ${charWeapon.name} ${charWeapon.damMessage} the ${mob.name} for ${damage} points of damage!`});
   }
@@ -437,7 +435,7 @@ checkFight(){
 }
 
 checkMob(){
-  let mobList = this.state.mobList
+  let mobList = [...this.state.mobList]
   let mobId = this.state.currentRoom.mobInRoom
   let mobInRoom = mobList.filter(mob => mob.id == mobId)
   this.setState({mobInRoom})
@@ -455,17 +453,16 @@ checkMob(){
   }
 
 startRandomFight(){
-  const char = this.state.char
-  this.setState({combat: true});
-  this.setState({combatwindow: true});
-  this.props.history.push("/main/");
-  const mobList = this.state.mobList;
-  const rand = Math.floor(Math.random() * (mobList.length - 1) ) + 1;
-  const mob = mobList[rand]
+  // this.props.history.push("/main/");
+  let mobGen = [...this.state.mobList];
+  let rand = this.rando(1, 4) - 1;
+  let mob = mobGen[rand]
   if(mob.isShopkeeper != true){
-    this.setState({mob})
-    this.setState({image: mob.image})
-    setTimeout(() => {this.setState({playerMessage: `A bloodthirsty ${this.state.mob.name} emerges from the shadows! \n Will you fight or flee?`})}, 500);
+    this.setState({mob});
+    this.setState({image: mob.image});
+    this.setState({combat: true});
+    this.setState({combatwindow: true});
+    setTimeout(() => {this.setState({playerMessage: `A bloodthirsty ${mob.name} emerges from the shadows! \n Will you fight or flee?`})}, 500);
   }
   else{
     this.startRandomFight()
@@ -663,10 +660,10 @@ conjure(id){
 
 summon(id){
   const char = {...this.state.char}
-  const mobList = this.state.mobList
-  let mob = mobList.filter(mob => mob.id == id)
-  mob = mob[0]
-  alert(`A ${mob.name} appears!`)
+  const mobGen = [...this.state.mobList]
+  let mob = mobGen.filter(mob => mob.id == id)
+  mob = mob[0];
+  // alert(`A ${mob.name} appears!`)
   this.setState({mob})
   this.setState({mobInRoom: mob})
 }
