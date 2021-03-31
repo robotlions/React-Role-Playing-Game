@@ -5,7 +5,7 @@ from .models import Spell
 from .serializers import SpellSerializer
 
 # Create your views here.
-class SpellListCreateAPIView(generics.ListCreateAPIView):
+class SpellListAPIView(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = SpellSerializer
     queryset = Spell.objects.all()
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]

@@ -5,7 +5,7 @@ from .models import Weapon
 from .serializers import WeaponSerializer
 
 # Create your views here.
-class WeaponListCreateAPIView(generics.ListCreateAPIView):
+class WeaponListAPIView(generics.ListAPIView):
     serializer_class = WeaponSerializer
     queryset = Weapon.objects.all()
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]

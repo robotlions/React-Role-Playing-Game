@@ -17,6 +17,7 @@ class CharacterListView(generics.ListAPIView):
         return queryset
 
 class CharacterUpdateAPIView(generics.UpdateAPIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     # permission_classes = (permissions.IsAdminUser | IsOwnerOrReadOnly,)
     queryset = Character.objects.all()
     serializer_class = CharacterSerializer
@@ -30,6 +31,7 @@ class CharacterCreateAPIView(generics.CreateAPIView):
         serializer.save(user=self.request.user)
 
 class CharacterRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     # permission_classes = (permissions.IsAdminUser | IsOwnerOrReadOnly,)
     queryset = Character.objects.all()
     serializer_class = CharacterSerializer

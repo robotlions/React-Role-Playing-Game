@@ -117,7 +117,7 @@ class Builder extends Component {
     };
 
     const handleError = (err) => console.warn(err);
-    const response = await fetch(`/mobs/`, options);
+    const response = await fetch(`/mobs/create/`, options);
     const data = await response.json().catch(handleError);
     if (response.ok) {
       alert('Mob added!');
@@ -185,7 +185,7 @@ class Builder extends Component {
     };
 
     const handleError = (err) => console.warn(err);
-    const response = await fetch(`/items/`, options);
+    const response = await fetch(`/items/create/`, options);
     const data = await response.json().catch(handleError);
     if (response.ok) {
       alert('Item added!');
@@ -262,7 +262,7 @@ async dig(dir){
       body: JSON.stringify(newroom),
     };
     const handleError = (err) => console.warn(err);
-    const response = await fetch('/rooms/', options);
+    const response = await fetch('/rooms/create/', options);
     const data = await response.json().catch(handleError);
     if (response.ok) {
       alert('Room added!');

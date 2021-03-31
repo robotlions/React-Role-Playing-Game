@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import SpellListCreateAPIView
+from .views import SpellListAPIView
 
 urlpatterns = [
-    path('spells/', SpellListCreateAPIView.as_view()),
+    path('spells/', SpellListAPIView.as_view()),
 
 ]

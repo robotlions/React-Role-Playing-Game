@@ -5,7 +5,7 @@ from .models import Job
 from .serializers import JobSerializer
 
 # Create your views here.
-class JobListCreateAPIView(generics.ListCreateAPIView):
+class JobListAPIView(generics.ListAPIView):
     serializer_class = JobSerializer
     queryset = Job.objects.all()
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -13,3 +13,4 @@ class JobListCreateAPIView(generics.ListCreateAPIView):
 class JobRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = JobSerializer
     queryset = Job.objects.all()
+    permission_classes = [permissions.IsAdminUser]

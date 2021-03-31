@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import WeaponListCreateAPIView
+from .views import WeaponListAPIView
 
 urlpatterns = [
-    path('weapons/', WeaponListCreateAPIView.as_view()),
+    path('weapons/', WeaponListAPIView.as_view()),
 
 ]
