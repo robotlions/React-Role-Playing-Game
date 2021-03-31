@@ -4,7 +4,7 @@
 
 
 
-@media screen and (min-width: 1000px) {
+@media screen and (orientation: landscape) and (min-width: 1000px) {
 
 
   .App {
@@ -513,9 +513,11 @@ button.btn-success{
 
 .graphicsFill{
   max-height: 360px;
+  min-width: 100vw;
 }
 
 .graphicsWindow{
+  min-width: 100vw;
   min-height: 360px;
 }
 
@@ -561,14 +563,17 @@ img#largeSplash{
 
 
 .loginForm{
+  width: 100%;
   position: absolute;
-  bottom: 10px;
+  bottom: 12vh;
   text-align: center;
 }
 
 .loginForm input{
-  width: 70%;
-  margin: 0 auto;
+  width: 35%;
+  line-height: 14px;
+  height: 18px;
+  font-size: small;
 }
 
 #mobileSplash{
@@ -732,16 +737,20 @@ h4.spellName{
 
 #largeSplash{
   display: absolute;
+  min-width: 100vw;
+  min-height: 100vh;
 }
 
 img#largeSplash{
+  min-width: 100vw;
+  min-height: 100vh;
   position: absolute;
 }
 
 .loginForm{
   position: absolute;
   top: 50px;
-  right: -100px;
+  right: 100px;
 }
 
 .logButton{
