@@ -370,6 +370,9 @@ charWins(char, mob){
   else{
     this.setState({image: ""})
   }
+  fetch("/mobs/")
+.then(response => response.json())
+.then(response => this.setState({mobList: response}))
   this.awardTreasure(char, mob)
   this.checkLevel(char);
 }
