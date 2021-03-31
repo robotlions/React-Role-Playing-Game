@@ -20,6 +20,8 @@ class Login extends Component {
           charData: null,
           accountData: [],
           hasAccount: false,
+          usernamelog: "",
+          passlog: "",
         }
     this.handleInput = this.handleInput.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
@@ -52,14 +54,20 @@ componentDidMount(){
 
 
 reset(){
+  this.setState({usernamelog: ""})
+  this.setState({passlog: ""})
   this.setState({username: ""})
   this.setState({password: ""})
   window.location.reload();
 }
 
 
-  async handleLogin(e, obj){
+  async handleLogin(e,){
     e.preventDefault();
+    let obj = {
+      username: this.state.usernamelog,
+      password: this.state.passlog,
+    }
     const options = {
         method: 'POST',
         headers: {
@@ -75,7 +83,7 @@ reset(){
     Cookies.set('Authorization', `Token ${data.key}`);
     }
 
-    this.props.history.push("/");
+    this.props.history.push("/main/");
     this.reset();
 
   }
@@ -159,8 +167,8 @@ const profileCreate =
 
 // const loginForm = <form onSubmit={(e) => this.handleLogin(e, this.state)}>
 const loginForm = <div>
-      <input className="input-group form-control" type="text" placeholder="username" name="username" value={this.state.username} onChange={this.handleInput}/>
-      <input className="input-group form-control" type="password" placeholder="password" name="password" value={this.state.password} onChange={this.handleInput}/>
+      <input className="input-group form-control" type="text" placeholder="username" name="usernamelog" value={this.state.usernamelog} onChange={this.handleInput}/>
+      <input className="input-group form-control" type="password" placeholder="password" name="passlog" value={this.state.passlog} onChange={this.handleInput}/>
       <button className="logButton" onClick={(e)=>this.handleLogin(e, this.state)} type="submit">Log In</button>
       </div>
 

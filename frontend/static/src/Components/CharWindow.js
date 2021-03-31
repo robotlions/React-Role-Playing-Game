@@ -24,6 +24,7 @@ saveChar(char){
       },
       body: JSON.stringify({...char}),
     })
+alert('Character saved!')
 }
 
 

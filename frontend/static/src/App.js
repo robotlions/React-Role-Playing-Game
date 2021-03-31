@@ -105,6 +105,7 @@ this.useTorch = this.useTorch.bind(this);
 this.checkShop = this.checkShop.bind(this);
 this.awardTreasure = this.awardTreasure.bind(this);
 this.saveChar = this.saveChar.bind(this);
+this.mobName = this.mobName.bind(this);
   }
 
   componentDidMount(){
@@ -173,6 +174,11 @@ this.saveChar = this.saveChar.bind(this);
 
 
 }
+
+mobName(mob){
+  alert(mob.desc)
+}
+
 
 newChar(){
   fetch("/characters/")
@@ -807,7 +813,7 @@ unequip(){
         <p>{charAttackMessage}</p>
         <p>{mobAttackMessage}</p>
 
-        {this.state.combatwindow == false ? <Rooms all={this.state} buy={this.buy} travel={this.travel} goto={this.goto} currentRoom={this.state.currentRoom} changeRoomImage={this.changeRoomImage}/>
+        {this.state.combatwindow == false ? <Rooms all={this.state} mobName={this.mobName} buy={this.buy} travel={this.travel} goto={this.goto} currentRoom={this.state.currentRoom} changeRoomImage={this.changeRoomImage}/>
         : <p className="combatButtons">{meleeAttackButton}{magicAttackButton}{runAwayButton}</p>}
         {this.state.magicAttack === true ? spellChoice : null}
         {this.state.levelUp === true ? continueButton : null}

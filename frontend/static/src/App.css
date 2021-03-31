@@ -199,6 +199,12 @@
     line-height: 25px;
   }
 
+.mobLink{
+  color: white;
+  font-size: large;
+  cursor: pointer;
+}
+
   .navBox{
     text-align: center;
     margin-left: 65px;
@@ -219,6 +225,11 @@
   .profPicContainer{
     width: 125px;
   }
+
+.shopMenu{
+  font-size: 16px;
+  line-height: 12px;
+}
 
   .textWindow{
     text-align: center;
@@ -485,6 +496,11 @@ button.btn-success{
   width: 50px;
 }
 
+.shopMenu{
+  font-size: 16px;
+  line-height: 12px;
+}
+
 .gameButton{
   border-radius: 2px;
   background-image: linear-gradient(whitesmoke, lightblue);
@@ -747,6 +763,11 @@ img#largeSplash{
   position: absolute;
 }
 
+
+.shopMenu{
+  font-size: 16px;
+  line-height: 12px;
+}
 
 .startButton{
   position: absolute;

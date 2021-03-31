@@ -62,11 +62,11 @@ else {
     const desc = this.props.currentRoom.lit === true || this.props.all.lightSpell === true ? this.props.currentRoom.desc : null;
 
     const mobInRoomMessage = <div>
-    {this.props.all.mobInRoom.length > 0 ? <p>{mobInRoom.name} is here.</p> : null}</div>
+    {this.props.all.mobInRoom.length > 0 ? <p className="mobLink" onClick={()=>this.props.mobName(mobInRoom)}>{mobInRoom.name} is here.</p> : null }</div>
 
     const mobShopMessage = <div> {this.props.all.mobInRoom.length > 0 && this.props.all.mobInRoom[0].isShopkeeper == true ?
     mobInRoom.inventory.map((item) => (
-      <p key={item.id}>- {item.material.toUpperCase()} {item.name.toUpperCase()} - Price: {item.value} silver <button className="saveButton" onClick={()=>this.props.buy(item.id)}>BUY</button></p>
+      <p className="shopMenu" key={item.id}>- {item.material.toUpperCase()} {item.name.toUpperCase()} - Price: {item.value} silver <button className="saveButton" onClick={()=>this.props.buy(item.id)}>BUY</button></p>
     )) : null }</div>
 
 
