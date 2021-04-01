@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.bfa6c2dc.chunk.css",
-    "main.js": "/static/js/main.93027378.chunk.js",
-    "main.js.map": "/static/js/main.93027378.chunk.js.map",
+    "main.css": "/static/css/main.c5e7e6f0.chunk.css",
+    "main.js": "/static/js/main.5ff417a4.chunk.js",
+    "main.js.map": "/static/js/main.5ff417a4.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.d9cc01a0.js",
     "runtime-main.js.map": "/static/js/runtime-main.d9cc01a0.js.map",
     "static/css/2.150d169a.chunk.css": "/static/css/2.150d169a.chunk.css",
@@ -12,12 +12,13 @@
     "static/js/3.1d36f45e.chunk.js.map": "/static/js/3.1d36f45e.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.150d169a.chunk.css.map": "/static/css/2.150d169a.chunk.css.map",
-    "static/css/main.bfa6c2dc.chunk.css.map": "/static/css/main.bfa6c2dc.chunk.css.map",
+    "static/css/main.c5e7e6f0.chunk.css.map": "/static/css/main.c5e7e6f0.chunk.css.map",
     "static/js/2.ec66f806.chunk.js.LICENSE.txt": "/static/js/2.ec66f806.chunk.js.LICENSE.txt",
     "static/media/arch.eca5c6a6.jpg": "/static/media/arch.eca5c6a6.jpg",
     "static/media/archWall2.5f74cc0e.png": "/static/media/archWall2.5f74cc0e.png",
     "static/media/App.css": "/static/media/texturered.b0f651fa.png",
     "static/media/archwallcolor.75ec9abd.png": "/static/media/archwallcolor.75ec9abd.png",
+    "static/media/bwsplash.8dcbd85a.png": "/static/media/bwsplash.8dcbd85a.png",
     "static/media/dungeonStatic.015cc2eb.jpg": "/static/media/dungeonStatic.015cc2eb.jpg",
     "static/media/dungeonWalk.690d4cb0.gif": "/static/media/dungeonWalk.690d4cb0.gif",
     "static/media/flame.2e853c70.gif": "/static/media/flame.2e853c70.gif",
@@ -30,7 +31,7 @@
     "static/js/runtime-main.d9cc01a0.js",
     "static/css/2.150d169a.chunk.css",
     "static/js/2.ec66f806.chunk.js",
-    "static/css/main.bfa6c2dc.chunk.css",
-    "static/js/main.93027378.chunk.js"
+    "static/css/main.c5e7e6f0.chunk.css",
+    "static/js/main.5ff417a4.chunk.js"
   ]
 }

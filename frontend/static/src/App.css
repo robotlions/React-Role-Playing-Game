@@ -150,10 +150,11 @@
   }
 
   .graphicsFill {
-    max-width: 100%;
-    max-height: 100%;
+    min-width: 100%;
+    min-height: 100%;
     object-fit: fill;
   }
+
 
   .graphicsWindow{
     box-shadow: 10px 10px 10px black;
@@ -384,6 +385,7 @@
   position: absolute;
   min-width: 100vw;
   min-height: -webkit-fill-available;
+  max-width: -webkit-fill-available;
 }
 
 img#mobileSplash{
@@ -434,14 +436,6 @@ display: none;
   font-family: fantasy, Tahoma, Helvetica, sans-serif;
 }
 
-/* button.logButton{
-  position: absolute;
-    font-size: x-large;
-    width: 120px;
-    border-radius: 5px;
-    margin-top: 40vh;
-    transform: translateX(-17vw);
-} */
 
 button.btn-success{
   font-size: x-small;
@@ -576,11 +570,13 @@ img#largeSplash{
   font-size: small;
 }
 
+
 #mobileSplash{
   position: absolute;
   max-height: 100vh;
   min-height: 100vh;
   max-width: 100vw;
+  min-width: 100vw;
   background-image: url("./images/archbwinfo.png");
   background-position: center;
   background-size: cover;
@@ -739,6 +735,7 @@ h4.spellName{
   display: absolute;
   min-width: 100vw;
   min-height: 100vh;
+  max-width: -webkit-fill-available;
 }
 
 img#largeSplash{
