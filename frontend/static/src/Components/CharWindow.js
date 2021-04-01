@@ -38,14 +38,14 @@ alert('Character saved!')
     const saveChar = <button className="saveButton" id="charSaveButton" onClick={()=>this.saveChar(char)}>Save Character</button>
     const charWindow = <div>
     <div className="row charbanner">
-    <div className="col-2 char">Name</div>
-    <div className="col-2 class">Class</div>
-    <div className="col-1 lvl">Lvl</div>
-    <div className="col-1 ac">AC</div>
-    <div className="col-1 hp">HP</div>
-    <div className="col-1 sp">SP</div>
-    <div className="col-1 xp">XP</div>
-    <div className="col-1 weapon">Weapon</div>
+    <p className="col-2 char">Name</p>
+    <p className="col-2 class">Class</p>
+    <p className="col-1 lvl">Lvl</p>
+    <p className="col-1 ac">AC</p>
+    <p className="col-1 hp">HP</p>
+    <p className="col-1 sp">SP</p>
+    <p className="col-1 xp">XP</p>
+    <p className="col-3 weapon">Weapon</p>
     </div>
     <div className="row char1row">
     <p className="col-2 char1">{char.name}</p>
@@ -55,7 +55,7 @@ alert('Character saved!')
     <p className="col-1 hp1">{char.hp}/{char.hpmax}</p>
     <p className="col-1 sp1">{char.sp != null ? `${char.sp}/${char.spmax}` : 'N/A'}</p>
     <p className="col-1 xp1">{char.xp}</p>
-    <p className="col-1 weapon">{char.equippedWeapon ? `${char.equippedWeapon[0].material}  ${char.equippedWeapon[0].name}` : null}</p>
+    <p className="col-3 weapon">{char.equippedWeapon ? `${char.equippedWeapon[0].material}  ${char.equippedWeapon[0].name}` : null}</p>
     </div></div>
 
   return (

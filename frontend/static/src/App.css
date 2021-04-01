@@ -1,6 +1,8 @@
 
 
-
+ul {
+  list-style: none;
+}
 
 
 
@@ -8,7 +10,7 @@
 
 
   .App {
-  background-image: url("./images/texturebw.png");
+  background-image: url("./images/texturebw2.png");
   background-blend-mode: soft-light;
   min-height: 100vh;
   }
@@ -61,18 +63,24 @@
   }
 
   .charWindow{
-    background-image: linear-gradient(lightgray, steelblue);
+    background-image: linear-gradient(whitesmoke, dodgerblue);
     box-shadow: 5px 5px 5px 5px black;
     font-size: x-large;
-    line-height: 20px;
+    font-weight: bold;
+    line-height: 25px;
     padding-top: 20px;
     position: relative;
   }
 
   .charWindow button {
-    line-height: normal;
+    box-shadow: 3px 3px 3px darkgray;
+    font-size: large;
+    line-height: large;
   }
 
+  .charbanner p{
+    font-size: xx-large;
+  }
 
 
   .centerNav {
@@ -90,7 +98,7 @@
   .centerNav a:link{
     text-decoration: none;
     text-shadow: 2px 2px 2px black;
-    font-size: xx-large;
+    font-size: 40px;
   }
 
   .centerNav a:hover{
@@ -172,6 +180,11 @@
     line-height: 8px;
   }
 
+  .inventoryWindow button{
+    font-size: large;
+    line-height: normal;
+  }
+
   .inventoryWindow h4{
     font-weight: bold;
   }
@@ -239,7 +252,7 @@
     background-color: black;
     color: limegreen;
     font-family: 'Lucida Console', monospace;
-    box-shadow: 7px 7px 7px 7px black;
+    box-shadow: 10px 10px 10px black;
   }
 
   .textWindow button{
@@ -560,7 +573,6 @@ img#largeSplash{
   width: 100%;
   position: absolute;
   bottom: 12vh;
-  text-align: center;
 }
 
 .loginForm input{
@@ -584,9 +596,9 @@ img#largeSplash{
 
 }
 
-.startButtonColumn{
+/* .startButtonColumn{
   text-align: center;
-}
+} */
 
 .startButton{
   position: absolute;
@@ -648,6 +660,7 @@ img#largeSplash{
 h4.spellName{
   font-size: 14px;
 }
+
 
 }
 
@@ -782,7 +795,7 @@ img#largeSplash{
   font-weight: bold;
   color: green;
   border-radius: 5px;
-  right: -100px;
+  right: 100px;
   top: 100px;
   background-image: linear-gradient(whitesmoke, lightgreen);
   animation: slidein 2s;
