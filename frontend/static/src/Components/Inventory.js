@@ -2,6 +2,8 @@
 import React, {Component} from 'react';
 import '../App.css';
 
+
+
 class Inventory extends Component {
   constructor (props){
         super(props);
@@ -9,8 +11,15 @@ class Inventory extends Component {
         count: [],
         invList: [],
         }
-        
+
       }
+
+
+
+
+
+
+
 
 
 
@@ -33,6 +42,23 @@ const torches = inv.filter(item => item.name == 'torch').length
 const torchList = <div>
 <p>{torches} - Torches <button onClick={this.props.useTorch} className="gameButton">Use</button></p>
 </div>
+
+
+// const reduced = inv.map(item => item = item.name)
+// let counts = {};
+// reduced.map(function(x) { counts[x] = (counts[x] || 0)+1; });
+// console.log(counts)
+// console.log(counts["torch"])
+
+// for (const [key, value] of Object.entries(counts)) {
+//   <p>(`${key}: ${value}`)</p>;
+// }
+
+
+// const reduced = inv.map(item => item = item.name)
+// let counts = {};
+// reduced.map(function(x) { counts[x] = (counts[x] || 0)+1; });
+// console.log(counts)
 
 
 

@@ -19,41 +19,49 @@ this.move = this.move.bind(this);
 }
 
 
+//THIS IS THE SECOND VERSION OF THE BASIC MOVMENT COMMAND. I'VE LEFT IT IN HERE,
+//COMMENTED OUT, TO SHOW THE EVOLUTION OF MY CODE. THE CLEAN VERSION IS BELOW.
+// move(e){
+// const rooms = this.props.all.roomList
+// let dir = e.target.title
+// let dest;
+// if (dir == "north"){
+//   dest = rooms.filter(room => room.id == this.props.currentRoom.north)}
+// if (dir == "south"){
+//   dest = rooms.filter(room => room.id == this.props.currentRoom.south)}
+// if (dir == "east"){
+//   dest = rooms.filter(room => room.id == this.props.currentRoom.east)}
+// if (dir == "west"){
+//   dest = rooms.filter(room => room.id == this.props.currentRoom.west)}
+// if (dir == "up"){
+//   dest = rooms.filter(room => room.id == this.props.currentRoom.up)}
+// if (dir == "down"){
+//   dest = rooms.filter(room => room.id == this.props.currentRoom.down)}
+// dest = dest[0]
+// if (dest) {
+//   this.setState({name: "", desc: ""});
+//   this.props.travel(dest, dir)
+// }
+// else {
+//   this.setState({moveMsg: "There's no exit in that direction!"})
+// }
+// }
+
+
 
 move(e){
-const rooms = this.props.all.roomList
-let dir = e.target.title
-let dest;
-if (dir == "north"){
-  dest = rooms.filter(room => room.id == this.props.currentRoom.north)}
-if (dir == "south"){
-  dest = rooms.filter(room => room.id == this.props.currentRoom.south)}
-if (dir == "east"){
-  dest = rooms.filter(room => room.id == this.props.currentRoom.east)}
-if (dir == "west"){
-  dest = rooms.filter(room => room.id == this.props.currentRoom.west)}
-if (dir == "up"){
-  dest = rooms.filter(room => room.id == this.props.currentRoom.up)}
-if (dir == "down"){
-  dest = rooms.filter(room => room.id == this.props.currentRoom.down)}
-dest = dest[0]
-if (dest) {
-  this.setState({name: "", desc: ""});
-  this.props.travel(dest, dir)
-}
-else {
-  this.setState({moveMsg: "There's no exit in that direction!"})
-}
-}
-
-
-
-
-
-
-
-
-
+  const rooms = this.props.all.roomList
+  let dir = e.target.title
+  let dest;
+  dest = rooms.filter(room => room.id == this.props.currentRoom.[dir])[0]
+  if (dest) {
+    this.setState({name: "", desc: ""});
+    this.props.travel(dest, dir)
+  }
+  else {
+    this.setState({moveMsg: "There's no exit in that direction!"})
+  }
+  }
 
 
   render(){
