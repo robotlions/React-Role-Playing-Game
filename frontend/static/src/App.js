@@ -237,16 +237,6 @@ rando(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
 
-// randomMob(){
-//   const mobList = [...this.state.mobList]
-//   const rand = Math.floor(Math.random() * (mobList.length - 1) ) + 1;
-//   const mob = mobList[rand]
-//   this.setState({mob})
-//   this.props.history.push("/main/");
-//   setTimeout(() => {this.setState({playerMessage: `A ${mob.name} has entered the fight!`})}, 0);
-//   setTimeout(() => {this.setState({playerMessage: ""})}, 2000);
-//
-// }
 
 resetNow(){
   this.setState({combat: false,
@@ -356,11 +346,6 @@ mobAttack(char, mob){
     setTimeout(() => {this.setState({charAttackMessage: ""})}, 2500);
     setTimeout(() => {this.setState({mobAttackMessage: ""})}, 2500);
   }
-
-
-
-
-
 
 
 charWins(char, mob){
