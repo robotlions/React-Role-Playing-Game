@@ -26,6 +26,7 @@ class Login extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.reset = this.reset.bind(this);
+    this.playDemo = this.playDemo.bind(this);
       }
 
 
@@ -51,6 +52,31 @@ componentDidMount(){
 }
   }
 
+async playDemo(){
+    let obj = {
+      username: "demo",
+      password: "safepass1",
+    }
+    const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': Cookies.get('csrftoken'),
+        },
+        body: JSON.stringify(obj),
+    };
+    const handleError = (err) => console.warn(err);
+    const response = await fetch('/rest-auth/login/', options);
+    const data = await response.json().catch(handleError);
+    if(data.key) {
+    Cookies.set('Authorization', `Token ${data.key}`);
+    }
+    this.props.setDemo();
+    this.reset();
+
+    
+
+  }
 
 
 reset(){
@@ -147,7 +173,7 @@ handleLogout(){
 
   render(){
 
-
+const demoBtn = <button onClick={this.playDemo} className="demoButton">Play Demo!</button>
 
 const charData = [this.props.all.charData]
 const registerForm = <form onSubmit={(e) => this.handleRegistration(e, this.state)}>
@@ -186,10 +212,13 @@ const charInfo = this.state.hasAccount === true && this.state.charData !== null 
 
 
       return(
+        <>
+        <div className="demoBtn">
+          {this.state.isLoggedIn === false ? demoBtn : null}</div>
         <div className="loginForm">
         {this.state.isLoggedIn === false && this.state.inSession === false ? loginForm : logOutForm}
-        {this.state.isLoggedIn === false ? registerForm : null}
         </div>
+        </>
       );
     }
   }

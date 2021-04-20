@@ -59,6 +59,7 @@ class App extends Component{
       magicAttack: false,
       tweetTitle: 'Retro role playing games are fun!',
       lightSpell: false,
+      demo: "",
     }
 this.charDeath = this.charDeath.bind(this);
 this.changeToCombatWindow = this.changeToCombatWindow.bind(this);
@@ -106,6 +107,7 @@ this.checkShop = this.checkShop.bind(this);
 this.awardTreasure = this.awardTreasure.bind(this);
 this.saveChar = this.saveChar.bind(this);
 this.mobName = this.mobName.bind(this);
+this.setDemo = this.setDemo.bind(this);
   }
 
   componentDidMount(){
@@ -121,10 +123,10 @@ this.mobName = this.mobName.bind(this);
     }
 
     const startRoom = {
-          name: "Launch Room",
+          name: "Mandatory Tutorial Screen",
           static: arch,
-          desc: "The default room on load",
-          north: 11,
+          desc: "Welcome to BRIDGE, a role playing game engine. To move west to the next screen, click the arrow.",
+          west: 25,
           lit: true,
           danger: false,
     }
@@ -177,6 +179,12 @@ this.mobName = this.mobName.bind(this);
 
 mobName(mob){
   alert(mob.desc)
+}
+
+setDemo(){
+  this.setState({demo: true})
+  this.setState({gameOn: true})
+  setTimeout(() => {this.startGame()}, 1000);
 }
 
 
@@ -785,7 +793,7 @@ unequip(){
 
   return (
     <div className={`${combatStatus}`}>
-   {this.state.startGame == false ? <Splash gameOn={this.gameOn} all={this.state} startGame={this.startGame}/> :
+   {this.state.startGame == false ? <Splash gameOn={this.gameOn} all={this.state} setDemo={this.setDemo} startGame={this.startGame}/> :
       <div className="container-fluid">
         <div className="row topRow">
 

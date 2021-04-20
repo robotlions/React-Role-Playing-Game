@@ -131,6 +131,20 @@ ul {
     width: 50px;
   }
 
+.demoBtn{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  margin-top: 70vh;
+  font-size: x-large;
+  font-family: fantasy;
+}
+
+.demoButton{
+  background-color: green;
+  color: white;
+}
+
   .directionBox{
     height: 100px;
     width: 100px;
@@ -199,7 +213,10 @@ ul {
   }
 
   .loginForm{
-    padding-top: 40vh;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    /* padding-top: 40vh; */
     color: white;
     font-weight: bold;
     font-size: large;
@@ -858,7 +875,7 @@ h4.spellName {
 }
 @keyframes slideinLarge {
   from { transform: translateY(-500px); }
-  to   { transform: translateY(300px); }
+  to   { transform: translateY(0px); }
 }
 @keyframes slidein {
   from { transform: translateX(-2000px); }

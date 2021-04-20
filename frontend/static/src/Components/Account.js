@@ -213,13 +213,14 @@ deleteChar(charId){
 
 
 const charData = [this.props.all.charData]
-const registerForm = <form onSubmit={(e) => this.handleRegistration(e, this.state)}>
+const registerForm = <div><p>Register to create your own character.</p>
+<form onSubmit={(e) => this.handleRegistration(e, this.state)}>
       <input className="input-group form-control" type="text" placeholder="username" name="username" value={this.state.username} onChange={this.handleInput}/>
       <input className="input-group form-control" type="email" placeholder="email" name="email" value={this.state.email} onChange={this.handleInput}/>
       <input className="input-group form-control" type="password" placeholder="password" name="password1" value={this.state.password1} onChange={this.handleInput}/>
       <input className="input-group form-control" type="password" placeholder="confirm pass" name="password2" value={this.state.password2} onChange={this.handleInput}/>
       <p><button className="btn btn-secondary" type="submit">Register</button></p>
-      </form>
+      </form></div>
 
 
 const profileCreate =
@@ -246,7 +247,8 @@ const accountName = this.state.hasAccount === true ? <p>Account: {accountInfo.us
 const charInfo = this.state.hasAccount === true && this.state.charData !== null ?
 <div>
 <p>Available characters:</p>
-<span>{accountChar.name} - Level {accountChar.level} {accountChar.job}</span><button className="saveButton" onClick={()=>this.deleteChar(accountChar)}>Delete Character</button></div> : <p>Create a character to enter a world of adventure.</p>
+<span>{accountChar.name} - Level {accountChar.level} {accountChar.job}</span>
+{this.props.all.char.name != "Percival the Demonstrative" ? <button className="saveButton" onClick={()=>this.deleteChar(accountChar)}>Delete Character</button> : null} </div> : <p>Create a character to enter a world of adventure.</p>
 
 const photoSubmit = <form className="photoSubmit" onSubmit={this.submitPhoto}>
 <p>Submit a profile photo</p>
@@ -261,14 +263,14 @@ const profPicture = <img className="profPic" width="200" src={profTest.profile_p
         <div className="loginPage row">
         <div className="col-auto">
         {logOutForm}
-        <div className="profPicContainer">
-        {profPicture}
-        </div>
-        {this.state.isLoggedIn === false ? registerForm : null}
+        
         </div>
         <div className="col-auto">
         {accountName}
         {charInfo}
+        </div>
+        <div className="col-auto" >
+        {this.state.isLoggedIn === false || this.props.all.char.name === "Percival the Demonstrative" ? registerForm : null}
         </div>
         </div>
       );

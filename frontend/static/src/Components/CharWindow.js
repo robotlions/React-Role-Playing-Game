@@ -61,7 +61,7 @@ alert('Character saved!')
   return (
 <div className="saveRow">
     {this.props.all.char ? charWindow : <p>Welcome! Click "CREATE CHARACTER" above.</p>}
-    {this.props.all.char && this.props.all.gameOn === true ? saveChar : null}
+    {this.props.all.char && this.props.all.gameOn === true && this.props.all.char.name != "Percival the Demonstrative" ? saveChar : null}
     </div>
   );
 }

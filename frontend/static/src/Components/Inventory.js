@@ -46,21 +46,21 @@ const torchList = <div>
 
 
 //THIS NUMBERS MULTIPLE INVENTORY ITEMS RATHER THAN LISTING THEM ONE BY ONE. PREVIOUS CODE BELOW.
-const reduced = inv.map(item => item = `${item.material} ${item.name}`)
-let counts = {};
-reduced.map(function(x) { counts[x] = (counts[x] || 0)+1});
-const weaponList = Object.entries(counts).map(([key, value]) => <p key={counts.uniqueID}>{value} - {key}</p>); 
+// const reduced = inv.map(item => item = `${item.material} ${item.name}`)
+// let counts = {};
+// reduced.map(function(x) { counts[x] = (counts[x] || 0)+1});
+// const weaponList = Object.entries(counts).map(([key, value]) => <p key={counts.uniqueID}>{value} - {key} </p>); 
 
 
-// const weaponList = inv.filter(item => item.isWeapon == true)
-// .map((item, index) =>(
-//   <ul>
-//   <li key={index}>
-//   {item.material} {item.name}
-//   <button className="gameButton" onClick={()=>this.props.equip(item.id)}>Equip</button><button className="gameButton" onClick={()=>this.props.drop(item.id)}>Drop</button>
-//   </li>
-//   </ul>
-// ));
+const weaponList = inv.filter(item => item.isWeapon == true)
+.map((item, index) =>(
+  <ul key={index}>
+  <li>
+  {item.material} {item.name}
+  <button className="gameButton" onClick={()=>this.props.equip(item.id)}>Equip</button><button className="gameButton" onClick={()=>this.props.drop(item.id)}>Drop</button>
+  </li>
+  </ul>
+));
 
 
 
