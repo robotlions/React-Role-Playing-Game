@@ -503,6 +503,22 @@ button.btn-success{
 .createField{
   width: 15%;
 }
+
+.demoBtn{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  margin-top: 55vh;
+  font-size: large;
+  font-family: fantasy;
+  transform: translateX(-10px);
+}
+
+.demoButton{
+  background-color: green;
+  color: white;
+}
+
 .directionBox{
   position: absolute;
   right: 5vw;
@@ -589,7 +605,7 @@ img#largeSplash{
 .loginForm{
   width: 100%;
   position: absolute;
-  bottom: 12vh;
+  top: 10px;
 }
 
 .loginForm input{
