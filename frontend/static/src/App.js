@@ -374,7 +374,7 @@ class App extends Component {
     this.setState({ combat: false });
     setTimeout(() => {
       this.setState({ image: victory });
-    }, 1000);
+    }, 250);
     setTimeout(() => {
       this.setState({ image: this.state.currentRoom.static });
     }, 4000);
