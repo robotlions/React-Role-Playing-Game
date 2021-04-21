@@ -119,12 +119,12 @@ ul {
 
   .container{
     font-size: large;
-    font-family: fantasy;
+    font-family: Luminari, 'Trebuchet MS', fantasy;
   }
 
   .container-fluid{
     font-size: large;
-    font-family: fantasy;
+    font-family: Luminari, 'Trebuchet MS', fantasy;
   }
 
   .createField{
@@ -137,7 +137,7 @@ ul {
   text-align: center;
   margin-top: 70vh;
   font-size: x-large;
-  font-family: fantasy;
+  font-family: 'Trebuchet MS', Luminari, fantasy;
 }
 
 .demoButton{
