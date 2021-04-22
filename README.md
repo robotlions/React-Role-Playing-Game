@@ -18,6 +18,31 @@ Although this version of the game is fantasy-themed, the engine is modular, and
 future devs can easily tailor the game by changing database entries for rooms, weapons,
 items, monsters and spells.
 
+The game is designed to run on the web in a browser and can be found at:
+rpg-final-project.herokuapp.com
+
+Contributors are welcome to download the code and run on a local machine.
+After cloning the repo, in frontend/static:
+```
+npm install react
+```
+then
+```
+npm start
+```
+
+To use the database locally. In the main directory:
+```
+pipenv shell
+python manage.py runserver
+```
+
+Note: the backend requires several dependencies:
+
+```
+django django-allauth django-restauth django-rest-framework dj-database-url pillow gunicorn whitenoise
+```
+
 TO DO: Add rooms, weapons, spells and character classes. Also need to flesh out
 character level-up system. The code currently allows characters to advance to
 level 3. Future code will go up to 90.
