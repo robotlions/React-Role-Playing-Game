@@ -1,4 +1,4 @@
-# rpg-final-project
+# B.R.I.D.G.E. - Buildable, Retro-Inspired Digital Game Engine
 A game engine and builder inspired by 90s text-driven fantasy RPGs.
 Built in ReactJS and Django.
 Although this is more of a demonstration of the game engine rather than the
